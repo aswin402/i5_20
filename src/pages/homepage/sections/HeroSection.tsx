@@ -136,7 +136,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           muted
           playsInline
           preload="auto"
-          className="absolute top-0 bottom-0 left-0 right-[20px] w-[calc(100%-20px)] h-full object-contain lg:object-right object-center filter brightness-95 transform -translate-x-8 -translate-y-6"
+          className="absolute top-0 bottom-0 left-0 right-[30px] w-[calc(100%-30px)] h-full object-contain lg:object-right object-center filter brightness-95 transform -translate-x-8 -translate-y-6"
         >
           <source src="./libst.mp4" type="video/mp4" />
           <source src="./libst.webm" type="video/webm" />
