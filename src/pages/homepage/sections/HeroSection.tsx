@@ -148,7 +148,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
         
         {/* Slogans and CTAs (Col 1-8) */}
-        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-6 text-left">
+        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-6 text-left ml-[30px]">
           
           {/* Top Badge: Now in Private Beta | Built on Hyperliquid */}
           <div className="self-start hero-fade-in">
