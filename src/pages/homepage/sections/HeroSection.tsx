@@ -167,7 +167,10 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           <div className="flex flex-col gap-2">
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-heading font-black tracking-tight leading-[1.05] text-white normal-case">
               <span className="hero-title-line block overflow-hidden">
-                <span className="block">From noise to</span>
+                <span className="block">From</span>
+              </span>
+              <span className="hero-title-line block overflow-hidden mt-1 sm:mt-2">
+                <span className="block">noise to</span>
               </span>
               <span className="hero-title-line block overflow-hidden mt-1 sm:mt-2">
                 <span className="text-primary drop-shadow-[0_0_15px_rgba(0,255,204,0.25)] block">signals.</span>
@@ -206,7 +209,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           {/* Stats: Signal Accuracy & Latency */}
           <div className="flex gap-12 mt-6 border-t border-white/10 pt-6 hero-fade-in">
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-4xl font-heading font-black text-white tracking-tight origin-left transition-transform duration-300">
+              <div className="stat-val text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
                 98.7%
               </div>
               <div className="stat-lbl text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
@@ -214,7 +217,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
               </div>
             </div>
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-4xl font-heading font-black text-white tracking-tight origin-left transition-transform duration-300">
+              <div className="stat-val text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
                 &lt;50ms
               </div>
               <div className="stat-lbl text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
