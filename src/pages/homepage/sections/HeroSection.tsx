@@ -125,8 +125,8 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover filter blur-3xl opacity-35"
         >
-          <source src="/libst.mp4" type="video/mp4" />
-          <source src="/libst.webm" type="video/webm" />
+          <source src="./libst.mp4" type="video/mp4" />
+          <source src="./libst.webm" type="video/webm" />
         </video>
         
         {/* Crisp Video Background (Contained and right-aligned to remain fully visible and uncropped) */}
@@ -138,8 +138,8 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           preload="auto"
           className="absolute inset-0 w-full h-full object-contain lg:object-right object-center filter brightness-95 transform -translate-x-8 -translate-y-6"
         >
-          <source src="/libst.mp4" type="video/mp4" />
-          <source src="/libst.webm" type="video/webm" />
+          <source src="./libst.mp4" type="video/mp4" />
+          <source src="./libst.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
       </div>

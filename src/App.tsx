@@ -21,7 +21,9 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {
+  basename: import.meta.env.DEV ? '/' : '/i5_20',
+});
 
 function App() {
   return <RouterProvider router={router} />;
