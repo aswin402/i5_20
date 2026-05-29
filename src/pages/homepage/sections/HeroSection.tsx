@@ -141,38 +141,40 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
   return (
     <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-24 select-none pb-16 overflow-hidden">
       
-      {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden z-0 select-none hero-bg-video pointer-events-none">
-        {/* Ambient Blurred Video Background (Covers entire screen to eliminate letterboxing) */}
-        <video
-          key={`ambient-${videoSrc}`}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover filter blur-3xl opacity-20 pointer-events-none"
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
-        
-        {/* Crisp Video Background (Contained and right-aligned to remain fully visible and uncropped) */}
-        <video
-          key={`crisp-${videoSrc}`}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute top-0 bottom-0 left-0 right-0 lg:right-[30px] w-full lg:w-[calc(100%-30px)] h-full object-cover lg:object-contain lg:object-right object-center filter brightness-95 opacity-30 lg:opacity-100 pointer-events-none"
-        >
-          <source src={videoSrc} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      {/* Background Video (Desktop only) */}
+      {!isMobile && (
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0 select-none hero-bg-video pointer-events-none">
+          {/* Ambient Blurred Video Background (Covers entire screen to eliminate letterboxing) */}
+          <video
+            key={`ambient-${videoSrc}`}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover filter blur-3xl opacity-20 pointer-events-none"
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+          
+          {/* Crisp Video Background (Contained and right-aligned to remain fully visible and uncropped) */}
+          <video
+            key={`crisp-${videoSrc}`}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute top-0 bottom-0 left-0 right-0 lg:right-[30px] w-full lg:w-[calc(100%-30px)] h-full object-cover lg:object-contain lg:object-right object-center filter brightness-95 opacity-30 lg:opacity-100 pointer-events-none"
+          >
+            <source src={videoSrc} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
 
       {/* Asymmetrical Grid layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 w-full">
         
         {/* Slogans and CTAs */}
         <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-6 text-center lg:text-left items-center lg:items-start w-full">
@@ -262,8 +264,24 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
         </div>
 
-        {/* Spacer Column */}
-        <div className="hidden lg:block lg:col-span-4 xl:col-span-5" />
+        {/* Video Block for Mobile, Spacer for Desktop */}
+        <div className="lg:col-span-4 xl:col-span-5 w-full flex justify-center items-center hero-fade-in">
+          {isMobile ? (
+            <div className="w-full max-w-[420px] aspect-[9/16] rounded-2xl overflow-hidden border border-white/15 shadow-[0_0_40px_rgba(0,255,204,0.15)] bg-black/60 backdrop-blur-sm">
+              <video
+                key="mobile-video-block"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover"
+              >
+                <source src={heroVideoMob} type="video/mp4" />
+              </video>
+            </div>
+          ) : null}
+        </div>
 
       </div>
 
