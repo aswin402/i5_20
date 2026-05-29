@@ -215,6 +215,23 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             </div>
           </div>
 
+          {/* Mobile Video (rendered directly after the badge) */}
+          {isMobile && (
+            <div className="-mx-6 w-[calc(100%+3rem)] overflow-hidden my-3 hero-fade-in">
+              <video
+                key="mobile-video-block"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-auto block"
+              >
+                <source src={heroVideoMob} type="video/mp4" />
+              </video>
+            </div>
+          )}
+
           {/* Paragraph description */}
           <p className="text-white/70 font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-2 hero-fade-in mx-auto lg:mx-0">
             i5 is an intelligence-native trading network that aggregates smart-money flows, cohort behavior, and institutional-grade signals into a unified execution layer.
@@ -264,24 +281,8 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
         </div>
 
-        {/* Video Block for Mobile, Spacer for Desktop */}
-        <div className="lg:col-span-4 xl:col-span-5 w-full flex justify-center items-center hero-fade-in">
-          {isMobile ? (
-            <div className="-mx-6 w-[calc(100%+3rem)] overflow-hidden">
-              <video
-                key="mobile-video-block"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="w-full h-auto block"
-              >
-                <source src={heroVideoMob} type="video/mp4" />
-              </video>
-            </div>
-          ) : null}
-        </div>
+        {/* Video Spacer for Desktop */}
+        <div className="lg:col-span-4 xl:col-span-5 w-full flex justify-center items-center hero-fade-in" />
 
       </div>
 
