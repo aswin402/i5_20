@@ -32,40 +32,40 @@ export function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 h-14 border-b border-white/10 bg-black/90 backdrop-blur-md z-50 flex items-center justify-between px-4 sm:px-6 font-mono select-none">
-      <div className="flex items-center gap-6">
+    <nav className="fixed top-0 left-0 right-0 h-20 border-b border-white/10 bg-black/90 backdrop-blur-md z-50 flex items-center justify-between px-6 sm:px-8 lg:px-12 font-mono select-none">
+      <div className="flex items-center gap-10">
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
-          className="text-lg font-display tracking-tighter text-white font-extrabold flex items-center gap-1.5 hover:opacity-85 transition-opacity cursor-pointer"
+          className="text-xl font-display tracking-tighter text-white font-extrabold flex items-center gap-2 hover:opacity-85 transition-opacity cursor-pointer"
         >
-          <span className="bg-primary text-black px-1.5 py-0.5 text-xs font-black tracking-normal">i5</span>
+          <span className="bg-primary text-black px-2 py-0.5 text-sm font-black tracking-normal">i5</span>
           <span className="tracking-widest">.XYZ</span>
         </button>
         
-        <div className="hidden md:flex items-center gap-4 text-xs">
-          <button 
-            onClick={() => scrollToSection('alpha-feed')} 
-            className="text-white/60 hover:text-primary hover:before:content-['>_'] transition-colors cursor-pointer"
-          >
-            FEED
-          </button>
+        <div className="hidden md:flex items-center gap-8 text-sm font-bold">
           <button 
             onClick={() => scrollToSection('why-we-win')} 
-            className="text-white/60 hover:text-primary hover:before:content-['>_'] transition-colors cursor-pointer"
+            className="text-white/60 hover:text-primary hover:before:content-['>_'] transition-colors cursor-pointer tracking-wider"
           >
-            TECH_STACK
+            PLATFORM
           </button>
           <button 
-            onClick={() => scrollToSection('performance')} 
-            className="text-white/60 hover:text-primary hover:before:content-['>_'] transition-colors cursor-pointer"
+            onClick={() => scrollToSection('core-features')} 
+            className="text-white/60 hover:text-primary hover:before:content-['>_'] transition-colors cursor-pointer tracking-wider"
           >
-            PERFORMANCE
+            FEATURES
           </button>
           <button 
-            onClick={() => scrollToSection('community')} 
-            className="text-white/60 hover:text-primary hover:before:content-['>_'] transition-colors cursor-pointer"
+            onClick={() => scrollToSection('built-for-traders')} 
+            className="text-white/60 hover:text-primary hover:before:content-['>_'] transition-colors cursor-pointer tracking-wider"
           >
-            CULT
+            COMPARE
+          </button>
+          <button 
+            onClick={() => scrollToSection('intelligence-network')} 
+            className="text-white/60 hover:text-primary hover:before:content-['>_'] transition-colors cursor-pointer tracking-wider"
+          >
+            USERS
           </button>
         </div>
       </div>
@@ -84,10 +84,10 @@ export function Navbar() {
         <div>{time}</div>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <button 
           onClick={() => scrollToSection('war-room')}
-          className="hidden sm:block text-xs bg-primary text-black font-bold px-3 py-1.5 border border-primary hover:bg-transparent hover:text-primary transition-colors cursor-pointer uppercase"
+          className="hidden sm:block text-xs bg-primary text-black font-black px-5 py-2.5 border border-primary hover:bg-transparent hover:text-primary transition-colors cursor-pointer uppercase tracking-wider"
         >
           ENTER THE WAR ROOM
         </button>

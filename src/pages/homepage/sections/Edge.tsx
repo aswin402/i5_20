@@ -469,10 +469,10 @@ export function Edge() {
             <div className="edge-header max-w-3xl text-left">
               <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// COGNITIVE DELTA</span>
               <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase leading-none">
-                THE i5 EDGE
+                THE <span className='lowercase'>i5</span> EDGE
               </h2>
-              <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary uppercase">
-                <div>Traditional vs. i5.</div>
+              <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary">
+                <div className='font-bold text-xl'>Traditional vs<span className='text-white lowercase'> i5</span></div>
               </div>
               <p className="text-white/60 font-body text-sm sm:text-base mt-6 leading-relaxed">
                 Every row represents a paradigm shift in execution, intelligence, and coordination. Stop guessing — <span className="text-primary font-bold">start knowing.</span>
@@ -493,7 +493,7 @@ export function Edge() {
                   <span className="text-red-500/80 font-bold">[ LIMITED ]</span>
                 </div>
                 <div className="p-4 sm:p-6 text-primary flex items-center justify-between bg-primary/5">
-                  <span>i5 Intelligence</span>
+                  <span><span className='text-white lowercase'>i5</span> Intelligence</span>
                   <span className="text-primary font-black animate-pulse">[ WEAPONIZED ]</span>
                 </div>
               </div>

@@ -118,10 +118,10 @@ export function CoreFeatures() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="features-header max-w-3xl mb-16 text-left">
+        <div className="features-header max-w-none mb-16 text-left">
           <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// CORE CAPABILITIES</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white uppercase leading-none">
-            Everything you need <br className="hidden sm:inline" /> to read the market — <br className="hidden sm:inline" /> and act on it.
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white uppercase leading-[1.1]">
+            Everything you need to read the market and act on it.
           </h2>
           <p className="text-white/60 font-body text-base sm:text-lg mt-6 leading-relaxed">
             Six core capabilities. One integrated intelligence layer. <span className="text-primary font-bold">Zero guesswork.</span>

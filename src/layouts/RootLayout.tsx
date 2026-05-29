@@ -29,7 +29,7 @@ export function RootLayout() {
       )}
 
       <Navbar />
-      <main className="pt-14 relative z-10">
+      <main className="pt-20 relative z-10">
         <Outlet />
       </main>
     </div>

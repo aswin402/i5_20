@@ -165,7 +165,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
           {/* Heading: From noise to signals. */}
           <div className="flex flex-col gap-2">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-heading font-black tracking-tight leading-[1.05] text-white normal-case">
+            <h1 className="text-5xl sm:text-6xl uppercase md:text-7xl lg:text-[5.5rem] font-heading font-black tracking-tight leading-[0.85] text-white normal-case">
               <span className="hero-title-line block overflow-hidden">
                 <span className="block">From</span>
               </span>
@@ -173,7 +173,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                 <span className="block">noise to</span>
               </span>
               <span className="hero-title-line block overflow-hidden mt-1 sm:mt-2">
-                <span className="text-primary drop-shadow-[0_0_15px_rgba(0,255,204,0.25)] block">signals.</span>
+                <span className="text-primary drop-shadow-[0_0_15px_rgba(0,255,204,0.25)] block">signals</span>
               </span>
             </h1>
             
@@ -206,8 +206,8 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             </button>
           </div>
 
-          {/* Stats: Signal Accuracy & Latency */}
-          <div className="flex gap-12 mt-6 border-t border-white/10 pt-6 hero-fade-in">
+          {/* Stats: Signal Accuracy, Latency & Supplies */}
+          <div className="flex flex-wrap gap-8 sm:gap-12 mt-6 border-t border-white/10 pt-6 hero-fade-in">
             <div className="hero-stat-item cursor-pointer">
               <div className="stat-val text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
                 98.7%
@@ -222,6 +222,14 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
               </div>
               <div className="stat-lbl text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                 LATENCY
+              </div>
+            </div>
+            <div className="hero-stat-item cursor-pointer">
+              <div className="stat-val text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
+                20M
+              </div>
+              <div className="stat-lbl text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+                SUPPLIES
               </div>
             </div>
           </div>

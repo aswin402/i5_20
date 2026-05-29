@@ -5,7 +5,6 @@ import { IntelligenceStack } from './sections/IntelligenceStack';
 import { CoreFeatures } from './sections/CoreFeatures';
 import { Edge } from './sections/Edge';
 import { BuiltForTraders } from './sections/BuiltForTraders';
-import { Community } from './sections/Community';
 import { IntelligenceNetwork } from './sections/IntelligenceNetwork';
 import { Footer } from './sections/Footer';
 
@@ -25,7 +24,6 @@ export function HomePage() {
       <CoreFeatures />
       <Edge />
       <BuiltForTraders />
-      <Community />
       <IntelligenceNetwork />
       <Footer />
     </div>

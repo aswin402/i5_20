@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import IConstant from '../../../assets/Iconstant.png';
+import I1 from '../../../assets/I1.png';
+import I2 from '../../../assets/I2.png';
+import I3 from '../../../assets/I3.png';
+import I4 from '../../../assets/I4.png';
+import I5 from '../../../assets/I5.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -223,215 +229,33 @@ function Layer5Visual({ hovered }: LayerVisualProps) {
   );
 }
 
-function I5CentralCore({ hoveredIndex }: { hoveredIndex: number | null }) {
+const LAYER_IMAGES: Record<number, string> = { 1: I1, 2: I2, 3: I3, 4: I4, 5: I5 };
+
+function I5CentralCore({ 
+  hoveredIndex, 
+}: { 
+  hoveredIndex: number | null; 
+  setHoveredIndex: (index: number | null) => void; 
+}) {
+  const src = hoveredIndex !== null ? LAYER_IMAGES[hoveredIndex] : IConstant;
+
   return (
-    <div className="relative w-full aspect-square max-w-[320px] mx-auto mt-8 border border-white/10 bg-black/60 p-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-sm select-none">
-      {/* Corner Bracket decorations */}
-      <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-white/20" />
-      <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-white/20" />
-      <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-white/20" />
-      <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-white/20" />
-
-      {/* Main SVG */}
-      <svg viewBox="0 0 300 300" className="w-full h-full">
-        <defs>
-          <radialGradient id="centralGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#00ffcc" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#00ffcc" stopOpacity="0" />
-          </radialGradient>
-          <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="6" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-        </defs>
-
-        <style>{`
-          @keyframes spin-cw {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
-          @keyframes spin-ccw {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(-360deg); }
-          }
-          @keyframes pulse-die {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0, 255, 204, 0.3)); }
-            50% { transform: scale(1.03); filter: drop-shadow(0 0 15px rgba(0, 255, 204, 0.8)); }
-          }
-          .rot-cw {
-            transform-origin: 150px 150px;
-            animation: spin-cw 20s linear infinite;
-          }
-          .rot-ccw {
-            transform-origin: 150px 150px;
-            animation: spin-ccw 15s linear infinite;
-          }
-          .die-pulse {
-            transform-origin: 150px 150px;
-            animation: pulse-die 3s ease-in-out infinite;
-          }
-        `}</style>
-
-        {/* Outer Circular Grid */}
-        <circle cx="150" cy="150" r="120" fill="none" stroke="rgba(255, 255, 255, 0.05)" strokeWidth="1" />
-        <circle cx="150" cy="150" r="100" fill="none" stroke="rgba(255, 255, 255, 0.03)" strokeWidth="1" />
-
-        {/* Rotating bezel rings */}
-        <circle cx="150" cy="150" r="85" fill="none" stroke={hoveredIndex ? '#00ffcc' : 'rgba(255, 255, 255, 0.1)'} strokeWidth="1.5" strokeDasharray="15, 25" className="rot-cw transition-colors duration-300" style={hoveredIndex ? { animationDuration: '6s' } : {}} />
-        <circle cx="150" cy="150" r="75" fill="none" stroke={hoveredIndex ? '#00ffcc' : 'rgba(255, 255, 255, 0.08)'} strokeWidth="1" strokeDasharray="5, 12" className="rot-ccw transition-colors duration-300" style={hoveredIndex ? { animationDuration: '5s' } : {}} />
-
-        {/* Circuit Traces linking core to outer contacts */}
-        {/* Trace 1: Top-Left (Layer 1) */}
-        <path d="M100,100 L60,60" fill="none" stroke={hoveredIndex === 1 ? '#00ffcc' : 'rgba(255, 255, 255, 0.1)'} strokeWidth={hoveredIndex === 1 ? 2.5 : 1.5} className="transition-all duration-300" />
-        {hoveredIndex === 1 && (
-          <circle r="4" fill="#00ffcc">
-            <animateMotion dur="0.8s" repeatCount="indefinite" path="M100,100 L60,60" />
-          </circle>
-        )}
-
-        {/* Trace 2: Mid-Left (Layer 2) */}
-        <path d="M90,150 L40,150" fill="none" stroke={hoveredIndex === 2 ? '#00ffcc' : 'rgba(255, 255, 255, 0.1)'} strokeWidth={hoveredIndex === 2 ? 2.5 : 1.5} className="transition-all duration-300" />
-        {hoveredIndex === 2 && (
-          <circle r="4" fill="#00ffcc">
-            <animateMotion dur="0.8s" repeatCount="indefinite" path="M90,150 L40,150" />
-          </circle>
-        )}
-
-        {/* Trace 3: Top-Right (Layer 3) */}
-        <path d="M200,100 L240,60" fill="none" stroke={hoveredIndex === 3 ? '#00ffcc' : 'rgba(255, 255, 255, 0.1)'} strokeWidth={hoveredIndex === 3 ? 2.5 : 1.5} className="transition-all duration-300" />
-        {hoveredIndex === 3 && (
-          <circle r="4" fill="#00ffcc">
-            <animateMotion dur="0.8s" repeatCount="indefinite" path="M200,100 L240,60" />
-          </circle>
-        )}
-
-        {/* Trace 4: Mid-Right (Layer 4) */}
-        <path d="M210,150 L260,150" fill="none" stroke={hoveredIndex === 4 ? '#00ffcc' : 'rgba(255, 255, 255, 0.1)'} strokeWidth={hoveredIndex === 4 ? 2.5 : 1.5} className="transition-all duration-300" />
-        {hoveredIndex === 4 && (
-          <circle r="4" fill="#00ffcc">
-            <animateMotion dur="0.8s" repeatCount="indefinite" path="M210,150 L260,150" />
-          </circle>
-        )}
-
-        {/* Trace 5: Bottom-Center (Layer 5) */}
-        <path d="M150,210 L150,260" fill="none" stroke={hoveredIndex === 5 ? '#00ffcc' : 'rgba(255, 255, 255, 0.1)'} strokeWidth={hoveredIndex === 5 ? 2.5 : 1.5} className="transition-all duration-300" />
-        {hoveredIndex === 5 && (
-          <circle r="4" fill="#00ffcc">
-            <animateMotion dur="0.8s" repeatCount="indefinite" path="M150,210 L150,260" />
-          </circle>
-        )}
-
-        {/* Silicon Die Substrate */}
-        <rect x="95" y="95" width="110" height="110" rx="8" fill="#000000" stroke="rgba(255, 255, 255, 0.15)" strokeWidth="1" />
-        
-        {/* Glow center */}
-        {hoveredIndex && (
-          <rect x="98" y="98" width="104" height="104" rx="6" fill="url(#centralGlow)" pointerEvents="none" />
-        )}
-
-        {/* Central Core Die with i5 embossed */}
-        <g className="die-pulse">
-          <rect x="105" y="105" width="90" height="90" rx="6" fill="#030304" stroke={hoveredIndex ? '#00ffcc' : 'rgba(255, 255, 255, 0.3)'} strokeWidth="2.5" className="transition-colors duration-300" />
-          <text x="150" y="157" fontFamily="var(--font-display)" fontSize="36" fontWeight="900" textAnchor="middle" fill={hoveredIndex ? '#00ffcc' : '#ffffff'} filter={hoveredIndex ? 'url(#glowEffect)' : 'none'} className="transition-colors duration-300 tracking-tighter">i5</text>
-          
-          <text x="150" y="178" fontFamily="var(--font-mono)" fontSize="7" fontWeight="bold" textAnchor="middle" fill={hoveredIndex ? '#00ffcc' : 'rgba(255,255,255,0.4)'} className="transition-colors duration-300 tracking-widest">// CORE</text>
-        </g>
-
-        {/* Outer terminal contacts (dots) */}
-        <circle cx="60" cy="60" r="5" fill={hoveredIndex === 1 ? '#00ffcc' : 'rgba(255, 255, 255, 0.2)'} className="transition-colors duration-300" />
-        <circle cx="40" cy="150" r="5" fill={hoveredIndex === 2 ? '#00ffcc' : 'rgba(255, 255, 255, 0.2)'} className="transition-colors duration-300" />
-        <circle cx="240" cy="60" r="5" fill={hoveredIndex === 3 ? '#00ffcc' : 'rgba(255, 255, 255, 0.2)'} className="transition-colors duration-300" />
-        <circle cx="260" cy="150" r="5" fill={hoveredIndex === 4 ? '#00ffcc' : 'rgba(255, 255, 255, 0.2)'} className="transition-colors duration-300" />
-        <circle cx="150" cy="260" r="5" fill={hoveredIndex === 5 ? '#00ffcc' : 'rgba(255, 255, 255, 0.2)'} className="transition-colors duration-300" />
-      </svg>
-
-      {/* Mini HUD Diagnostic Readout Panel */}
-      <div className="mt-4 border border-primary/20 bg-primary/5 p-3 rounded-none font-mono text-[10px] text-white/70 h-[84px] flex flex-col justify-between select-none">
-        {hoveredIndex === 1 && (
-          <>
-            <div className="flex justify-between text-primary font-bold">
-              <span>[ SYSTEM PORTAL: DATA_INGRESS ]</span>
-              <span className="animate-pulse">STREAMING</span>
-            </div>
-            <div className="grid grid-cols-2 gap-x-2 mt-1.5 text-white/60">
-              <div>CORE STATUS : ACTIVE</div>
-              <div>FREQUENCY   : 980 MHz</div>
-              <div>ENGINE      : HYPERLIQUID_WS</div>
-              <div>INFLOW RATE : 41.2k TPS</div>
-            </div>
-          </>
-        )}
-        {hoveredIndex === 2 && (
-          <>
-            <div className="flex justify-between text-primary font-bold">
-              <span>[ SYSTEM PORTAL: AGENT_CORE ]</span>
-              <span className="animate-pulse">PROCESSING</span>
-            </div>
-            <div className="grid grid-cols-2 gap-x-2 mt-1.5 text-white/60">
-              <div>CORE STATUS : COORD_ACTIVE</div>
-              <div>FREQUENCY   : 1.4 GHz [OC]</div>
-              <div>AGENT ARRAY : 5/5 ONLINE</div>
-              <div>INFERENCE   : 8.2ms LATENCY</div>
-            </div>
-          </>
-        )}
-        {hoveredIndex === 3 && (
-          <>
-            <div className="flex justify-between text-primary font-bold">
-              <span>[ SYSTEM PORTAL: NET_ROUTER ]</span>
-              <span className="animate-pulse">SYNCHRONIZED</span>
-            </div>
-            <div className="grid grid-cols-2 gap-x-2 mt-1.5 text-white/60">
-              <div>CORE STATUS : DISTRIB_SYNC</div>
-              <div>FREQUENCY   : 800 MHz</div>
-              <div>PEER DEGENS : 12,482 LIVE</div>
-              <div>MERIT CHAIN : VERIFIED</div>
-            </div>
-          </>
-        )}
-        {hoveredIndex === 4 && (
-          <>
-            <div className="flex justify-between text-primary font-bold">
-              <span>[ SYSTEM PORTAL: DETECTOR ]</span>
-              <span className="animate-pulse">SCANNING</span>
-            </div>
-            <div className="grid grid-cols-2 gap-x-2 mt-1.5 text-white/60">
-              <div>CORE STATUS : GRID_SCAN</div>
-              <div>FREQUENCY   : 1.1 GHz</div>
-              <div>RADAR RES   : 0.01s DELTA</div>
-              <div>ANOMALIES   : 3 DETECTED</div>
-            </div>
-          </>
-        )}
-        {hoveredIndex === 5 && (
-          <>
-            <div className="flex justify-between text-primary font-bold">
-              <span>[ SYSTEM PORTAL: ACTION_GATE ]</span>
-              <span className="animate-pulse">ROUTING</span>
-            </div>
-            <div className="grid grid-cols-2 gap-x-2 mt-1.5 text-white/60">
-              <div>CORE STATUS : GATE_READY</div>
-              <div>FREQUENCY   : 1.6 GHz [MAX]</div>
-              <div>TX ROUTING  : DIRECT_HL</div>
-              <div>FILL SPEED  : 3.4ms DIRECT</div>
-            </div>
-          </>
-        )}
-        {hoveredIndex === null && (
-          <>
-            <div className="flex justify-between text-white/40">
-              <span>[ SYSTEM PORTAL: I5_RUNTIME ]</span>
-              <span>STANDBY</span>
-            </div>
-            <div className="grid grid-cols-2 gap-x-2 mt-1.5 text-white/40">
-              <div>CORE STATUS : STANDBY</div>
-              <div>FREQUENCY   : 400 MHz</div>
-              <div>THERMALS    : 34°C STABLE</div>
-              <div>SYSTEM LOAD : 4.2% IDLE</div>
-            </div>
-          </>
-        )}
-      </div>
+    <div className="relative w-full max-w-[320px] mx-auto mt-8 select-none">
+      <img
+        key={src}
+        src={src}
+        alt="i5 intelligence stack"
+        className="w-full h-auto object-contain"
+        style={{
+          animation: 'stackFadeIn 0.25s ease',
+        }}
+      />
+      <style>{`
+        @keyframes stackFadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -440,55 +264,37 @@ export function IntelligenceStack() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const handleMouseEnter = (index: number, cardEl: HTMLDivElement | null) => {
-    setHoveredIndex(index);
-    if (!cardEl) return;
-    
-    const dotInner = cardEl.querySelector('.stack-dot-inner');
-    gsap.to(cardEl, {
-      y: -5,
-      borderColor: '#00ffcc',
-      boxShadow: '3px 7px 15px rgba(0, 255, 204, 0.25)',
-      duration: 0.3,
-      ease: 'power2.out',
-      overwrite: 'auto'
-    });
-    if (dotInner) {
-      gsap.to(dotInner, {
-        scale: 1.3,
-        backgroundColor: '#000000',
-        borderColor: '#00ffcc',
-        duration: 0.3,
-        ease: 'power2.out',
-        overwrite: 'auto'
-      });
-    }
-  };
 
-  const handleMouseLeave = (_index: number, cardEl: HTMLDivElement | null) => {
-    setHoveredIndex(null);
-    if (!cardEl) return;
+  // Sync card styles dynamically when hoveredIndex changes (both-way interaction)
+  useEffect(() => {
+    const layers = containerRef.current?.querySelectorAll('.stack-layer-card');
+    if (!layers) return;
     
-    const dotInner = cardEl.querySelector('.stack-dot-inner');
-    gsap.to(cardEl, {
-      y: 0,
-      borderColor: 'rgba(255, 255, 255, 0.15)',
-      boxShadow: '3px 3px 0px rgba(255, 255, 255, 0.05)',
-      duration: 0.3,
-      ease: 'power2.out',
-      overwrite: 'auto'
-    });
-    if (dotInner) {
-      gsap.to(dotInner, {
-        scale: 1,
-        backgroundColor: '#00ffcc',
-        borderColor: 'transparent',
+    layers.forEach((layer, idx) => {
+      const isHovered = hoveredIndex === (idx + 1);
+      const dotInner = layer.querySelector('.stack-dot-inner');
+      
+      gsap.to(layer, {
+        y: isHovered ? -5 : 0,
+        borderColor: isHovered ? '#00ffcc' : 'rgba(255, 255, 255, 0.15)',
+        boxShadow: isHovered ? '3px 7px 15px rgba(0, 255, 204, 0.25)' : '3px 3px 0px rgba(255, 255, 255, 0.05)',
         duration: 0.3,
         ease: 'power2.out',
         overwrite: 'auto'
       });
-    }
-  };
+      
+      if (dotInner) {
+        gsap.to(dotInner, {
+          scale: isHovered ? 1.3 : 1,
+          backgroundColor: isHovered ? '#000000' : '#00ffcc',
+          borderColor: isHovered ? '#00ffcc' : 'transparent',
+          duration: 0.3,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        });
+      }
+    });
+  }, [hoveredIndex]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -560,8 +366,8 @@ export function IntelligenceStack() {
         {/* Left Column: Title & Description */}
         <div className="stack-left-content lg:col-span-4 flex flex-col justify-start lg:sticky lg:top-24 h-fit">
           <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// STACK ARCHITECTURE</span>
-          <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase leading-none">
-            THE I5 INTELLIGENCE STACK
+          <h2 className="text-4xl md:text-5xl font-display font-black text-white leading-none">
+            THE <span className="text-primary lowercase">i5</span> INTELLIGENCE STACK
           </h2>
           <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary uppercase">
             <div>Five layers.</div>
@@ -570,7 +376,7 @@ export function IntelligenceStack() {
           <p className="text-white/60 font-body text-sm sm:text-base mt-6 leading-relaxed">
             Most platforms display data. i5 interprets it. Each layer compounds the next — perception sharpens context, context sharpens reasoning, reasoning directs action, action feeds reflection.
           </p>
-          <I5CentralCore hoveredIndex={hoveredIndex} />
+          <I5CentralCore hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />
         </div>
 
         {/* Right Column: 5 Layers Stack */}
@@ -582,8 +388,8 @@ export function IntelligenceStack() {
           {/* Layer 1 */}
           <div 
             className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={(e) => handleMouseEnter(1, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(1, e.currentTarget)}
+            onMouseEnter={() => setHoveredIndex(1)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
             <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
@@ -593,7 +399,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-2xl text-primary">01</span>
+                  <span className="font-display font-black text-3xl text-primary">i1</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     Market Intelligence
                   </h3>
@@ -624,8 +430,8 @@ export function IntelligenceStack() {
           {/* Layer 2 */}
           <div 
             className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={(e) => handleMouseEnter(2, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(2, e.currentTarget)}
+            onMouseEnter={() => setHoveredIndex(2)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
             <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
@@ -635,7 +441,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-2xl text-primary">02</span>
+                  <span className="font-display font-black text-3xl text-primary">i2</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     AI Intelligence
                   </h3>
@@ -666,8 +472,8 @@ export function IntelligenceStack() {
           {/* Layer 3 */}
           <div 
             className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={(e) => handleMouseEnter(3, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(3, e.currentTarget)}
+            onMouseEnter={() => setHoveredIndex(3)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
             <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
@@ -677,7 +483,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-2xl text-primary">03</span>
+                  <span className="font-display font-black text-3xl text-primary">i3</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     Community Intelligence
                   </h3>
@@ -708,8 +514,8 @@ export function IntelligenceStack() {
           {/* Layer 4 */}
           <div 
             className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={(e) => handleMouseEnter(4, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(4, e.currentTarget)}
+            onMouseEnter={() => setHoveredIndex(4)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
             <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
@@ -719,7 +525,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-2xl text-primary">04</span>
+                  <span className="font-display font-black text-3xl text-primary">i4</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     Event Intelligence
                   </h3>
@@ -750,8 +556,8 @@ export function IntelligenceStack() {
           {/* Layer 5 */}
           <div 
             className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={(e) => handleMouseEnter(5, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(5, e.currentTarget)}
+            onMouseEnter={() => setHoveredIndex(5)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
             <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
@@ -761,7 +567,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-2xl text-primary">05</span>
+                  <span className="font-display font-black text-3xl text-primary">i5</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     Execution Intelligence
                   </h3>
