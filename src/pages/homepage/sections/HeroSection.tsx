@@ -267,7 +267,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
         {/* Video Block for Mobile, Spacer for Desktop */}
         <div className="lg:col-span-4 xl:col-span-5 w-full flex justify-center items-center hero-fade-in">
           {isMobile ? (
-            <div className="w-full max-w-full aspect-[9/16] overflow-hidden">
+            <div className="-mx-6 w-[calc(100%+3rem)] overflow-hidden">
               <video
                 key="mobile-video-block"
                 autoPlay
@@ -275,7 +275,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                 muted
                 playsInline
                 preload="auto"
-                className="w-full max-w-full h-full object-cover"
+                className="w-full h-auto block"
               >
                 <source src={heroVideoMob} type="video/mp4" />
               </video>
