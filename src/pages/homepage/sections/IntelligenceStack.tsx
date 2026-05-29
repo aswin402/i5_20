@@ -399,7 +399,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-3xl text-primary">i1</span>
+                  <span className="font-inter font-black text-3xl text-primary">i1</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     Market Intelligence
                   </h3>
@@ -441,7 +441,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-3xl text-primary">i2</span>
+                  <span className="font-inter font-black text-3xl text-primary">i2</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     AI Intelligence
                   </h3>
@@ -483,7 +483,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-3xl text-primary">i3</span>
+                  <span className="font-inter font-black text-3xl text-primary">i3</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     Community Intelligence
                   </h3>
@@ -525,7 +525,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-3xl text-primary">i4</span>
+                  <span className="font-inter font-black text-3xl text-primary">i4</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     Event Intelligence
                   </h3>
@@ -567,7 +567,7 @@ export function IntelligenceStack() {
             <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="font-display font-black text-3xl text-primary">i5</span>
+                  <span className="font-inter font-black text-3xl text-primary">i5</span>
                   <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
                     Execution Intelligence
                   </h3>

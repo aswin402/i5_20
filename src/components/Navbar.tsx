@@ -86,7 +86,7 @@ export function Navbar() {
 
       <div className="flex items-center gap-4">
         <button 
-          onClick={() => scrollToSection('war-room')}
+          onClick={() => scrollToSection('intelligence-network')}
           className="hidden sm:block text-xs bg-primary text-black font-black px-5 py-2.5 border border-primary hover:bg-transparent hover:text-primary transition-colors cursor-pointer uppercase tracking-wider"
         >
           ENTER THE WAR ROOM
