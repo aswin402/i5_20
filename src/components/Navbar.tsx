@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ThemeToggleButton } from '@/components/ThemeToggleButton';
 import { Radio, Menu, X } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 export function Navbar() {
   const [tradersCount, setTradersCount] = useState(12482);
@@ -49,10 +50,10 @@ export function Navbar() {
               setIsOpen(false);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }} 
-            className="text-xl font-display tracking-tighter text-white font-extrabold flex items-center gap-2 hover:opacity-85 transition-opacity cursor-pointer"
+            className="flex items-center gap-2 hover:opacity-85 transition-opacity cursor-pointer h-10"
           >
-            <span className="bg-primary text-black px-2 py-0.5 text-sm font-black tracking-normal">i5</span>
-            <span className="tracking-widest">.XYZ</span>
+            <img src={logo} alt="i5 Logo" className="h-7 sm:h-8 w-auto object-contain" />
+            <span className="text-xl font-display font-extrabold tracking-widest text-white">.XYZ</span>
           </button>
           
           {/* Desktop Navigation Links */}
