@@ -162,11 +162,11 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10 w-full">
         
         {/* Slogans and CTAs */}
-        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-6 text-left w-full">
+        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-6 text-center lg:text-left items-center lg:items-start w-full">
           
           {/* Top Badge: Now in Private Beta | Built on Hyperliquid */}
-          <div className="self-start hero-fade-in max-w-full">
-            <div className="inline-flex flex-wrap items-center gap-2 bg-primary/10 border border-primary/20 px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider text-primary uppercase backdrop-blur-sm">
+          <div className="self-center lg:self-start hero-fade-in max-w-full">
+            <div className="inline-flex flex-wrap items-center justify-center gap-2 bg-primary/10 border border-primary/20 px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider text-primary uppercase backdrop-blur-sm">
               <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -178,7 +178,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           </div>
 
           {/* Heading: From noise to signals. */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 w-full">
             <h1 className="text-4xl sm:text-6xl uppercase md:text-7xl lg:text-[5.5rem] font-heading font-black tracking-tight leading-[0.9] sm:leading-[0.85] text-white normal-case">
               <span className="hero-title-line block overflow-hidden">
                 <span className="block">From</span>
@@ -192,7 +192,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             </h1>
             
             {/* Intelligence OS for Markets Badge */}
-            <div className="self-start mt-2 hero-fade-in">
+            <div className="self-center lg:self-start mt-2 hero-fade-in">
               <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/35 px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 INTELLIGENCE OS FOR MARKETS
@@ -201,12 +201,12 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           </div>
 
           {/* Paragraph description */}
-          <p className="text-white/70 font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-2 hero-fade-in">
+          <p className="text-white/70 font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-2 hero-fade-in mx-auto lg:mx-0">
             i5 is an intelligence-native trading network that aggregates smart-money flows, cohort behavior, and institutional-grade signals into a unified execution layer.
           </p>
 
           {/* Waitlist CTA Button */}
-          <div className="flex flex-wrap gap-4 mt-2 hero-fade-in">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-2 hero-fade-in">
             <button 
               onClick={() => {
                 scrollToSection('intelligence-network');
@@ -220,9 +220,9 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           </div>
 
           {/* Stats: Signal Accuracy, Latency & Supplies */}
-          <div className="flex flex-wrap gap-6 sm:gap-12 mt-6 border-t border-white/10 pt-6 hero-fade-in">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-12 mt-6 border-t border-white/10 pt-6 hero-fade-in w-full">
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
+              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
                 98.7%
               </div>
               <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
@@ -230,7 +230,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
               </div>
             </div>
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
+              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
                 &lt;50ms
               </div>
               <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
@@ -238,7 +238,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
               </div>
             </div>
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
+              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
                 20M
               </div>
               <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
