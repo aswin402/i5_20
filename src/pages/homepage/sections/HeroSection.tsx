@@ -139,7 +139,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
   const videoSrc = isMobile ? heroVideoMob : './libst.mp4';
 
   return (
-    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-20 lg:pt-24 select-none pb-4 sm:pb-8 lg:pb-16 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-20 lg:pt-24 select-none pb-0 sm:pb-8 lg:pb-16 overflow-hidden">
       
       {/* Background Video (Desktop only) */}
       {!isMobile && (

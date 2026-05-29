@@ -111,7 +111,7 @@ export function AlphaFeed() {
   }, []);
 
   return (
-    <section ref={containerRef} id="alpha-feed" className="py-16 bg-[#030304] border-y-2 border-white/10 overflow-hidden select-none relative z-20">
+    <section ref={containerRef} id="alpha-feed" className="pt-4 sm:pt-16 pb-16 bg-[#030304] border-y-2 border-white/10 overflow-hidden select-none relative z-20">
       {/* Background neon grid line */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,204,0.015)_1px,transparent_1px)] bg-[size:100%_16px] pointer-events-none" />
 
