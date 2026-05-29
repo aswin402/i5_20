@@ -139,7 +139,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
   const videoSrc = isMobile ? heroVideoMob : './libst.mp4';
 
   return (
-    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-24 select-none pb-16 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-20 lg:pt-24 select-none pb-4 sm:pb-8 lg:pb-16 overflow-hidden">
       
       {/* Background Video (Desktop only) */}
       {!isMobile && (
@@ -174,10 +174,10 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
       )}
 
       {/* Asymmetrical Grid layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-center relative z-10 w-full">
         
         {/* Slogans and CTAs */}
-        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-6 text-center lg:text-left items-center lg:items-start w-full">
+        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-4 sm:gap-6 text-center lg:text-left items-center lg:items-start w-full">
           
           {/* Top Badge: Now in Private Beta | Built on Hyperliquid */}
           <div className="self-center lg:self-start hero-fade-in max-w-full">
@@ -235,7 +235,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           </div>
 
           {/* Stats: Signal Accuracy, Latency & Supplies */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-12 mt-6 border-t border-white/10 pt-6 hero-fade-in w-full">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-12 mt-4 sm:mt-6 border-t border-white/10 pt-4 sm:pt-6 hero-fade-in w-full">
             <div className="hero-stat-item cursor-pointer">
               <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
                 98.7%
