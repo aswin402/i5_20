@@ -392,7 +392,7 @@ export function IntelligenceStack() {
             onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
+            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
               <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
             </div>
             
@@ -434,7 +434,7 @@ export function IntelligenceStack() {
             onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
+            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
               <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
             </div>
             
@@ -476,7 +476,7 @@ export function IntelligenceStack() {
             onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
+            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
               <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
             </div>
             
@@ -518,7 +518,7 @@ export function IntelligenceStack() {
             onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
+            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
               <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
             </div>
             
@@ -560,7 +560,7 @@ export function IntelligenceStack() {
             onMouseLeave={() => setHoveredIndex(null)}
           >
             {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[28px] sm:-left-[38px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
+            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
               <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
             </div>
             
