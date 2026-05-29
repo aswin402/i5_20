@@ -32,8 +32,9 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
         duration: 0.8,
       }, '-=0.6');
 
-      // Mouse parallax on the background video container
+      // Mouse parallax on the background video container (only active on desktop)
       const handleMouseMove = (e: MouseEvent) => {
+        if (window.innerWidth < 1024) return;
         const { clientX, clientY } = e;
         const xPercent = (clientX / window.innerWidth - 0.5) * 15;
         const yPercent = (clientY / window.innerHeight - 0.5) * 15;
@@ -111,11 +112,24 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
     return () => ctx.revert();
   }, []);
 
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const navOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - navOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-4 sm:px-8 md:px-12 lg:px-20 pt-10 select-none pb-12 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-24 select-none pb-16 overflow-hidden">
       
       {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden z-0 select-none hero-bg-video">
+      <div className="absolute inset-0 w-full h-full overflow-hidden z-0 select-none hero-bg-video pointer-events-none">
         {/* Ambient Blurred Video Background (Covers entire screen to eliminate letterboxing) */}
         <video
           autoPlay
@@ -123,7 +137,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover filter blur-3xl opacity-35"
+          className="absolute inset-0 w-full h-full object-cover filter blur-3xl opacity-20 pointer-events-none"
         >
           <source src="./libst.mp4" type="video/mp4" />
           <source src="./libst.webm" type="video/webm" />
@@ -136,7 +150,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           muted
           playsInline
           preload="auto"
-          className="absolute top-0 bottom-0 left-0 right-[30px] w-[calc(100%-30px)] h-full object-contain lg:object-right object-center filter brightness-95 transform -translate-x-8 -translate-y-6"
+          className="absolute top-0 bottom-0 left-0 right-0 lg:right-[30px] w-full lg:w-[calc(100%-30px)] h-full object-cover lg:object-contain lg:object-right object-center filter brightness-95 opacity-30 lg:opacity-100 pointer-events-none"
         >
           <source src="./libst.mp4" type="video/mp4" />
           <source src="./libst.webm" type="video/webm" />
@@ -144,16 +158,16 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
         </video>
       </div>
 
-      {/* Asymmetrical Grid layout (Broken Rhythm) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+      {/* Asymmetrical Grid layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10 w-full">
         
-        {/* Slogans and CTAs (Col 1-8) */}
-        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-6 text-left lg:ml-[120px] ml-[60px]">
+        {/* Slogans and CTAs */}
+        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-6 text-left w-full">
           
           {/* Top Badge: Now in Private Beta | Built on Hyperliquid */}
-          <div className="self-start hero-fade-in">
-            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider text-primary uppercase backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
+          <div className="self-start hero-fade-in max-w-full">
+            <div className="inline-flex flex-wrap items-center gap-2 bg-primary/10 border border-primary/20 px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider text-primary uppercase backdrop-blur-sm">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
@@ -165,7 +179,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
           {/* Heading: From noise to signals. */}
           <div className="flex flex-col gap-2">
-            <h1 className="text-5xl sm:text-6xl uppercase md:text-7xl lg:text-[5.5rem] font-heading font-black tracking-tight leading-[0.85] text-white normal-case">
+            <h1 className="text-4xl sm:text-6xl uppercase md:text-7xl lg:text-[5.5rem] font-heading font-black tracking-tight leading-[0.9] sm:leading-[0.85] text-white normal-case">
               <span className="hero-title-line block overflow-hidden">
                 <span className="block">From</span>
               </span>
@@ -179,7 +193,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             
             {/* Intelligence OS for Markets Badge */}
             <div className="self-start mt-2 hero-fade-in">
-              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/35 px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
+              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/35 px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 INTELLIGENCE OS FOR MARKETS
               </div>
@@ -187,7 +201,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           </div>
 
           {/* Paragraph description */}
-          <p className="text-white/70 font-body text-base sm:text-lg max-w-xl leading-relaxed mt-2 hero-fade-in">
+          <p className="text-white/70 font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-2 hero-fade-in">
             i5 is an intelligence-native trading network that aggregates smart-money flows, cohort behavior, and institutional-grade signals into a unified execution layer.
           </p>
 
@@ -195,11 +209,10 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           <div className="flex flex-wrap gap-4 mt-2 hero-fade-in">
             <button 
               onClick={() => {
-                const el = document.getElementById('war-room');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                scrollToSection('intelligence-network');
                 triggerShake();
               }}
-              className="hero-btn group relative bg-primary text-black text-sm sm:text-base font-body font-bold tracking-wider px-8 py-3.5 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
+              className="hero-btn group relative bg-primary text-black text-xs sm:text-sm md:text-base font-body font-bold tracking-wider px-6 sm:px-8 py-3 sm:py-3.5 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
             >
               <span>Join Waitlist</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -207,28 +220,28 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           </div>
 
           {/* Stats: Signal Accuracy, Latency & Supplies */}
-          <div className="flex flex-wrap gap-8 sm:gap-12 mt-6 border-t border-white/10 pt-6 hero-fade-in">
+          <div className="flex flex-wrap gap-6 sm:gap-12 mt-6 border-t border-white/10 pt-6 hero-fade-in">
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
+              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
                 98.7%
               </div>
-              <div className="stat-lbl text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+              <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                 SIGNAL ACCURACY
               </div>
             </div>
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
+              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
                 &lt;50ms
               </div>
-              <div className="stat-lbl text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+              <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                 LATENCY
               </div>
             </div>
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
+              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-left transition-transform duration-300">
                 20M
               </div>
-              <div className="stat-lbl text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+              <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                 SUPPLIES
               </div>
             </div>
@@ -236,7 +249,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
         </div>
 
-        {/* Spacer Column to let the background video shine on the right side */}
+        {/* Spacer Column */}
         <div className="hidden lg:block lg:col-span-4 xl:col-span-5" />
 
       </div>
@@ -244,3 +257,4 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
     </section>
   );
 }
+
