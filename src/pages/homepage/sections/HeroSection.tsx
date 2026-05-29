@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import heroVideoMob from '../../../assets/herovideomob.mp4';
 
 interface HeroSectionProps {
   triggerShake: () => void;
@@ -8,6 +9,16 @@ interface HeroSectionProps {
 
 export function HeroSection({ triggerShake }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -125,6 +136,8 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
     }
   };
 
+  const videoSrc = isMobile ? heroVideoMob : './libst.mp4';
+
   return (
     <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-24 select-none pb-16 overflow-hidden">
       
@@ -132,6 +145,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 select-none hero-bg-video pointer-events-none">
         {/* Ambient Blurred Video Background (Covers entire screen to eliminate letterboxing) */}
         <video
+          key={`ambient-${videoSrc}`}
           autoPlay
           loop
           muted
@@ -139,12 +153,12 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover filter blur-3xl opacity-20 pointer-events-none"
         >
-          <source src="./libst.mp4" type="video/mp4" />
-          <source src="./libst.webm" type="video/webm" />
+          <source src={videoSrc} type="video/mp4" />
         </video>
         
         {/* Crisp Video Background (Contained and right-aligned to remain fully visible and uncropped) */}
         <video
+          key={`crisp-${videoSrc}`}
           autoPlay
           loop
           muted
@@ -152,8 +166,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           preload="auto"
           className="absolute top-0 bottom-0 left-0 right-0 lg:right-[30px] w-full lg:w-[calc(100%-30px)] h-full object-cover lg:object-contain lg:object-right object-center filter brightness-95 opacity-30 lg:opacity-100 pointer-events-none"
         >
-          <source src="./libst.mp4" type="video/mp4" />
-          <source src="./libst.webm" type="video/webm" />
+          <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
