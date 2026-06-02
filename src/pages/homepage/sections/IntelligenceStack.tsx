@@ -476,11 +476,15 @@ export function IntelligenceStack() {
         {/* Content Row: Two Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: BIG Image */}
-          <div className="stack-image-column lg:col-span-5 xl:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg sticky top-[80px] lg:sticky lg:top-[100px] lg:h-[calc(100vh-160px)] lg:max-h-[550px] overflow-hidden h-[280px] z-20">
+          <div className="stack-image-column lg:col-span-5 xl:col-span-6 flex flex-col bg-black/40 border border-white/10 p-4 rounded-lg relative overflow-hidden h-[280px] lg:h-auto z-20">
             <div className="absolute inset-0 bg-radial-gradient from-primary/10 to-transparent pointer-events-none hidden lg:block" />
             {/* Grid background details */}
             <div className="absolute inset-0 opacity-15 pointer-events-none hidden lg:block" style={{ backgroundImage: 'radial-gradient(var(--color-primary, #00ffcc) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
-            <I5CentralCore hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} className="w-full h-full flex items-center justify-center z-10" />
+            
+            {/* Sticky core visual wrapper */}
+            <div className="relative w-full h-full lg:sticky lg:top-[120px] lg:h-[calc(100vh-240px)] lg:max-h-[500px] flex items-center justify-center z-10">
+              <I5CentralCore hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} className="w-full h-full flex items-center justify-center" />
+            </div>
           </div>
 
           {/* Right Column: 5 Layers Stack */}
