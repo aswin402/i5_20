@@ -434,7 +434,7 @@ export function BuiltForTraders() {
         {/* Header */}
         <div className="trader-header max-w-3xl mb-10 lg:mb-12 xl:mb-16 text-left">
           <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// ADAPTIVE TERMINAL</span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-black text-white uppercase leading-none">
+          <h2 className="text-fluid-h2 font-display font-black text-white uppercase leading-none">
             BUILT FOR EVERY TRADER
           </h2>
           <div className="mt-4 flex flex-col gap-1 font-display font-bold text-xs sm:text-sm lg:text-base text-primary uppercase">

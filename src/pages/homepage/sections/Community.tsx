@@ -81,7 +81,7 @@ export function Community() {
       {/* Title */}
       <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-12 xl:mb-16">
         <span className="text-[10px] font-mono tracking-widest text-primary uppercase block mb-2">// JOIN THE INNER CIRCLE</span>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-black text-white uppercase">
+        <h2 className="text-fluid-h2 font-display font-black text-white uppercase">
           A CULT OF WINNING.
         </h2>
         <p className="text-white/60 font-body text-[11px] lg:text-xs xl:text-sm mt-2 lg:mt-3 leading-relaxed">

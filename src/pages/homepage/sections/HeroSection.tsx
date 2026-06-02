@@ -173,117 +173,119 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
         </div>
       )}
 
-      {/* Asymmetrical Grid layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-center relative z-10 w-full">
-        
-        {/* Slogans and CTAs */}
-        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-4 sm:gap-6 text-center lg:text-left items-center lg:items-start w-full">
+      {/* Centered Asymmetrical Grid layout wrapper */}
+      <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-center w-full">
           
-          {/* Top Badge: Now in Private Beta | Built on Hyperliquid */}
-          <div className="self-center lg:self-start hero-fade-in max-w-full">
-            <div className="inline-flex flex-wrap items-center justify-center gap-2 bg-primary/10 border border-primary/20 px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider text-primary uppercase backdrop-blur-sm">
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              <span>NOW IN PRIVATE BETA</span>
-              <span className="text-white/20">|</span>
-              <span className="text-white/60">BUILT ON HYPERLIQUID</span>
-            </div>
-          </div>
-
-          {/* Heading: From noise to signals. */}
-          <div className="flex flex-col gap-2 w-full">
-            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-[5rem] font-heading font-black tracking-tight leading-[0.9] sm:leading-[0.85] text-white normal-case">
-              <span className="hero-title-line block overflow-hidden">
-                <span className="block">From</span>
-              </span>
-              <span className="hero-title-line block overflow-hidden mt-1 sm:mt-2">
-                <span className="block">noise to</span>
-              </span>
-              <span className="hero-title-line block overflow-hidden mt-1 sm:mt-2">
-                <span className="text-primary drop-shadow-[0_0_15px_rgba(0,255,204,0.25)] block">signals</span>
-              </span>
-            </h1>
+          {/* Slogans and CTAs */}
+          <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-4 sm:gap-6 text-center lg:text-left items-center lg:items-start w-full">
             
-            {/* Intelligence OS for Markets Badge */}
-            <div className="self-center lg:self-start mt-2 hero-fade-in">
-              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/35 px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                INTELLIGENCE OS FOR MARKETS
+            {/* Top Badge: Now in Private Beta | Built on Hyperliquid */}
+            <div className="self-center lg:self-start hero-fade-in max-w-full">
+              <div className="inline-flex flex-wrap items-center justify-center gap-2 bg-primary/10 border border-primary/20 px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider text-primary uppercase backdrop-blur-sm">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                <span>NOW IN PRIVATE BETA</span>
+                <span className="text-white/20">|</span>
+                <span className="text-white/60">BUILT ON HYPERLIQUID</span>
               </div>
             </div>
-          </div>
 
-          {/* Mobile Video (rendered directly after the badge) */}
-          {isMobile && (
-            <div className="-mx-6 w-[calc(100%+3rem)] overflow-hidden my-3 hero-fade-in">
-              <video
-                key="mobile-video-block"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="w-full h-auto block"
+            {/* Heading: From noise to signals. */}
+            <div className="flex flex-col gap-2 w-full">
+              <h1 className="text-fluid-h1 font-heading font-black tracking-tight leading-[0.9] sm:leading-[0.85] text-white normal-case">
+                <span className="hero-title-line block overflow-hidden">
+                  <span className="block">From</span>
+                </span>
+                <span className="hero-title-line block overflow-hidden mt-1 sm:mt-2">
+                  <span className="block">noise to</span>
+                </span>
+                <span className="hero-title-line block overflow-hidden mt-1 sm:mt-2">
+                  <span className="text-primary drop-shadow-[0_0_15px_rgba(0,255,204,0.25)] block">signals</span>
+                </span>
+              </h1>
+              
+              {/* Intelligence OS for Markets Badge */}
+              <div className="self-center lg:self-start mt-2 hero-fade-in">
+                <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/35 px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  INTELLIGENCE OS FOR MARKETS
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Video (rendered directly after the badge) */}
+            {isMobile && (
+              <div className="-mx-6 w-[calc(100%+3rem)] overflow-hidden my-3 hero-fade-in">
+                <video
+                  key="mobile-video-block"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="w-full h-auto block"
+                >
+                  <source src={heroVideoMob} type="video/mp4" />
+                </video>
+              </div>
+            )}
+
+            {/* Paragraph description */}
+            <p className="text-white/70 font-body text-xs sm:text-sm lg:text-sm xl:text-base max-w-xl leading-relaxed mt-2 hero-fade-in mx-auto lg:mx-0">
+              i5 is an intelligence-native trading network that aggregates smart-money flows, cohort behavior, and institutional-grade signals into a unified execution layer.
+            </p>
+
+            {/* Waitlist CTA Button */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-2 hero-fade-in">
+              <button 
+                onClick={() => {
+                  scrollToSection('intelligence-network');
+                  triggerShake();
+                }}
+                className="hero-btn group relative bg-primary text-black text-xs sm:text-sm lg:text-sm xl:text-base font-body font-bold tracking-wider px-5 sm:px-6 lg:px-7 xl:px-8 py-2.5 sm:py-3 lg:py-3 xl:py-3.5 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
               >
-                <source src={heroVideoMob} type="video/mp4" />
-              </video>
+                <span>Join Waitlist</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
             </div>
-          )}
 
-          {/* Paragraph description */}
-          <p className="text-white/70 font-body text-xs sm:text-sm lg:text-sm xl:text-base max-w-xl leading-relaxed mt-2 hero-fade-in mx-auto lg:mx-0">
-            i5 is an intelligence-native trading network that aggregates smart-money flows, cohort behavior, and institutional-grade signals into a unified execution layer.
-          </p>
+            {/* Stats: Signal Accuracy, Latency & Supplies */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-12 mt-4 sm:mt-6 border-t border-white/10 pt-4 sm:pt-6 hero-fade-in w-full">
+              <div className="hero-stat-item cursor-pointer">
+                <div className="stat-val text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
+                  98.7%
+                </div>
+                <div className="stat-lbl text-[9px] sm:text-[10px] lg:text-[10px] xl:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+                  SIGNAL ACCURACY
+                </div>
+              </div>
+              <div className="hero-stat-item cursor-pointer">
+                <div className="stat-val text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
+                  &lt;50ms
+                </div>
+                <div className="stat-lbl text-[9px] sm:text-[10px] lg:text-[10px] xl:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+                  LATENCY
+                </div>
+              </div>
+              <div className="hero-stat-item cursor-pointer">
+                <div className="stat-val text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
+                  20M
+                </div>
+                <div className="stat-lbl text-[9px] sm:text-[10px] lg:text-[10px] xl:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+                  SUPPLIES
+                </div>
+              </div>
+            </div>
 
-          {/* Waitlist CTA Button */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-2 hero-fade-in">
-            <button 
-              onClick={() => {
-                scrollToSection('intelligence-network');
-                triggerShake();
-              }}
-              className="hero-btn group relative bg-primary text-black text-xs sm:text-sm lg:text-sm xl:text-base font-body font-bold tracking-wider px-5 sm:px-6 lg:px-7 xl:px-8 py-2.5 sm:py-3 lg:py-3 xl:py-3.5 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
-            >
-              <span>Join Waitlist</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
           </div>
 
-          {/* Stats: Signal Accuracy, Latency & Supplies */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-12 mt-4 sm:mt-6 border-t border-white/10 pt-4 sm:pt-6 hero-fade-in w-full">
-            <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
-                98.7%
-              </div>
-              <div className="stat-lbl text-[9px] sm:text-[10px] lg:text-[10px] xl:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
-                SIGNAL ACCURACY
-              </div>
-            </div>
-            <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
-                &lt;50ms
-              </div>
-              <div className="stat-lbl text-[9px] sm:text-[10px] lg:text-[10px] xl:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
-                LATENCY
-              </div>
-            </div>
-            <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
-                20M
-              </div>
-              <div className="stat-lbl text-[9px] sm:text-[10px] lg:text-[10px] xl:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
-                SUPPLIES
-              </div>
-            </div>
-          </div>
+          {/* Video Spacer for Desktop */}
+          <div className="lg:col-span-4 xl:col-span-5 w-full flex justify-center items-center hero-fade-in" />
 
         </div>
-
-        {/* Video Spacer for Desktop */}
-        <div className="lg:col-span-4 xl:col-span-5 w-full flex justify-center items-center hero-fade-in" />
-
       </div>
 
     </section>

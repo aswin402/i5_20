@@ -88,7 +88,7 @@ export function IntelligenceNetwork() {
       <div className="network-content max-w-5xl mx-auto relative z-10 text-center flex flex-col items-center gap-6">
         <span className="text-[10px] font-mono tracking-widest text-primary block uppercase">// SYSTEM INITIALIZED</span>
         
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-black text-white uppercase leading-none max-w-3xl">
+        <h2 className="text-fluid-h2 font-display font-black text-white uppercase leading-none max-w-3xl">
           Join the Intelligence Network
         </h2>
 

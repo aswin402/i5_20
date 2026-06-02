@@ -468,7 +468,7 @@ export function Edge() {
             {/* Header */}
             <div className="edge-header max-w-3xl text-left">
               <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// COGNITIVE DELTA</span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-black text-white uppercase leading-none">
+              <h2 className="text-fluid-h2 font-display font-black text-white uppercase leading-none">
                 THE <span className='lowercase'>i5</span> EDGE
               </h2>
               <div className="mt-4 flex flex-col gap-1 font-display font-bold text-xs sm:text-sm lg:text-base xl:text-lg text-primary">

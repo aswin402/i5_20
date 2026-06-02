@@ -120,7 +120,7 @@ export function CoreFeatures() {
         {/* Header */}
         <div className="features-header max-w-none mb-10 lg:mb-12 xl:mb-16 text-left">
           <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// CORE CAPABILITIES</span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-black text-white uppercase leading-[1.1]">
+          <h2 className="text-fluid-h2 font-display font-black text-white uppercase leading-[1.1]">
             Everything you need to read the market and act on it.
           </h2>
           <p className="text-white/60 font-body text-sm lg:text-base xl:text-lg mt-4 lg:mt-6 leading-relaxed">
