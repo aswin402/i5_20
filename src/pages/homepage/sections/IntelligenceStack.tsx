@@ -229,7 +229,7 @@ function Layer5Visual({ hovered }: LayerVisualProps) {
   );
 }
 
-const LAYER_IMAGES: Record<number, string> = { 1: I1, 2: I2, 3: I3, 4: I4, 5: I5 };
+
 
 function I5CentralCore({ 
   hoveredIndex, 
@@ -239,25 +239,29 @@ function I5CentralCore({
   setHoveredIndex?: (index: number | null) => void; 
   className?: string;
 }) {
-  const src = hoveredIndex !== null ? LAYER_IMAGES[hoveredIndex] : IConstant;
+  const images = [
+    { id: 'constant', src: IConstant, active: hoveredIndex === null },
+    { id: 1, src: I1, active: hoveredIndex === 1 },
+    { id: 2, src: I2, active: hoveredIndex === 2 },
+    { id: 3, src: I3, active: hoveredIndex === 3 },
+    { id: 4, src: I4, active: hoveredIndex === 4 },
+    { id: 5, src: I5, active: hoveredIndex === 5 },
+  ];
 
   return (
-    <div className={`relative select-none ${className}`}>
-      <img
-        key={src}
-        src={src}
-        alt="i5 intelligence stack"
-        className="w-full h-full object-contain transition-all duration-300"
-        style={{
-          animation: 'stackFadeIn 0.25s ease',
-        }}
-      />
-      <style>{`
-        @keyframes stackFadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-      `}</style>
+    <div className={`relative select-none w-full h-full ${className}`}>
+      {images.map((img) => (
+        <img
+          key={img.id}
+          src={img.src}
+          alt="i5 intelligence stack"
+          className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ease-in-out"
+          style={{
+            opacity: img.active ? 1 : 0,
+            pointerEvents: img.active ? 'auto' : 'none',
+          }}
+        />
+      ))}
     </div>
   );
 }
