@@ -24,19 +24,45 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
     // Programmatically ensure all videos inside the container are muted and playing
     // This is crucial for autoplay compatibility across many devices (e.g. iOS Safari, low-power mode browser states)
     const videos = containerRef.current?.querySelectorAll('video');
-    videos?.forEach((video) => {
-      video.defaultMuted = true;
-      video.muted = true;
-      video.playsInline = true;
-      video.setAttribute('playsinline', 'true');
-      
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.warn("Autoplay was prevented on video element: ", error);
-        });
-      }
-    });
+    
+    const playAll = () => {
+      videos?.forEach((video) => {
+        video.defaultMuted = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', 'true');
+        
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.warn("Autoplay was prevented on video element: ", error);
+          });
+        }
+      });
+    };
+
+    // Attempt to play immediately on mount or when switching viewports
+    playAll();
+
+    // Fallback: trigger playback on first user interaction if blocked by Chrome/Safari policy
+    const handleInteraction = () => {
+      playAll();
+      cleanup();
+    };
+
+    const cleanup = () => {
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
+    };
+
+    window.addEventListener('click', handleInteraction);
+    window.addEventListener('touchstart', handleInteraction);
+    window.addEventListener('scroll', handleInteraction);
+    window.addEventListener('keydown', handleInteraction);
+
+    return cleanup;
   }, [isMobile]);
 
   useEffect(() => {
@@ -290,7 +316,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             </div>
             <div className="hero-stat-item cursor-pointer">
               <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
-                21 Million
+                21M
               </div>
               <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                 SUPPLIES
