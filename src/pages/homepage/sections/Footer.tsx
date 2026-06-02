@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import logo from '../../../assets/logo.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,7 +83,7 @@ export function Footer() {
           {/* Col 1: Logo & Tagline (Col span 4) */}
           <div className="footer-column lg:col-span-4 flex flex-col gap-4 text-left">
             <div className="flex items-center gap-2">
-              <span className="bg-primary text-black font-mono font-black text-xs px-2 py-0.5">i5</span>
+              <img src={logo} alt="i5 Logo" className="h-7 w-auto object-contain" />
               <span className="text-white font-display font-black text-sm uppercase tracking-wider">
                 Intelligence Network
               </span>
@@ -105,14 +106,16 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Col 3: Company Links (Col span 2) */}
+          {/* Col 3: Community Links (Col span 2) */}
           <div className="footer-column lg:col-span-2 flex flex-col gap-4 text-left">
             <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest font-bold">
-              Company
+              Community
             </div>
             <div className="footer-col-links flex flex-col gap-2 font-mono text-xs text-white/60">
+              <a href="https://x.com/ifivelabs" target="_blank" rel="noopener noreferrer" className="cursor-pointer">X (Twitter)</a>
+              <a href="https://t.me/I5Labs" target="_blank" rel="noopener noreferrer" className="cursor-pointer">Telegram</a>
               <a href="#" className="cursor-pointer">Blog</a>
-              <a href="#" className="cursor-pointer">Signal Newsletter</a>
+              <a href="#" className="cursor-pointer">Newsletter</a>
             </div>
           </div>
 

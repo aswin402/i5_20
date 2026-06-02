@@ -15,10 +15,58 @@ const feedRow1 = [
 ];
 
 const feedRow2 = [
-  { msg: 'WHALE INFLOW DETECTED: $14.2M stablecoins entered exchange matching pools', isAlert: false },
-  { msg: 'LIQUIDATION CASCADE SQUEEZE ALIGNED ON SOL SHORTS AT $164.50', isAlert: true },
-  { msg: 'SMART MONEY WALLET 0x3f5...8e3 entered high conviction ETH long position', isAlert: false },
-  { msg: 'ORDER FLOW EXCESS DETECTED ON LIT VENUES (MARKET BUY ACCELERATION)', isAlert: false }
+  // Group 1
+  { msg: 'Momentum Shift', isAlert: false },
+  { msg: 'Liquidity Gap', isAlert: false },
+  { msg: 'Whale Accumulation', isAlert: false },
+  { msg: 'Alpha Detected', isAlert: true },
+  { msg: 'Momentum Shift', isAlert: false },
+  { msg: 'Liquidity Gap', isAlert: false },
+  { msg: 'Whale Accumulation', isAlert: false },
+  { msg: 'Alpha Detected', isAlert: true },
+  { msg: 'Momentum Shift', isAlert: false },
+  { msg: 'Liquidity Gap', isAlert: false },
+  { msg: 'Whale Accumulation', isAlert: false },
+  { msg: 'Alpha Detected', isAlert: true },
+  { msg: 'Momentum Shift', isAlert: false },
+  { msg: 'Liquidity Gap', isAlert: false },
+  { msg: 'Whale Accumulation', isAlert: false },
+
+  // Group 2
+  { msg: 'Sentiment Flip', isAlert: false },
+  { msg: 'Large Transfer', isAlert: false },
+  { msg: 'Breakout Triggered', isAlert: false },
+  { msg: 'Smart Money Inflow', isAlert: false },
+  { msg: 'Sentiment Flip', isAlert: false },
+  { msg: 'Large Transfer', isAlert: false },
+  { msg: 'Breakout Triggered', isAlert: false },
+  { msg: 'Smart Money Inflow', isAlert: false },
+  { msg: 'Sentiment Flip', isAlert: false },
+  { msg: 'Large Transfer', isAlert: false },
+  { msg: 'Breakout Triggered', isAlert: false },
+  { msg: 'Smart Money Inflow', isAlert: false },
+  { msg: 'Sentiment Flip', isAlert: false },
+  { msg: 'Large Transfer', isAlert: false },
+  { msg: 'Breakout Triggered', isAlert: false },
+  { msg: 'Smart Money Inflow', isAlert: false },
+
+  // Group 3
+  { msg: 'Volatility Spike', isAlert: false },
+  { msg: 'Capital Rotation', isAlert: false },
+  { msg: 'Order Flow Surge', isAlert: false },
+  { msg: 'Trend Reversal', isAlert: false },
+  { msg: 'Volatility Spike', isAlert: false },
+  { msg: 'Capital Rotation', isAlert: false },
+  { msg: 'Order Flow Surge', isAlert: false },
+  { msg: 'Trend Reversal', isAlert: false },
+  { msg: 'Volatility Spike', isAlert: false },
+  { msg: 'Capital Rotation', isAlert: false },
+  { msg: 'Order Flow Surge', isAlert: false },
+  { msg: 'Trend Reversal', isAlert: false },
+  { msg: 'Volatility Spike', isAlert: false },
+  { msg: 'Capital Rotation', isAlert: false },
+  { msg: 'Order Flow Surge', isAlert: false },
+  { msg: 'Trend Reversal', isAlert: false }
 ];
 
 export function AlphaFeed() {
@@ -63,9 +111,14 @@ export function AlphaFeed() {
         const w1 = row1.scrollWidth / 2;
         const w2 = row2.scrollWidth / 2;
 
+        // Dynamic duration based on width to keep scrolling speed identical
+        const speed = 100; // pixels per second
+        const duration1 = w1 / speed;
+        const duration2 = w2 / speed;
+
         const tween1 = gsap.to(row1, {
           x: -w1,
-          duration: 18,
+          duration: duration1,
           ease: 'none',
           repeat: -1,
         });
@@ -74,7 +127,7 @@ export function AlphaFeed() {
         gsap.set(row2, { x: -w2 });
         const tween2 = gsap.to(row2, {
           x: 0,
-          duration: 18,
+          duration: duration2,
           ease: 'none',
           repeat: -1,
         });
@@ -156,19 +209,30 @@ export function AlphaFeed() {
       {/* Row 2: Diagnostics Ticker (Scrolling Right) */}
       <div className="feed-ticker-row flex overflow-hidden w-full gap-6 relative z-10">
         <div className="marquee-row-2 whitespace-nowrap flex gap-6">
-          {[...feedRow2, ...feedRow2].map((item, idx) => (
-            <div 
-              key={idx}
-              className={`inline-flex items-center gap-2.5 border-2 px-5 py-3 rounded-none font-mono text-xs font-black transition-all duration-300 ${
-                item.isAlert 
-                  ? 'bg-red-950/30 border-red-500 text-red-500 shadow-[3px_3px_0px_rgba(239,68,68,0.3)]' 
-                  : 'bg-black border-white/15 text-primary shadow-[3px_3px_0px_rgba(0,255,204,0.2)] hover:border-primary'
-              }`}
-            >
-              {item.isAlert ? <AlertTriangle className="w-4 h-4 text-red-500 animate-pulse" /> : <TrendingUp className="w-4 h-4 text-primary" />}
-              <span>{item.msg}</span>
-            </div>
-          ))}
+          {[...feedRow2, ...feedRow2].map((item, idx) => {
+            const isAlpha = item.msg === 'Alpha Detected';
+            return (
+              <div 
+                key={idx}
+                className={`inline-flex items-center gap-2.5 border-2 px-5 py-3 rounded-none font-mono text-xs font-black transition-all duration-300 ${
+                  isAlpha
+                    ? 'bg-emerald-950/40 border-emerald-400 text-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.4)] animate-pulse'
+                    : item.isAlert 
+                      ? 'bg-red-950/30 border-red-500 text-red-500 shadow-[3px_3px_0px_rgba(239,68,68,0.3)]' 
+                      : 'bg-black border-white/15 text-primary shadow-[3px_3px_0px_rgba(0,255,204,0.2)] hover:border-primary'
+                }`}
+              >
+                {isAlpha ? (
+                  <TrendingUp className="w-4 h-4 text-emerald-400 animate-bounce" />
+                ) : item.isAlert ? (
+                  <AlertTriangle className="w-4 h-4 text-red-500 animate-pulse" />
+                ) : (
+                  <TrendingUp className="w-4 h-4 text-primary" />
+                )}
+                <span>{item.msg}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

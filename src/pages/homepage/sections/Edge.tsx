@@ -479,8 +479,10 @@ export function Edge() {
               </p>
             </div>
             
-            {/* Live Telemetry HUD */}
-            <I5DeltaAnalyzer activeRow={hoveredRowIndex} />
+            {/* Live Telemetry HUD (Desktop only) */}
+            <div className="hidden lg:block">
+              <I5DeltaAnalyzer activeRow={hoveredRowIndex} />
+            </div>
           </div>
 
           {/* Right Column: Comparison Table */}
@@ -587,6 +589,11 @@ export function Edge() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Live Telemetry HUD (Mobile only) */}
+            <div className="block lg:hidden mt-6">
+              <I5DeltaAnalyzer activeRow={hoveredRowIndex} />
             </div>
           </div>
 

@@ -53,7 +53,7 @@ export function Navbar() {
             className="flex items-center gap-2 hover:opacity-85 transition-opacity cursor-pointer h-10"
           >
             <img src={logo} alt="i5 Logo" className="h-7 sm:h-8 w-auto object-contain" />
-            <span className="text-xl font-display font-extrabold tracking-widest text-white">.XYZ</span>
+            <span className="text-sm sm:text-base font-display font-extrabold tracking-widest text-white uppercase ml-1">Intelligence Network</span>
           </button>
           
           {/* Desktop Navigation Links */}
@@ -101,6 +101,30 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-3.5 mr-2">
+            <a 
+              href="https://x.com/ifivelabs" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white/60 hover:text-primary transition-colors cursor-pointer" 
+              aria-label="X (Twitter)"
+            >
+              <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a 
+              href="https://t.me/I5Labs" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white/60 hover:text-primary transition-colors cursor-pointer" 
+              aria-label="Telegram"
+            >
+              <svg className="h-4.5 w-4.5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.4.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.36-.49.99-.74 3.87-1.69 6.45-2.8 7.74-3.35 3.69-1.54 4.45-1.81 4.95-1.82.11 0 .36.03.52.16.13.1.17.24.19.34.02.21.01.42 0 .63z"/>
+              </svg>
+            </a>
+          </div>
           <button 
             onClick={() => scrollToSection('intelligence-network')}
             className="hidden sm:block text-xs bg-primary text-black font-black px-5 py-2.5 border border-primary hover:bg-transparent hover:text-primary transition-colors cursor-pointer uppercase tracking-wider"
@@ -158,6 +182,32 @@ export function Navbar() {
           >
             ENTER THE WAR ROOM
           </button>
+
+          {/* Mobile Social Links */}
+          <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-white/5">
+            <a 
+              href="https://x.com/ifivelabs" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white/60 hover:text-primary transition-colors flex items-center gap-2 text-sm"
+            >
+              <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              <span>X.COM</span>
+            </a>
+            <a 
+              href="https://t.me/I5Labs" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white/60 hover:text-primary transition-colors flex items-center gap-2 text-sm"
+            >
+              <svg className="h-4.5 w-4.5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.4.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.36-.49.99-.74 3.87-1.69 6.45-2.8 7.74-3.35 3.69-1.54 4.45-1.81 4.95-1.82.11 0 .36.03.52.16.13.1.17.24.19.34.02.21.01.42 0 .63z"/>
+              </svg>
+              <span>TELEGRAM</span>
+            </a>
+          </div>
         </div>
       </div>
     </>
