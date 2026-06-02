@@ -451,6 +451,8 @@ export function BuiltForTraders() {
             <div 
               key={idx}
               className={`desktop-trader-card relative bg-black p-6 sm:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
+                idx === 4 ? 'md:col-span-2 lg:col-span-2' : ''
+              } ${
                 hoveredCardIndex === idx 
                   ? 'border-primary -translate-y-1.5 shadow-[0_0_15px_rgba(0,255,204,0.15)] bg-primary/[0.01]' 
                   : 'border-white/15 shadow-[4px_4px_0px_rgba(255,255,255,0.05)]'
