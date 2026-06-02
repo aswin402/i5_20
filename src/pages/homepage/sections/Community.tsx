@@ -76,15 +76,15 @@ export function Community() {
   };
 
   return (
-    <section id="community" className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 xl:px-16 border-b border-white/10 select-none bg-black overflow-hidden">
+    <section id="community" className="relative py-20 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
       
       {/* Title */}
-      <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-12 xl:mb-16">
+      <div className="text-center max-w-2xl mx-auto mb-16">
         <span className="text-[10px] font-mono tracking-widest text-primary uppercase block mb-2">// JOIN THE INNER CIRCLE</span>
-        <h2 className="text-fluid-h2 font-display font-black text-white uppercase">
+        <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase">
           A CULT OF WINNING.
         </h2>
-        <p className="text-white/60 font-body text-[11px] lg:text-xs xl:text-sm mt-2 lg:mt-3 leading-relaxed">
+        <p className="text-white/60 font-body text-xs sm:text-sm mt-3 leading-relaxed">
           Crypto is a PvP game. Retail loses because they play alone. We share live trade executions, chart setups, and celebrate leverage profit flexes inside the premium room.
         </p>
       </div>
@@ -93,7 +93,7 @@ export function Community() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
         
         {/* Discord Scroll Simulator Box (Col 1-7) */}
-        <div className="lg:col-span-7 border-2 border-white/15 bg-black p-4 flex flex-col font-mono text-xs relative h-[340px] xl:h-[380px] select-none overflow-hidden group">
+        <div className="lg:col-span-7 border-2 border-white/15 bg-black p-4 flex flex-col font-mono text-xs relative h-[380px] select-none overflow-hidden group">
           {/* Cyberpunk terminal CRT overlays */}
           <div className="absolute inset-0 crt-scanline opacity-15 pointer-events-none z-20" />
           <div className="absolute inset-0 terminal-grain pointer-events-none z-20" />
@@ -199,7 +199,7 @@ export function Community() {
 
             <div className="bg-primary/5 border border-primary/20 p-2.5 flex justify-between items-center font-mono group-hover/tweet:bg-primary/10 transition-all duration-300">
               <span className="text-[10px] text-primary">REALIZED PNL:</span>
-              <span className="text-base xl:text-lg font-black text-primary group-hover/tweet:scale-105 transition-transform">+342.1%</span>
+              <span className="text-lg font-black text-primary group-hover/tweet:scale-105 transition-transform">+342.1%</span>
             </div>
           </div>
 
@@ -221,7 +221,7 @@ export function Community() {
             
             <div className="mt-4 mb-2">
               <div className="text-[10px] text-white/50 font-mono uppercase">WAR_ROOM_KEY</div>
-              <div className="text-base xl:text-lg font-display font-black text-white mt-1 select-all tracking-wider font-mono group-hover:text-primary transition-colors">
+              <div className="text-xl font-display font-black text-white mt-1 select-all tracking-wider font-mono group-hover:text-primary transition-colors">
                 I5-ALPHA-992
               </div>
             </div>

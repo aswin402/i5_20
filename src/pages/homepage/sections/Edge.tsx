@@ -258,7 +258,7 @@ function I5DeltaAnalyzer({ activeRow }: DeltaAnalyzerProps) {
   };
 
   return (
-    <div className="relative w-full border border-primary/20 bg-black/60 p-4 lg:p-4 xl:p-5 mt-4 lg:mt-6 font-mono text-[9px] xl:text-[10px] text-white shadow-[0_0_20px_rgba(0,0,0,0.8)] select-none overflow-hidden">
+    <div className="relative w-full border border-primary/20 bg-black/60 p-5 mt-6 font-mono text-[10px] text-white shadow-[0_0_20px_rgba(0,0,0,0.8)] select-none overflow-hidden">
       {/* Corner Bracket decorations */}
       <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-white/20" />
       <div className="absolute top-2 right-2 w-3.5 h-3.5 border-t border-r border-white/20" />
@@ -411,7 +411,7 @@ export function Edge() {
   }, []);
 
   return (
-    <section ref={containerRef} id="i5-edge" className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 xl:px-16 border-b border-white/10 select-none bg-black overflow-hidden">
+    <section ref={containerRef} id="i5-edge" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
       {/* Glitch and animation keyframe injections */}
       <style>{`
         @keyframes dash {
@@ -468,13 +468,13 @@ export function Edge() {
             {/* Header */}
             <div className="edge-header max-w-3xl text-left">
               <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// COGNITIVE DELTA</span>
-              <h2 className="text-fluid-h2 font-display font-black text-white uppercase leading-none">
+              <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase leading-none">
                 THE <span className='lowercase'>i5</span> EDGE
               </h2>
-              <div className="mt-4 flex flex-col gap-1 font-display font-bold text-xs sm:text-sm lg:text-base xl:text-lg text-primary">
-                <div className='font-bold text-xs sm:text-sm lg:text-base xl:text-lg'>Traditional vs<span className='text-white lowercase'> i5</span></div>
+              <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary">
+                <div className='font-bold text-xl'>Traditional vs<span className='text-white lowercase'> i5</span></div>
               </div>
-              <p className="text-white/60 font-body text-xs lg:text-sm xl:text-base mt-3 lg:mt-4 leading-relaxed">
+              <p className="text-white/60 font-body text-sm sm:text-base mt-6 leading-relaxed">
                 Every row represents a paradigm shift in execution, intelligence, and coordination. Stop guessing — <span className="text-primary font-bold">start knowing.</span>
               </p>
             </div>
@@ -489,19 +489,19 @@ export function Edge() {
           <div className="lg:col-span-8 w-full">
             <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full">
               {/* Table Header Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-white/10 bg-white/5 font-mono text-[9px] lg:text-[10px] xl:text-xs uppercase tracking-widest">
-                <div className="p-3 sm:p-4 lg:p-4 xl:p-6 text-white/50 border-b md:border-b-0 md:border-r border-white/10 flex items-center justify-between">
+              <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-white/10 bg-white/5 font-mono text-xs uppercase tracking-widest">
+                <div className="p-4 sm:p-6 text-white/50 border-b md:border-b-0 md:border-r border-white/10 flex items-center justify-between">
                   <span>Traditional Trading</span>
                   <span className="text-red-500/80 font-bold">[ LIMITED ]</span>
                 </div>
-                <div className="p-3 sm:p-4 lg:p-4 xl:p-6 text-primary flex items-center justify-between bg-primary/5">
+                <div className="p-4 sm:p-6 text-primary flex items-center justify-between bg-primary/5">
                   <span><span className='text-white lowercase'>i5</span> Intelligence</span>
                   <span className="text-primary font-black animate-pulse">[ WEAPONIZED ]</span>
                 </div>
               </div>
 
               {/* Comparison Rows */}
-              <div className="divide-y divide-white/5 font-mono text-xs xl:text-sm">
+              <div className="divide-y divide-white/5 font-mono text-sm sm:text-base">
                 {[
                   { traditional: 'Manual analysis', i5: 'AI-assisted intelligence' },
                   { traditional: 'Fragmented tools', i5: 'Unified terminal' },
@@ -547,7 +547,7 @@ export function Edge() {
                     )}
 
                     {/* Left side: Traditional */}
-                    <div className={`p-3 sm:p-4 lg:p-4 xl:p-6 md:border-r border-white/10 flex items-center gap-3 transition-opacity duration-300 relative overflow-hidden z-10 ${
+                    <div className={`p-4 sm:p-6 md:border-r border-white/10 flex items-center gap-3 transition-opacity duration-300 relative overflow-hidden z-10 ${
                       hoveredRowIndex !== null && hoveredRowIndex !== idx ? 'opacity-25' : 'opacity-100'
                     } ${hoveredRowIndex === idx ? 'text-red-500/40' : 'text-white/55'}`}>
                       {/* Sweep scan inside cell */}
@@ -561,7 +561,7 @@ export function Edge() {
                     </div>
 
                     {/* Right side: i5 */}
-                    <div className={`p-3 sm:p-4 lg:p-4 xl:p-6 flex items-center gap-3 transition-all duration-300 relative overflow-hidden z-10 ${
+                    <div className={`p-4 sm:p-6 flex items-center gap-3 transition-all duration-300 relative overflow-hidden z-10 ${
                       hoveredRowIndex !== null && hoveredRowIndex !== idx ? 'opacity-25' : 'opacity-100'
                     } ${hoveredRowIndex === idx ? 'bg-primary/5 text-primary' : 'bg-primary/[0.01] text-white'}`}>
                       {/* Sweep scan inside cell */}

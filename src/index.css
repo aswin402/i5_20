@@ -234,24 +234,3 @@
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
-
-@utility text-fluid-h1 {
-  font-size: clamp(2rem, 6.5vw + 0.5rem, 5rem);
-  @media (min-width: 1536px) {
-    font-size: 5.5rem;
-  }
-}
-
-@utility text-fluid-h2 {
-  font-size: clamp(1.6rem, 3.5vw + 0.5rem, 3rem);
-  @media (min-width: 1536px) {
-    font-size: 3.25rem;
-  }
-}
-
-@utility text-fluid-h3 {
-  font-size: clamp(1.1rem, 2vw + 0.4rem, 1.6rem);
-  @media (min-width: 1536px) {
-    font-size: 1.8rem;
-  }
-}

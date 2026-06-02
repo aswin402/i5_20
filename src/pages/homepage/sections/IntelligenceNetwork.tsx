@@ -81,18 +81,18 @@ export function IntelligenceNetwork() {
   }, []);
 
   return (
-    <section ref={containerRef} id="intelligence-network" className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 xl:px-16 border-b border-white/10 select-none bg-black overflow-hidden">
+    <section ref={containerRef} id="intelligence-network" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
       {/* Glow backdrop */}
       <div className="network-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-primary/5 rounded-full blur-[120px] pointer-events-none opacity-40" />
 
       <div className="network-content max-w-5xl mx-auto relative z-10 text-center flex flex-col items-center gap-6">
         <span className="text-[10px] font-mono tracking-widest text-primary block uppercase">// SYSTEM INITIALIZED</span>
         
-        <h2 className="text-fluid-h2 font-display font-black text-white uppercase leading-none max-w-3xl">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white uppercase leading-none max-w-3xl">
           Join the Intelligence Network
         </h2>
 
-        <div className="flex flex-wrap justify-center items-center gap-3 text-xs lg:text-sm xl:text-base font-display font-bold text-primary uppercase mt-1">
+        <div className="flex flex-wrap justify-center items-center gap-3 text-sm sm:text-base font-display font-bold text-primary uppercase mt-1">
           <span>Detect earlier.</span>
           <span className="text-white/20">•</span>
           <span>Analyze faster.</span>
@@ -100,14 +100,14 @@ export function IntelligenceNetwork() {
           <span>Execute smarter.</span>
         </div>
 
-        <p className="text-white/60 font-body text-[11px] lg:text-xs xl:text-sm max-w-2xl leading-relaxed mt-2">
+        <p className="text-white/60 font-body text-xs sm:text-sm max-w-2xl leading-relaxed mt-2">
           The intelligence gap is closing. Secure your access to the i5 network today and start trading with an institutional edge.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mt-4">
           <a 
             href="#" 
-            className="network-btn inline-flex items-center justify-center gap-2 border border-primary/30 px-5 py-2.5 sm:px-6 sm:py-3 bg-primary/5 text-primary font-bold font-mono text-xs uppercase cursor-pointer select-none"
+            className="network-btn inline-flex items-center justify-center gap-2 border border-primary/30 px-6 py-3 bg-primary/5 text-primary font-bold font-mono text-xs uppercase cursor-pointer select-none"
           >
             <span>Read Docs</span>
             <ArrowRight className="network-arrow w-3.5 h-3.5" />
