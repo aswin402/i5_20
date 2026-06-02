@@ -139,7 +139,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
   const videoSrc = isMobile ? heroVideoMob : './libst.mp4';
 
   return (
-    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-20 lg:pt-24 select-none pb-0 sm:pb-8 lg:pb-16 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-12 sm:pt-16 lg:pt-20 select-none pb-0 sm:pb-6 lg:pb-10 overflow-hidden">
       
       {/* Background Video (Desktop only) */}
       {!isMobile && (
@@ -194,7 +194,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
           {/* Heading: From noise to signals. */}
           <div className="flex flex-col gap-2 w-full">
-            <h1 className="text-4xl sm:text-6xl uppercase md:text-7xl lg:text-[5.5rem] font-heading font-black tracking-tight leading-[0.9] sm:leading-[0.85] text-white normal-case">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-heading font-black tracking-tight leading-[0.9] sm:leading-[0.85] text-white normal-case">
               <span className="hero-title-line block overflow-hidden">
                 <span className="block">From</span>
               </span>

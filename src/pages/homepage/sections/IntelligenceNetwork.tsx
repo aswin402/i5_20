@@ -81,7 +81,7 @@ export function IntelligenceNetwork() {
   }, []);
 
   return (
-    <section ref={containerRef} id="intelligence-network" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
+    <section ref={containerRef} id="intelligence-network" className="relative py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
       {/* Glow backdrop */}
       <div className="network-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-primary/5 rounded-full blur-[120px] pointer-events-none opacity-40" />
 

@@ -112,13 +112,13 @@ export function CoreFeatures() {
   }, []);
 
   return (
-    <section ref={containerRef} id="core-features" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-[#030304] overflow-hidden">
+    <section ref={containerRef} id="core-features" className="relative py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-b border-white/10 select-none bg-[#030304] overflow-hidden">
       {/* Background glow overlay */}
       <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="features-header max-w-none mb-16 text-left">
+        <div className="features-header max-w-none mb-10 lg:mb-12 xl:mb-16 text-left">
           <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// CORE CAPABILITIES</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white uppercase leading-[1.1]">
             Everything you need to read the market and act on it.
@@ -129,10 +129,10 @@ export function CoreFeatures() {
         </div>
 
         {/* Features Grid */}
-        <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="features-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
           
           {/* Card 1: AI Signal Engine (FLAGSHIP) */}
-          <div className="feature-card relative border-r-2 border-b-2 border-primary bg-primary/5 p-6 sm:p-8 shadow-[4px_4px_0px_#00ffcc] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-primary bg-primary/5 p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_#00ffcc] flex flex-col justify-between overflow-hidden cursor-pointer">
             {/* Flagship Badge */}
             <div className="absolute top-0 right-0 bg-primary text-black font-mono font-black text-[9px] px-3 py-1 uppercase tracking-wider">
               FLAGSHIP
@@ -163,7 +163,7 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 2: Smart-Money Tracking */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Wallet className="feature-icon w-8 h-8 text-white" />
@@ -186,7 +186,7 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 3: Cohort Analytics */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Users className="feature-icon w-8 h-8 text-white" />
@@ -209,7 +209,7 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 4: Liquidation Heatmaps */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Flame className="feature-icon w-8 h-8 text-white" />
@@ -232,7 +232,7 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 5: Real-Time Alerts */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Bell className="feature-icon w-8 h-8 text-white" />
@@ -255,7 +255,7 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 6: Social Trading Streams */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Share2 className="feature-icon w-8 h-8 text-white" />

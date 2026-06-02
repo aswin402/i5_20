@@ -76,10 +76,10 @@ export function Community() {
   };
 
   return (
-    <section id="community" className="relative py-20 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
+    <section id="community" className="relative py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
       
       {/* Title */}
-      <div className="text-center max-w-2xl mx-auto mb-16">
+      <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-12 xl:mb-16">
         <span className="text-[10px] font-mono tracking-widest text-primary uppercase block mb-2">// JOIN THE INNER CIRCLE</span>
         <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase">
           A CULT OF WINNING.

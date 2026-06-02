@@ -451,11 +451,11 @@ export function IntelligenceStack() {
   }, []);
 
   return (
-    <section ref={containerRef} id="why-we-win" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 dapp-grid-cyan-green">
+    <section ref={containerRef} id="why-we-win" className="relative py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-b border-white/10 dapp-grid-cyan-green">
       {/* Background glow overlay */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto flex flex-col gap-16 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col gap-10 lg:gap-12 xl:gap-16 relative z-10">
         {/* Top Header Block */}
         <div className="stack-top-header flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-white/10">
           <div className="max-w-3xl">
@@ -476,7 +476,7 @@ export function IntelligenceStack() {
         {/* Content Row: Two Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: BIG Image */}
-          <div className="stack-image-column lg:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg sticky top-[80px] lg:relative lg:top-auto overflow-hidden h-[280px] lg:h-auto z-20">
+          <div className="stack-image-column lg:col-span-5 xl:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg sticky top-[80px] lg:sticky lg:top-[100px] lg:h-[calc(100vh-160px)] lg:max-h-[550px] overflow-hidden h-[280px] z-20">
             <div className="absolute inset-0 bg-radial-gradient from-primary/10 to-transparent pointer-events-none hidden lg:block" />
             {/* Grid background details */}
             <div className="absolute inset-0 opacity-15 pointer-events-none hidden lg:block" style={{ backgroundImage: 'radial-gradient(var(--color-primary, #00ffcc) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
@@ -487,7 +487,8 @@ export function IntelligenceStack() {
           <div
             className="
             stack-timeline-container
-            lg:col-span-6
+            lg:col-span-7
+            xl:col-span-6
             flex
             flex-col
             gap-4

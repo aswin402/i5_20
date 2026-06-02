@@ -75,7 +75,7 @@ export function Footer() {
   }, []);
 
   return (
-    <footer ref={containerRef} className="py-20 px-4 sm:px-8 border-t border-white/10 bg-black select-none text-left relative z-20">
+    <footer ref={containerRef} className="py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-t border-white/10 bg-black select-none text-left relative z-20">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-16">
