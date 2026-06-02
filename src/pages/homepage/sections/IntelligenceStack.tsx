@@ -537,8 +537,8 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl text-primary">i1</span>
-                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i1</span>
+                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
                       Market Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
@@ -551,11 +551,11 @@ export function IntelligenceStack() {
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer1Visual hovered={hoveredIndex === 1} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Order flow</div>
                     <div className="hover:text-white transition-colors">&gt; Funding & OI</div>
                     <div className="hover:text-white transition-colors">&gt; Liquidity maps</div>
@@ -594,8 +594,8 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl text-primary">i2</span>
-                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i2</span>
+                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
                       AI Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
@@ -608,11 +608,11 @@ export function IntelligenceStack() {
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer2Visual hovered={hoveredIndex === 2} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Signal agents</div>
                     <div className="hover:text-white transition-colors">&gt; Narrative agents</div>
                     <div className="hover:text-white transition-colors">&gt; Risk agents</div>
@@ -651,8 +651,8 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl text-primary">i3</span>
-                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i3</span>
+                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
                       Community Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
@@ -665,11 +665,11 @@ export function IntelligenceStack() {
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer3Visual hovered={hoveredIndex === 3} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Reputation scores</div>
                     <div className="hover:text-white transition-colors">&gt; Signal marketplace</div>
                     <div className="hover:text-white transition-colors">&gt; Copy trading</div>
@@ -708,8 +708,8 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl text-primary">i4</span>
-                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i4</span>
+                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
                       Event Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
@@ -722,11 +722,11 @@ export function IntelligenceStack() {
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer4Visual hovered={hoveredIndex === 4} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Whale moves</div>
                     <div className="hover:text-white transition-colors">&gt; Volume anomalies</div>
                     <div className="hover:text-white transition-colors">&gt; Narrative shifts</div>
@@ -765,8 +765,8 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl text-primary">i5</span>
-                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i5</span>
+                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
                       Execution Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
@@ -779,11 +779,11 @@ export function IntelligenceStack() {
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer5Visual hovered={hoveredIndex === 5} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; One-click trades</div>
                     <div className="hover:text-white transition-colors">&gt; Dynamic stops</div>
                     <div className="hover:text-white transition-colors">&gt; Copy workflows</div>

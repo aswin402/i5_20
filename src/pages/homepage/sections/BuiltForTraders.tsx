@@ -434,13 +434,13 @@ export function BuiltForTraders() {
         {/* Header */}
         <div className="trader-header max-w-3xl mb-10 lg:mb-12 xl:mb-16 text-left">
           <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// ADAPTIVE TERMINAL</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white uppercase leading-none">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-black text-white uppercase leading-none">
             BUILT FOR EVERY TRADER
           </h2>
-          <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary uppercase">
+          <div className="mt-4 flex flex-col gap-1 font-display font-bold text-sm sm:text-base lg:text-lg text-primary uppercase">
             <div>One platform. Every workflow.</div>
           </div>
-          <p className="text-white/60 font-body text-base sm:text-lg mt-6 leading-relaxed">
+          <p className="text-white/60 font-body text-xs sm:text-sm lg:text-base xl:text-lg mt-4 lg:mt-6 leading-relaxed">
             From sub-second scalping to institutional portfolio management, i5 adapts to how you trade.
           </p>
         </div>
@@ -450,7 +450,7 @@ export function BuiltForTraders() {
           {cardsData.map((card, idx) => (
             <div 
               key={idx}
-              className={`desktop-trader-card relative bg-black p-5 sm:p-6 lg:p-7 xl:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
+              className={`desktop-trader-card relative bg-black p-4 sm:p-5 lg:p-6 xl:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
                 idx === 4 ? 'md:col-span-2 xl:col-span-2' : ''
               } ${
                 hoveredCardIndex === idx 
@@ -467,10 +467,10 @@ export function BuiltForTraders() {
               </div>
               <div>
                 <span className="text-xs font-mono text-primary font-bold block mb-2">// {card.num} //</span>
-                <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
+                <h3 className="text-lg lg:text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                   {card.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+                <p className="text-xs lg:text-sm text-white/60 font-body leading-relaxed">
                   {card.desc}
                 </p>
                 

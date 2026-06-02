@@ -468,13 +468,13 @@ export function Edge() {
             {/* Header */}
             <div className="edge-header max-w-3xl text-left">
               <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// COGNITIVE DELTA</span>
-              <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase leading-none">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-white uppercase leading-none">
                 THE <span className='lowercase'>i5</span> EDGE
               </h2>
-              <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary">
-                <div className='font-bold text-xl'>Traditional vs<span className='text-white lowercase'> i5</span></div>
+              <div className="mt-4 flex flex-col gap-1 font-display font-bold text-sm sm:text-base lg:text-lg text-primary">
+                <div className='font-bold text-sm sm:text-base lg:text-lg'>Traditional vs<span className='text-white lowercase'> i5</span></div>
               </div>
-              <p className="text-white/60 font-body text-sm sm:text-base mt-6 leading-relaxed">
+              <p className="text-white/60 font-body text-xs sm:text-sm lg:text-base mt-4 lg:mt-6 leading-relaxed">
                 Every row represents a paradigm shift in execution, intelligence, and coordination. Stop guessing — <span className="text-primary font-bold">start knowing.</span>
               </p>
             </div>
@@ -489,19 +489,19 @@ export function Edge() {
           <div className="lg:col-span-8 w-full">
             <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full">
               {/* Table Header Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-white/10 bg-white/5 font-mono text-xs uppercase tracking-widest">
-                <div className="p-4 sm:p-6 text-white/50 border-b md:border-b-0 md:border-r border-white/10 flex items-center justify-between">
+              <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-white/10 bg-white/5 font-mono text-[10px] lg:text-xs uppercase tracking-widest">
+                <div className="p-3.5 sm:p-5 lg:p-6 text-white/50 border-b md:border-b-0 md:border-r border-white/10 flex items-center justify-between">
                   <span>Traditional Trading</span>
                   <span className="text-red-500/80 font-bold">[ LIMITED ]</span>
                 </div>
-                <div className="p-4 sm:p-6 text-primary flex items-center justify-between bg-primary/5">
+                <div className="p-3.5 sm:p-5 lg:p-6 text-primary flex items-center justify-between bg-primary/5">
                   <span><span className='text-white lowercase'>i5</span> Intelligence</span>
                   <span className="text-primary font-black animate-pulse">[ WEAPONIZED ]</span>
                 </div>
               </div>
 
               {/* Comparison Rows */}
-              <div className="divide-y divide-white/5 font-mono text-sm sm:text-base">
+              <div className="divide-y divide-white/5 font-mono text-xs sm:text-sm lg:text-base">
                 {[
                   { traditional: 'Manual analysis', i5: 'AI-assisted intelligence' },
                   { traditional: 'Fragmented tools', i5: 'Unified terminal' },

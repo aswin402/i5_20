@@ -194,7 +194,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
           {/* Heading: From noise to signals. */}
           <div className="flex flex-col gap-2 w-full">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-heading font-black tracking-tight leading-[0.9] sm:leading-[0.85] text-white normal-case">
+            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[5rem] 2xl:text-[5.5rem] font-heading font-black tracking-tight leading-[0.9] sm:leading-[0.85] text-white normal-case">
               <span className="hero-title-line block overflow-hidden">
                 <span className="block">From</span>
               </span>
@@ -233,7 +233,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           )}
 
           {/* Paragraph description */}
-          <p className="text-white/70 font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-2 hero-fade-in mx-auto lg:mx-0">
+          <p className="text-white/70 font-body text-xs sm:text-sm md:text-base lg:text-lg max-w-xl leading-relaxed mt-2 hero-fade-in mx-auto lg:mx-0">
             i5 is an intelligence-native trading network that aggregates smart-money flows, cohort behavior, and institutional-grade signals into a unified execution layer.
           </p>
 
@@ -244,7 +244,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                 scrollToSection('intelligence-network');
                 triggerShake();
               }}
-              className="hero-btn group relative bg-primary text-black text-xs sm:text-sm md:text-base font-body font-bold tracking-wider px-6 sm:px-8 py-3 sm:py-3.5 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
+              className="hero-btn group relative bg-primary text-black text-xs sm:text-sm lg:text-base font-body font-bold tracking-wider px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-3.5 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
             >
               <span>Join Waitlist</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -254,26 +254,26 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           {/* Stats: Signal Accuracy, Latency & Supplies */}
           <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-12 mt-4 sm:mt-6 border-t border-white/10 pt-4 sm:pt-6 hero-fade-in w-full">
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
+              <div className="stat-val text-2xl sm:text-3xl lg:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
                 98.7%
               </div>
-              <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+              <div className="stat-lbl text-[9px] sm:text-[10px] lg:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                 SIGNAL ACCURACY
               </div>
             </div>
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
+              <div className="stat-val text-2xl sm:text-3xl lg:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
                 &lt;50ms
               </div>
-              <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+              <div className="stat-lbl text-[9px] sm:text-[10px] lg:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                 LATENCY
               </div>
             </div>
             <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
+              <div className="stat-val text-2xl sm:text-3xl lg:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
                 20M
               </div>
-              <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+              <div className="stat-lbl text-[9px] sm:text-[10px] lg:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                 SUPPLIES
               </div>
             </div>

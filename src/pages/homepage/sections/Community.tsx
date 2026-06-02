@@ -81,10 +81,10 @@ export function Community() {
       {/* Title */}
       <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-12 xl:mb-16">
         <span className="text-[10px] font-mono tracking-widest text-primary uppercase block mb-2">// JOIN THE INNER CIRCLE</span>
-        <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-white uppercase">
           A CULT OF WINNING.
         </h2>
-        <p className="text-white/60 font-body text-xs sm:text-sm mt-3 leading-relaxed">
+        <p className="text-white/60 font-body text-[11px] sm:text-xs lg:text-sm mt-3 leading-relaxed">
           Crypto is a PvP game. Retail loses because they play alone. We share live trade executions, chart setups, and celebrate leverage profit flexes inside the premium room.
         </p>
       </div>
@@ -221,7 +221,7 @@ export function Community() {
             
             <div className="mt-4 mb-2">
               <div className="text-[10px] text-white/50 font-mono uppercase">WAR_ROOM_KEY</div>
-              <div className="text-xl font-display font-black text-white mt-1 select-all tracking-wider font-mono group-hover:text-primary transition-colors">
+              <div className="text-lg lg:text-xl font-display font-black text-white mt-1 select-all tracking-wider font-mono group-hover:text-primary transition-colors">
                 I5-ALPHA-992
               </div>
             </div>
