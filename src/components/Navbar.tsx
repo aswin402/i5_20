@@ -43,8 +43,8 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 h-20 border-b border-white/10 bg-black/90 backdrop-blur-md z-50 flex items-center justify-between px-6 sm:px-8 lg:px-12 font-mono select-none">
-        <div className="flex items-center gap-10">
+      <nav className="fixed top-0 left-0 right-0 h-20 border-b border-white/10 bg-black/90 backdrop-blur-md z-50 flex items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-12 font-mono select-none">
+        <div className="flex items-center gap-4 xl:gap-10">
           <button 
             onClick={() => {
               setIsOpen(false);
@@ -53,11 +53,11 @@ export function Navbar() {
             className="flex items-center gap-2 hover:opacity-85 transition-opacity cursor-pointer h-10"
           >
             <img src={logo} alt="i5 Logo" className="h-7 sm:h-8 w-auto object-contain" />
-            <span className="text-sm sm:text-base font-display font-extrabold tracking-widest text-white uppercase ml-1">Intelligence Network</span>
+            <span className="text-sm sm:text-base font-display font-extrabold tracking-widest text-white uppercase ml-1 hidden xl:inline">Intelligence Network</span>
           </button>
           
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-bold">
+          <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 text-xs xl:text-sm font-bold">
             <button 
               onClick={() => scrollToSection('why-we-win')} 
               className="text-white/60 hover:text-primary hover:before:content-['>_'] transition-colors cursor-pointer tracking-wider"
@@ -86,22 +86,22 @@ export function Navbar() {
         </div>
 
         {/* Live system metrics (Desktop only) */}
-        <div className="hidden lg:flex items-center gap-6 text-[10px] text-white/40 tracking-wider">
+        <div className="hidden lg:flex items-center gap-3 xl:gap-6 text-[10px] text-white/40 tracking-wider">
           <div className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-ping" />
             <span className="text-white/70 font-bold">{tradersCount.toLocaleString()} DEGENS LIVE</span>
           </div>
-          <div className="h-3 w-px bg-white/10" />
-          <div className="flex items-center gap-1">
+          <div className="h-3 w-px bg-white/10 hidden xl:block" />
+          <div className="hidden xl:flex items-center gap-1">
             <Radio className="h-3 w-3 text-primary animate-pulse" />
             <span>SYS_STATUS: <span className="text-primary font-bold">WEAPONIZED</span></span>
           </div>
-          <div className="h-3 w-px bg-white/10" />
-          <div>{time}</div>
+          <div className="h-3 w-px bg-white/10 hidden xl:block" />
+          <div className="hidden xl:block">{time}</div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="hidden sm:flex items-center gap-3.5 mr-2">
+        <div className="flex items-center gap-2.5 xl:gap-4">
+          <div className="hidden xl:flex items-center gap-3.5 mr-1">
             <a 
               href="https://x.com/ifivelabs" 
               target="_blank" 
@@ -127,7 +127,7 @@ export function Navbar() {
           </div>
           <button 
             onClick={() => scrollToSection('intelligence-network')}
-            className="hidden sm:block text-xs bg-primary text-black font-black px-5 py-2.5 border border-primary hover:bg-transparent hover:text-primary transition-colors cursor-pointer uppercase tracking-wider"
+            className="hidden sm:block text-[10px] xl:text-xs bg-primary text-black font-black px-3.5 py-2 xl:px-5 xl:py-2.5 border border-primary hover:bg-transparent hover:text-primary transition-colors cursor-pointer uppercase tracking-wider"
           >
             ENTER THE WAR ROOM
           </button>

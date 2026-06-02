@@ -451,23 +451,23 @@ export function IntelligenceStack() {
   }, []);
 
   return (
-    <section ref={containerRef} id="why-we-win" className="relative py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-b border-white/10 dapp-grid-cyan-green">
+    <section ref={containerRef} id="why-we-win" className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 xl:px-16 border-b border-white/10 dapp-grid-cyan-green">
       {/* Background glow overlay */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto flex flex-col gap-10 lg:gap-12 xl:gap-16 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col gap-8 lg:gap-10 xl:gap-16 relative z-10">
         {/* Top Header Block */}
         <div className="stack-top-header flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-white/10">
           <div className="max-w-3xl">
             <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// STACK ARCHITECTURE</span>
-            <h2 className="text-4xl md:text-5xl font-display font-black text-white leading-none">
+            <h2 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-display font-black text-white leading-none">
               THE <span className="text-primary lowercase">i5</span> INTELLIGENCE STACK
             </h2>
-            <p className="text-white/60 font-body text-sm sm:text-base mt-4 leading-relaxed">
+            <p className="text-white/60 font-body text-xs sm:text-sm lg:text-sm xl:text-base mt-4 leading-relaxed">
               Most platforms display data. i5 interprets it. Each layer compounds the next — perception sharpens context, context sharpens reasoning, reasoning directs action, action feeds reflection.
             </p>
           </div>
-          <div className="flex flex-col gap-1 font-display font-bold text-lg text-primary uppercase lg:text-right shrink-0">
+          <div className="flex flex-col gap-1 font-display font-bold text-sm lg:text-base xl:text-lg text-primary uppercase lg:text-right shrink-0">
             <div>Five layers.</div>
             <div>One coordinated runtime.</div>
           </div>
@@ -517,9 +517,13 @@ export function IntelligenceStack() {
               lg:relative
               lg:top-auto
               bg-black/80
-              p-4
-              sm:py-4
-              sm:px-6
+              p-3
+              sm:py-3.5
+              sm:px-4
+              lg:py-4
+              lg:px-5
+              xl:py-4
+              xl:px-6
               border-2
               border-white/15
               cursor-pointer
@@ -537,25 +541,25 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i1</span>
-                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-lg lg:text-xl xl:text-2xl text-primary">i1</span>
+                    <h3 className="text-sm lg:text-base xl:text-lg font-display font-black text-white uppercase tracking-tight">
                       Market Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
                       DATA LAYER
                     </span>
                   </div>
-                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-[11px] xl:text-xs text-white/50 font-body leading-relaxed max-w-xl">
                     Hyperliquid order flow, perps, funding, OI, volatility, liquidity maps, and liquidation streams — ingested in real time.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[160px] lg:min-w-[200px] xl:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer1Visual hovered={hoveredIndex === 1} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[10px] lg:text-[11px] xl:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Order flow</div>
                     <div className="hover:text-white transition-colors">&gt; Funding & OI</div>
                     <div className="hover:text-white transition-colors">&gt; Liquidity maps</div>
@@ -574,9 +578,13 @@ export function IntelligenceStack() {
               lg:relative
               lg:top-auto
               bg-black/80
-              p-4
-              sm:py-4
-              sm:px-6
+              p-3
+              sm:py-3.5
+              sm:px-4
+              lg:py-4
+              lg:px-5
+              xl:py-4
+              xl:px-6
               border-2
               border-white/15
               cursor-pointer
@@ -594,25 +602,25 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i2</span>
-                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-lg lg:text-xl xl:text-2xl text-primary">i2</span>
+                    <h3 className="text-sm lg:text-base xl:text-lg font-display font-black text-white uppercase tracking-tight">
                       AI Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
                       AGENT LAYER
                     </span>
                   </div>
-                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-[11px] xl:text-xs text-white/50 font-body leading-relaxed max-w-xl">
                     Specialized agents — Signal, Narrative, Risk, Execution, Learning — coordinate across the entire trading workflow.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[160px] lg:min-w-[200px] xl:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer2Visual hovered={hoveredIndex === 2} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[10px] lg:text-[11px] xl:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Signal agents</div>
                     <div className="hover:text-white transition-colors">&gt; Narrative agents</div>
                     <div className="hover:text-white transition-colors">&gt; Risk agents</div>
@@ -631,9 +639,13 @@ export function IntelligenceStack() {
               lg:relative
               lg:top-auto
               bg-black/80
-              p-4
-              sm:py-4
-              sm:px-6
+              p-3
+              sm:py-3.5
+              sm:px-4
+              lg:py-4
+              lg:px-5
+              xl:py-4
+              xl:px-6
               border-2
               border-white/15
               cursor-pointer
@@ -651,25 +663,25 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i3</span>
-                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-lg lg:text-xl xl:text-2xl text-primary">i3</span>
+                    <h3 className="text-sm lg:text-base xl:text-lg font-display font-black text-white uppercase tracking-tight">
                       Community Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
                       NETWORK LAYER
                     </span>
                   </div>
-                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-[11px] xl:text-xs text-white/50 font-body leading-relaxed max-w-xl">
                     Traders publish signals, validate setups, and earn transparent on-chain reputation. Merit-based intelligence at scale.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[160px] lg:min-w-[200px] xl:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer3Visual hovered={hoveredIndex === 3} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[10px] lg:text-[11px] xl:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Reputation scores</div>
                     <div className="hover:text-white transition-colors">&gt; Signal marketplace</div>
                     <div className="hover:text-white transition-colors">&gt; Copy trading</div>
@@ -688,9 +700,13 @@ export function IntelligenceStack() {
               lg:relative
               lg:top-auto
               bg-black/80
-              p-4
-              sm:py-4
-              sm:px-6
+              p-3
+              sm:py-3.5
+              sm:px-4
+              lg:py-4
+              lg:px-5
+              xl:py-4
+              xl:px-6
               border-2
               border-white/15
               cursor-pointer
@@ -708,25 +724,25 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i4</span>
-                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-lg lg:text-xl xl:text-2xl text-primary">i4</span>
+                    <h3 className="text-sm lg:text-base xl:text-lg font-display font-black text-white uppercase tracking-tight">
                       Event Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
                       DETECTION LAYER
                     </span>
                   </div>
-                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-[11px] xl:text-xs text-white/50 font-body leading-relaxed max-w-xl">
                     Whale transfers, funding spikes, volume anomalies, and narrative shifts — surfaced as ranked, contextual events.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[160px] lg:min-w-[200px] xl:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer4Visual hovered={hoveredIndex === 4} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[10px] lg:text-[11px] xl:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Whale moves</div>
                     <div className="hover:text-white transition-colors">&gt; Volume anomalies</div>
                     <div className="hover:text-white transition-colors">&gt; Narrative shifts</div>
@@ -745,9 +761,13 @@ export function IntelligenceStack() {
               lg:relative
               lg:top-auto
               bg-black/80
-              p-4
-              sm:py-4
-              sm:px-6
+              p-3
+              sm:py-3.5
+              sm:px-4
+              lg:py-4
+              lg:px-5
+              xl:py-4
+              xl:px-6
               border-2
               border-white/15
               cursor-pointer
@@ -765,25 +785,25 @@ export function IntelligenceStack() {
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-xl lg:text-2xl text-primary">i5</span>
-                    <h3 className="text-base lg:text-lg font-display font-black text-white uppercase tracking-tight">
+                    <span className="font-inter font-black text-lg lg:text-xl xl:text-2xl text-primary">i5</span>
+                    <h3 className="text-sm lg:text-base xl:text-lg font-display font-black text-white uppercase tracking-tight">
                       Execution Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
                       ACTION LAYER
                     </span>
                   </div>
-                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-[11px] xl:text-xs text-white/50 font-body leading-relaxed max-w-xl">
                     From signal to fill in one workflow. One-click trades, dynamic stops, scaling, and policy-bound automation.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[200px] lg:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[160px] lg:min-w-[200px] xl:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
                   <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
                     <Layer5Visual hovered={hoveredIndex === 5} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-[11px] lg:text-xs text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-[10px] lg:text-[11px] xl:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; One-click trades</div>
                     <div className="hover:text-white transition-colors">&gt; Dynamic stops</div>
                     <div className="hover:text-white transition-colors">&gt; Copy workflows</div>

@@ -112,7 +112,7 @@ export function CoreFeatures() {
   }, []);
 
   return (
-    <section ref={containerRef} id="core-features" className="relative py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-b border-white/10 select-none bg-[#030304] overflow-hidden">
+    <section ref={containerRef} id="core-features" className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 xl:px-16 border-b border-white/10 select-none bg-[#030304] overflow-hidden">
       {/* Background glow overlay */}
       <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -120,19 +120,19 @@ export function CoreFeatures() {
         {/* Header */}
         <div className="features-header max-w-none mb-10 lg:mb-12 xl:mb-16 text-left">
           <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// CORE CAPABILITIES</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white uppercase leading-[1.1]">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-black text-white uppercase leading-[1.1]">
             Everything you need to read the market and act on it.
           </h2>
-          <p className="text-white/60 font-body text-base sm:text-lg mt-6 leading-relaxed">
+          <p className="text-white/60 font-body text-sm lg:text-base xl:text-lg mt-4 lg:mt-6 leading-relaxed">
             Six core capabilities. One integrated intelligence layer. <span className="text-primary font-bold">Zero guesswork.</span>
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="features-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
+        <div className="features-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5 xl:gap-8">
           
           {/* Card 1: AI Signal Engine (FLAGSHIP) */}
-          <div className="feature-card relative border-r-2 border-b-2 border-primary bg-primary/5 p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_#00ffcc] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-primary bg-primary/5 p-4 sm:p-5 lg:p-5 xl:p-8 shadow-[4px_4px_0px_#00ffcc] flex flex-col justify-between overflow-hidden cursor-pointer">
             {/* Flagship Badge */}
             <div className="absolute top-0 right-0 bg-primary text-black font-mono font-black text-[9px] px-3 py-1 uppercase tracking-wider">
               FLAGSHIP
@@ -142,15 +142,15 @@ export function CoreFeatures() {
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-primary/10 border border-primary/20">
                 <Cpu className="feature-icon w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
+              <h3 className="text-lg xl:text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 AI Signal Engine
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs xl:text-sm text-white/60 font-body leading-relaxed">
                 Order flow + wallet behavior + funding + sentiment fused into ranked, conviction-scored trade setups with explainable reasoning.
               </p>
             </div>
 
-            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-primary/80 items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[9px] xl:text-[10px] text-primary/80 items-center justify-between">
               <span>[ ENGINE_STATUS: ACTIVE ]</span>
               <span className="flex items-center gap-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-ping" />
@@ -163,20 +163,20 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 2: Smart-Money Tracking */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-4 sm:p-5 lg:p-5 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Wallet className="feature-icon w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
+              <h3 className="text-lg xl:text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Smart-Money Tracking
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs xl:text-sm text-white/60 font-body leading-relaxed">
                 Live positions, PnL, leverage, and historical behavior of elite Hyperliquid wallets — in real time.
               </p>
             </div>
 
-            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[9px] xl:text-[10px] text-white/50 items-center justify-between">
               <span>[ WALLETS: 420+ LIVE ]</span>
               <span className="text-primary font-bold">AVG PNL: +34.2%</span>
             </div>
@@ -186,20 +186,20 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 3: Cohort Analytics */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-4 sm:p-5 lg:p-5 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Users className="feature-icon w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
+              <h3 className="text-lg xl:text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Cohort Analytics
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs xl:text-sm text-white/60 font-body leading-relaxed">
                 Segment the market into whales, elites, retail, and the liquidated. See positioning shift before price does.
               </p>
             </div>
 
-            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[9px] xl:text-[10px] text-white/50 items-center justify-between">
               <span>[ COHORTS: WHALES & RET ]</span>
               <span className="text-white/70">DELTA: BULLISH</span>
             </div>
@@ -209,20 +209,20 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 4: Liquidation Heatmaps */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-4 sm:p-5 lg:p-5 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Flame className="feature-icon w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
+              <h3 className="text-lg xl:text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Liquidation Heatmaps
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs xl:text-sm text-white/60 font-body leading-relaxed">
                 Visualize where leverage is clustered. Trade liquidity events instead of getting caught in them.
               </p>
             </div>
 
-            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[9px] xl:text-[10px] text-white/50 items-center justify-between">
               <span>[ MAPS: SOL / BTC / ETH ]</span>
               <span className="text-red-500 font-bold">HIGH LIQ CLUSTER</span>
             </div>
@@ -232,20 +232,20 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 5: Real-Time Alerts */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-4 sm:p-5 lg:p-5 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Bell className="feature-icon w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
+              <h3 className="text-lg xl:text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Real-Time Alerts
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs xl:text-sm text-white/60 font-body leading-relaxed">
                 Whale activity, funding swings, narrative acceleration — delivered to mobile, Telegram, Discord, or webhooks.
               </p>
             </div>
 
-            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[9px] xl:text-[10px] text-white/50 items-center justify-between">
               <span>[ PUSH_LATENCY: &lt;10ms ]</span>
               <span className="text-primary font-bold">ACTIVE DEPLOY</span>
             </div>
@@ -255,20 +255,20 @@ export function CoreFeatures() {
           <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
 
           {/* Card 6: Social Trading Streams */}
-          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-5 sm:p-6 lg:p-7 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-4 sm:p-5 lg:p-5 xl:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Share2 className="feature-icon w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
+              <h3 className="text-lg xl:text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Social Trading Streams
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs xl:text-sm text-white/60 font-body leading-relaxed">
                 Every asset becomes a live intelligence feed. Bloomberg Terminal meets Stocktwits meets Hyperliquid.
               </p>
             </div>
 
-            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[9px] xl:text-[10px] text-white/50 items-center justify-between">
               <span>[ FEEDS: DYNAMIC AGENTS ]</span>
               <span className="text-white/70">12,482 USERS</span>
             </div>

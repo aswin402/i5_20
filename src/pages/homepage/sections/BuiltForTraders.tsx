@@ -397,7 +397,7 @@ export function BuiltForTraders() {
   };
 
   return (
-    <section ref={containerRef} id="built-for-traders" className="relative py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-b border-white/10 select-none bg-[#030304] overflow-visible">
+    <section ref={containerRef} id="built-for-traders" className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 xl:px-16 border-b border-white/10 select-none bg-[#030304] overflow-visible">
       <style>{`
         @keyframes sweep-spin {
           from {
@@ -434,23 +434,23 @@ export function BuiltForTraders() {
         {/* Header */}
         <div className="trader-header max-w-3xl mb-10 lg:mb-12 xl:mb-16 text-left">
           <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// ADAPTIVE TERMINAL</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-black text-white uppercase leading-none">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-black text-white uppercase leading-none">
             BUILT FOR EVERY TRADER
           </h2>
-          <div className="mt-4 flex flex-col gap-1 font-display font-bold text-sm sm:text-base lg:text-lg text-primary uppercase">
+          <div className="mt-4 flex flex-col gap-1 font-display font-bold text-xs sm:text-sm lg:text-base text-primary uppercase">
             <div>One platform. Every workflow.</div>
           </div>
-          <p className="text-white/60 font-body text-xs sm:text-sm lg:text-base xl:text-lg mt-4 lg:mt-6 leading-relaxed">
+          <p className="text-white/60 font-body text-xs lg:text-sm xl:text-base mt-3 lg:mt-4 leading-relaxed">
             From sub-second scalping to institutional portfolio management, i5 adapts to how you trade.
           </p>
         </div>
 
         {/* Desktop Grid Layout */}
-        <div className="trader-grid-desktop hidden md:grid grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
+        <div className="trader-grid-desktop hidden md:grid grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5 xl:gap-8">
           {cardsData.map((card, idx) => (
             <div 
               key={idx}
-              className={`desktop-trader-card relative bg-black p-4 sm:p-5 lg:p-6 xl:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
+              className={`desktop-trader-card relative bg-black p-4 lg:p-5 xl:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
                 idx === 4 ? 'md:col-span-2 xl:col-span-2' : ''
               } ${
                 hoveredCardIndex === idx 
@@ -460,24 +460,24 @@ export function BuiltForTraders() {
               onMouseEnter={() => setHoveredCardIndex(idx)}
               onMouseLeave={() => setHoveredCardIndex(null)}
             >
-              <div className={`trader-bg-number absolute -top-4 -right-2 text-7xl font-display font-black font-mono select-none pointer-events-none transition-all duration-300 ${
+              <div className={`trader-bg-number absolute -top-4 -right-2 text-5xl lg:text-6xl xl:text-7xl font-display font-black font-mono select-none pointer-events-none transition-all duration-300 ${
                 hoveredCardIndex === idx ? 'text-primary/[0.08] -translate-x-3 scale-105' : 'text-white/[0.03]'
               }`}>
                 {card.num}
               </div>
               <div>
-                <span className="text-xs font-mono text-primary font-bold block mb-2">// {card.num} //</span>
-                <h3 className="text-lg lg:text-xl font-display font-black text-white uppercase tracking-tight mb-3">
+                <span className="text-[10px] xl:text-xs font-mono text-primary font-bold block mb-2">// {card.num} //</span>
+                <h3 className="text-base lg:text-lg xl:text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                   {card.title}
                 </h3>
-                <p className="text-xs lg:text-sm text-white/60 font-body leading-relaxed">
+                <p className="text-xs text-white/60 font-body leading-relaxed">
                   {card.desc}
                 </p>
                 
                 {/* Custom micro-widget */}
                 {renderWidget(idx, hoveredCardIndex === idx)}
               </div>
-              <a href="#" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-primary hover:text-white transition-colors mt-8 self-start group/link">
+              <a href="#" className="inline-flex items-center gap-1.5 text-[10px] xl:text-xs font-mono font-bold uppercase text-primary hover:text-white transition-colors mt-8 self-start group/link">
                 <span>Learn more</span>
                 <ArrowRight className={`trader-arrow-icon w-3.5 h-3.5 transition-transform duration-300 ${
                   hoveredCardIndex === idx ? 'translate-x-1 text-white' : ''
