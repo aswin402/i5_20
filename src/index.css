@@ -234,3 +234,10 @@
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
+
+/* Zoom out effect for small desktop screens (excluding Navbar and Footer) */
+@media (min-width: 1024px) and (max-width: 1600px) {
+  .zoom-content {
+    zoom: 0.82;
+  }
+}
