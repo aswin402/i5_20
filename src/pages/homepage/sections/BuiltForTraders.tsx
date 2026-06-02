@@ -216,9 +216,52 @@ function FundWidget({ active }: { active: boolean }) {
   );
 }
 
+const cardsData = [
+  {
+    num: "01",
+    title: "Scalpers",
+    desc: "React to momentum and volatility shifts the moment they form. Sub-second signal delivery for high-frequency edge."
+  },
+  {
+    num: "02",
+    title: "Swing Traders",
+    desc: "Track smart-money conviction across longer timeframes. See multi-day positioning trends before narratives break."
+  },
+  {
+    num: "03",
+    title: "Quant Desks",
+    desc: "Structured market intelligence and behavioral signal feeds via API. Integrate i5 intelligence into your automated workflows."
+  },
+  {
+    num: "04",
+    title: "Signal Providers",
+    desc: "Build audiences and monetize verified, on-chain performance metrics. Share telemetry triggers directly."
+  },
+  {
+    num: "05",
+    title: "Crypto Funds",
+    desc: "Monitor market structure and coordinated whale sentiment in real time. Institutional dashboards and risk overlays to secure capital placement."
+  }
+];
+
+function renderWidget(idx: number, active: boolean) {
+  switch (idx) {
+    case 0: return <ScalperWidget active={active} />;
+    case 1: return <SwingWidget active={active} />;
+    case 2: return <QuantWidget active={active} />;
+    case 3: return <SignalWidget active={active} />;
+    case 4: return <FundWidget active={active} />;
+    default: return null;
+  }
+}
+
 export function BuiltForTraders() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const touchStartX = useRef(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -236,12 +279,12 @@ export function BuiltForTraders() {
         ease: 'power2.out',
       });
 
-      // Cards staggered entry
-      gsap.fromTo('.trader-card', 
+      // Desktop Cards staggered entry
+      gsap.fromTo('.desktop-trader-card', 
         { opacity: 0, y: 25 },
         {
           scrollTrigger: {
-            trigger: '.trader-grid',
+            trigger: '.trader-grid-desktop',
             start: 'top 85%',
             toggleActions: 'play none none none',
           },
@@ -252,10 +295,106 @@ export function BuiltForTraders() {
           ease: 'power3.out',
         }
       );
+
+      // Mobile Stack Container entry
+      gsap.fromTo('.mobile-trader-stack-container',
+        { opacity: 0, scale: 0.95 },
+        {
+          scrollTrigger: {
+            trigger: '.mobile-trader-stack-container',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+        }
+      );
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
+
+  const shuffleCard = (nextIndex: number, direction: 'left' | 'right' = 'right') => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+
+    const currentCard = cardRefs.current[mobileIndex];
+    if (!currentCard) {
+      setMobileIndex(nextIndex);
+      setIsAnimating(false);
+      return;
+    }
+
+    const slideX = direction === 'right' ? 360 : -360;
+    const rotateAngle = direction === 'right' ? 15 : -15;
+
+    // Slide out top card
+    gsap.to(currentCard, {
+      x: slideX,
+      rotation: rotateAngle,
+      opacity: 0,
+      duration: 0.35,
+      ease: 'power2.out',
+      onComplete: () => {
+        // Change index to put the card to bottom
+        setMobileIndex(nextIndex);
+
+        // Slide back in at bottom
+        setTimeout(() => {
+          gsap.fromTo(currentCard,
+            { x: slideX * 0.8, rotation: rotateAngle * 0.8, opacity: 0 },
+            {
+              x: 0,
+              rotation: direction === 'right' ? -2 : 2,
+              opacity: 0.4, // distance index 4 opacity
+              duration: 0.35,
+              ease: 'power2.out',
+              onComplete: () => {
+                gsap.set(currentCard, { clearProps: 'transform,opacity,zIndex' });
+                setIsAnimating(false);
+              }
+            }
+          );
+        }, 30);
+      }
+    });
+  };
+
+  const handleShuffleNext = () => {
+    if (isAnimating) return;
+    const nextIdx = (mobileIndex + 1) % 5;
+    shuffleCard(nextIdx, 'right');
+  };
+
+  const handleDotClick = (targetIdx: number) => {
+    if (isAnimating || targetIdx === mobileIndex) return;
+    const direction = targetIdx > mobileIndex ? 'right' : 'left';
+    shuffleCard(targetIdx, direction);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (isAnimating) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffX = touchEndX - touchStartX.current;
+
+    if (Math.abs(diffX) > 60) {
+      if (diffX > 0) {
+        // Swiped right -> previous card
+        const prevIdx = (mobileIndex - 1 + 5) % 5;
+        shuffleCard(prevIdx, 'left');
+      } else {
+        // Swiped left -> next card
+        const nextIdx = (mobileIndex + 1) % 5;
+        shuffleCard(nextIdx, 'right');
+      }
+    }
+  };
 
   return (
     <section ref={containerRef} id="built-for-traders" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-[#030304] overflow-visible">
@@ -306,185 +445,131 @@ export function BuiltForTraders() {
           </p>
         </div>
 
-        {/* Grid Layout */}
-        <div className="trader-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          
-          {/* 01 Scalpers */}
-          <div 
-            className={`trader-card relative bg-black p-6 sm:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
-              hoveredCardIndex === 0 
-                ? 'border-primary -translate-y-1.5 shadow-[0_0_15px_rgba(0,255,204,0.15)] bg-primary/[0.01]' 
-                : 'border-white/15 shadow-[4px_4px_0px_rgba(255,255,255,0.05)]'
-            }`}
-            onMouseEnter={() => setHoveredCardIndex(0)}
-            onMouseLeave={() => setHoveredCardIndex(null)}
-          >
-            <div className={`trader-bg-number absolute -top-4 -right-2 text-7xl font-display font-black font-mono select-none pointer-events-none transition-all duration-300 ${
-              hoveredCardIndex === 0 ? 'text-primary/[0.08] -translate-x-3 scale-105' : 'text-white/[0.03]'
-            }`}>
-              01
+        {/* Desktop Grid Layout */}
+        <div className="trader-grid-desktop hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {cardsData.map((card, idx) => (
+            <div 
+              key={idx}
+              className={`desktop-trader-card relative bg-black p-6 sm:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
+                hoveredCardIndex === idx 
+                  ? 'border-primary -translate-y-1.5 shadow-[0_0_15px_rgba(0,255,204,0.15)] bg-primary/[0.01]' 
+                  : 'border-white/15 shadow-[4px_4px_0px_rgba(255,255,255,0.05)]'
+              }`}
+              onMouseEnter={() => setHoveredCardIndex(idx)}
+              onMouseLeave={() => setHoveredCardIndex(null)}
+            >
+              <div className={`trader-bg-number absolute -top-4 -right-2 text-7xl font-display font-black font-mono select-none pointer-events-none transition-all duration-300 ${
+                hoveredCardIndex === idx ? 'text-primary/[0.08] -translate-x-3 scale-105' : 'text-white/[0.03]'
+              }`}>
+                {card.num}
+              </div>
+              <div>
+                <span className="text-xs font-mono text-primary font-bold block mb-2">// {card.num} //</span>
+                <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
+                  {card.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+                  {card.desc}
+                </p>
+                
+                {/* Custom micro-widget */}
+                {renderWidget(idx, hoveredCardIndex === idx)}
+              </div>
+              <a href="#" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-primary hover:text-white transition-colors mt-8 self-start group/link">
+                <span>Learn more</span>
+                <ArrowRight className={`trader-arrow-icon w-3.5 h-3.5 transition-transform duration-300 ${
+                  hoveredCardIndex === idx ? 'translate-x-1 text-white' : ''
+                }`} />
+              </a>
             </div>
-            <div>
-              <span className="text-xs font-mono text-primary font-bold block mb-2">// 01 //</span>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
-                Scalpers
-              </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
-                React to momentum and volatility shifts the moment they form. Sub-second signal delivery for high-frequency edge.
-              </p>
-              
-              {/* Custom micro-widget */}
-              <ScalperWidget active={hoveredCardIndex === 0} />
-            </div>
-            <a href="#" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-primary hover:text-white transition-colors mt-8 self-start group/link">
-              <span>Learn more</span>
-              <ArrowRight className={`trader-arrow-icon w-3.5 h-3.5 transition-transform duration-300 ${
-                hoveredCardIndex === 0 ? 'translate-x-1 text-white' : ''
-              }`} />
-            </a>
-          </div>
-
-          {/* 02 Swing Traders */}
-          <div 
-            className={`trader-card relative bg-black p-6 sm:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
-              hoveredCardIndex === 1 
-                ? 'border-primary -translate-y-1.5 shadow-[0_0_15px_rgba(0,255,204,0.15)] bg-primary/[0.01]' 
-                : 'border-white/15 shadow-[4px_4px_0px_rgba(255,255,255,0.05)]'
-            }`}
-            onMouseEnter={() => setHoveredCardIndex(1)}
-            onMouseLeave={() => setHoveredCardIndex(null)}
-          >
-            <div className={`trader-bg-number absolute -top-4 -right-2 text-7xl font-display font-black font-mono select-none pointer-events-none transition-all duration-300 ${
-              hoveredCardIndex === 1 ? 'text-primary/[0.08] -translate-x-3 scale-105' : 'text-white/[0.03]'
-            }`}>
-              02
-            </div>
-            <div>
-              <span className="text-xs font-mono text-primary font-bold block mb-2">// 02 //</span>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
-                Swing Traders
-              </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
-                Track smart-money conviction across longer timeframes. See multi-day positioning trends before narratives break.
-              </p>
-              
-              {/* Custom micro-widget */}
-              <SwingWidget active={hoveredCardIndex === 1} />
-            </div>
-            <a href="#" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-primary hover:text-white transition-colors mt-8 self-start group/link">
-              <span>Learn more</span>
-              <ArrowRight className={`trader-arrow-icon w-3.5 h-3.5 transition-transform duration-300 ${
-                hoveredCardIndex === 1 ? 'translate-x-1 text-white' : ''
-              }`} />
-            </a>
-          </div>
-
-          {/* 03 Quant Desks */}
-          <div 
-            className={`trader-card relative bg-black p-6 sm:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
-              hoveredCardIndex === 2 
-                ? 'border-primary -translate-y-1.5 shadow-[0_0_15px_rgba(0,255,204,0.15)] bg-primary/[0.01]' 
-                : 'border-white/15 shadow-[4px_4px_0px_rgba(255,255,255,0.05)]'
-            }`}
-            onMouseEnter={() => setHoveredCardIndex(2)}
-            onMouseLeave={() => setHoveredCardIndex(null)}
-          >
-            <div className={`trader-bg-number absolute -top-4 -right-2 text-7xl font-display font-black font-mono select-none pointer-events-none transition-all duration-300 ${
-              hoveredCardIndex === 2 ? 'text-primary/[0.08] -translate-x-3 scale-105' : 'text-white/[0.03]'
-            }`}>
-              03
-            </div>
-            <div>
-              <span className="text-xs font-mono text-primary font-bold block mb-2">// 03 //</span>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
-                Quant Desks
-              </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
-                Structured market intelligence and behavioral signal feeds via API. Integrate i5 intelligence into your automated workflows.
-              </p>
-              
-              {/* Custom micro-widget */}
-              <QuantWidget active={hoveredCardIndex === 2} />
-            </div>
-            <a href="#" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-primary hover:text-white transition-colors mt-8 self-start group/link">
-              <span>Learn more</span>
-              <ArrowRight className={`trader-arrow-icon w-3.5 h-3.5 transition-transform duration-300 ${
-                hoveredCardIndex === 2 ? 'translate-x-1 text-white' : ''
-              }`} />
-            </a>
-          </div>
-
-          {/* 04 Signal Providers */}
-          <div 
-            className={`trader-card relative bg-black p-6 sm:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
-              hoveredCardIndex === 3 
-                ? 'border-primary -translate-y-1.5 shadow-[0_0_15px_rgba(0,255,204,0.15)] bg-primary/[0.01]' 
-                : 'border-white/15 shadow-[4px_4px_0px_rgba(255,255,255,0.05)]'
-            }`}
-            onMouseEnter={() => setHoveredCardIndex(3)}
-            onMouseLeave={() => setHoveredCardIndex(null)}
-          >
-            <div className={`trader-bg-number absolute -top-4 -right-2 text-7xl font-display font-black font-mono select-none pointer-events-none transition-all duration-300 ${
-              hoveredCardIndex === 3 ? 'text-primary/[0.08] -translate-x-3 scale-105' : 'text-white/[0.03]'
-            }`}>
-              04
-            </div>
-            <div>
-              <span className="text-xs font-mono text-primary font-bold block mb-2">// 04 //</span>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
-                Signal Providers
-              </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
-                Build audiences and monetize verified, on-chain performance metrics. Share telemetry triggers directly.
-              </p>
-              
-              {/* Custom micro-widget */}
-              <SignalWidget active={hoveredCardIndex === 3} />
-            </div>
-            <a href="#" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-primary hover:text-white transition-colors mt-8 self-start group/link">
-              <span>Learn more</span>
-              <ArrowRight className={`trader-arrow-icon w-3.5 h-3.5 transition-transform duration-300 ${
-                hoveredCardIndex === 3 ? 'translate-x-1 text-white' : ''
-              }`} />
-            </a>
-          </div>
-
-          {/* 05 Crypto Funds */}
-          <div 
-            className={`trader-card relative bg-black p-6 sm:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
-              hoveredCardIndex === 4 
-                ? 'border-primary -translate-y-1.5 shadow-[0_0_15px_rgba(0,255,204,0.15)] bg-primary/[0.01]' 
-                : 'border-white/15 shadow-[4px_4px_0px_rgba(255,255,255,0.05)]'
-            }`}
-            onMouseEnter={() => setHoveredCardIndex(4)}
-            onMouseLeave={() => setHoveredCardIndex(null)}
-          >
-            <div className={`trader-bg-number absolute -top-4 -right-2 text-7xl font-display font-black font-mono select-none pointer-events-none transition-all duration-300 ${
-              hoveredCardIndex === 4 ? 'text-primary/[0.08] -translate-x-3 scale-105' : 'text-white/[0.03]'
-            }`}>
-              05
-            </div>
-            <div>
-              <span className="text-xs font-mono text-primary font-bold block mb-2">// 05 //</span>
-              <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
-                Crypto Funds
-              </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
-                Monitor market structure and coordinated whale sentiment in real time. Institutional dashboards and risk overlays to secure capital placement.
-              </p>
-              
-              {/* Custom micro-widget */}
-              <FundWidget active={hoveredCardIndex === 4} />
-            </div>
-            <a href="#" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-primary hover:text-white transition-colors mt-8 self-start group/link">
-              <span>Learn more</span>
-              <ArrowRight className={`trader-arrow-icon w-3.5 h-3.5 transition-transform duration-300 ${
-                hoveredCardIndex === 4 ? 'translate-x-1 text-white' : ''
-              }`} />
-            </a>
-          </div>
-
+          ))}
         </div>
+
+        {/* Mobile Stack Layout */}
+        <div className="mobile-trader-stack-container md:hidden flex flex-col items-center justify-center mt-4 w-full relative font-display">
+          <div 
+            className="relative w-full max-w-[340px] xs:max-w-[360px] h-[410px] sm:h-[430px] mb-8 cursor-pointer select-none touch-pan-y"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onClick={handleShuffleNext}
+          >
+            {cardsData.map((card, idx) => {
+              const distance = (idx - mobileIndex + 5) % 5;
+              const isTop = distance === 0;
+              
+              // Visual stacked offsets
+              const scale = 1 - distance * 0.04;
+              const translateY = distance * 12;
+              const rotate = distance % 2 === 0 ? distance * 1.5 : -distance * 1.5;
+              const opacity = 1 - distance * 0.15;
+              const zIndex = 50 - distance;
+              
+              return (
+                <div
+                  key={idx}
+                  ref={(el) => { cardRefs.current[idx] = el; }}
+                  className={`mobile-trader-card absolute inset-x-0 top-0 bg-black p-6 border-2 flex flex-col justify-between overflow-hidden transition-all duration-300 ease-out`}
+                  style={{
+                    transform: `translateY(${translateY}px) scale(${scale}) rotate(${rotate}deg)`,
+                    opacity: opacity,
+                    zIndex: zIndex,
+                    pointerEvents: isTop ? 'auto' : 'none',
+                    borderColor: isTop ? '#00ffcc' : 'rgba(255, 255, 255, 0.15)',
+                    boxShadow: isTop 
+                      ? '0 0 20px rgba(0, 255, 204, 0.15)' 
+                      : '2px 2px 0px rgba(255, 255, 255, 0.05)',
+                    height: '100%',
+                  }}
+                >
+                  <div className={`trader-bg-number absolute -top-4 -right-2 text-7xl font-display font-black font-mono select-none pointer-events-none transition-all duration-300 ${
+                    isTop ? 'text-primary/[0.08] -translate-x-3 scale-105' : 'text-white/[0.03]'
+                  }`}>
+                    {card.num}
+                  </div>
+                  <div>
+                    <span className="text-xs font-mono text-primary font-bold block mb-1.5">// {card.num} //</span>
+                    <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-2">
+                      {card.title}
+                    </h3>
+                    <p className="text-xs text-white/60 font-body leading-relaxed">
+                      {card.desc}
+                    </p>
+                    
+                    {/* Custom micro-widget */}
+                    {renderWidget(idx, isTop)}
+                  </div>
+                  <a href="#" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-primary hover:text-white transition-colors mt-6 self-start group/link">
+                    <span>Learn more</span>
+                    <ArrowRight className="trader-arrow-icon w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-1" />
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Swipe indicator & controls */}
+          <div className="flex flex-col items-center gap-4 w-full">
+            <div className="flex gap-2.5 items-center justify-center">
+              {cardsData.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDotClick(idx);
+                  }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    mobileIndex === idx ? 'w-6 bg-primary' : 'w-1.5 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+            <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest flex items-center gap-2">
+              <span>← Swipe or Tap to shuffle →</span>
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
   );
