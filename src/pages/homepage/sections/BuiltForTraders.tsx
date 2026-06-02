@@ -397,7 +397,7 @@ export function BuiltForTraders() {
   };
 
   return (
-    <section ref={containerRef} id="built-for-traders" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-[#030304] overflow-visible">
+    <section ref={containerRef} id="built-for-traders" className="relative py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-b border-white/10 select-none bg-[#030304] overflow-visible">
       <style>{`
         @keyframes sweep-spin {
           from {
@@ -432,7 +432,7 @@ export function BuiltForTraders() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="trader-header max-w-3xl mb-16 text-left">
+        <div className="trader-header max-w-3xl mb-10 lg:mb-12 xl:mb-16 text-left">
           <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// ADAPTIVE TERMINAL</span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white uppercase leading-none">
             BUILT FOR EVERY TRADER
@@ -446,12 +446,12 @@ export function BuiltForTraders() {
         </div>
 
         {/* Desktop Grid Layout */}
-        <div className="trader-grid-desktop hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="trader-grid-desktop hidden md:grid grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
           {cardsData.map((card, idx) => (
             <div 
               key={idx}
-              className={`desktop-trader-card relative bg-black p-6 sm:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
-                idx === 4 ? 'md:col-span-2 lg:col-span-2' : ''
+              className={`desktop-trader-card relative bg-black p-5 sm:p-6 lg:p-7 xl:p-8 border-2 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-300 ${
+                idx === 4 ? 'md:col-span-2 xl:col-span-2' : ''
               } ${
                 hoveredCardIndex === idx 
                   ? 'border-primary -translate-y-1.5 shadow-[0_0_15px_rgba(0,255,204,0.15)] bg-primary/[0.01]' 
