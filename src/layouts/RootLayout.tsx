@@ -12,7 +12,7 @@ export function RootLayout() {
   }, []);
 
   return (
-    <div className={`min-h-screen bg-black text-white relative selection:bg-primary selection:text-black overflow-x-hidden ${crtMode ? 'crt-active' : ''}`}>
+    <div className={`min-h-screen bg-black text-white relative selection:bg-primary selection:text-black overflow-x-clip ${crtMode ? 'crt-active' : ''}`}>
       {/* Noise background */}
       <div className="fixed inset-0 pointer-events-none z-[9999] terminal-grain opacity-5" />
 

@@ -233,19 +233,21 @@ const LAYER_IMAGES: Record<number, string> = { 1: I1, 2: I2, 3: I3, 4: I4, 5: I5
 
 function I5CentralCore({ 
   hoveredIndex, 
+  className = "",
 }: { 
   hoveredIndex: number | null; 
-  setHoveredIndex: (index: number | null) => void; 
+  setHoveredIndex?: (index: number | null) => void; 
+  className?: string;
 }) {
   const src = hoveredIndex !== null ? LAYER_IMAGES[hoveredIndex] : IConstant;
 
   return (
-    <div className="relative w-full max-w-[320px] mx-auto mt-8 select-none">
+    <div className={`relative select-none ${className}`}>
       <img
         key={src}
         src={src}
         alt="i5 intelligence stack"
-        className="w-full h-auto object-contain"
+        className="w-full h-full object-contain transition-all duration-300"
         style={{
           animation: 'stackFadeIn 0.25s ease',
         }}
@@ -298,8 +300,8 @@ export function IntelligenceStack() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Left content fade-in and slide-up
-      gsap.from('.stack-left-content > *', {
+      // Top header fade-in
+      gsap.from('.stack-top-header > *', {
         scrollTrigger: {
           trigger: '#why-we-win',
           start: 'top 85%',
@@ -327,274 +329,476 @@ export function IntelligenceStack() {
         }
       );
 
-      // Animate dot and card entries for each layer
       const layers = containerRef.current?.querySelectorAll('.stack-layer-card');
-      if (layers && layers.length > 0) {
-        // Initial setup for entrance
-        layers.forEach((layer) => {
-          const dot = layer.querySelector('.stack-connector-dot');
-          gsap.set(layer, { x: 30, opacity: 0 });
-          if (dot) gsap.set(dot, { scale: 0, opacity: 0 });
-        });
+      const mm = gsap.matchMedia();
 
-        // Trigger animation for all layers when the stack container reaches 85% of the viewport
-        const mainTl = gsap.timeline({
+      // Desktop layout animations (>= 1024px)
+      mm.add("(min-width: 1024px)", () => {
+        // Left image column scale/fade-in
+        gsap.from('.stack-image-column', {
           scrollTrigger: {
-            trigger: '.stack-timeline-container',
+            trigger: '#why-we-win',
             start: 'top 85%',
             toggleActions: 'play none none none',
-          }
+          },
+          opacity: 0,
+          scale: 0.95,
+          duration: 1,
+          ease: 'power2.out',
         });
 
-        layers.forEach((layer, idx) => {
-          const dot = layer.querySelector('.stack-connector-dot');
-          mainTl.to(dot, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' }, idx * 0.15)
-                .to(layer, { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, idx * 0.15 + 0.15);
+        // Layer cards entrance timeline
+        if (layers && layers.length > 0) {
+          layers.forEach((layer) => {
+            const dot = layer.querySelector('.stack-connector-dot');
+            gsap.set(layer, { x: 30, opacity: 0 });
+            if (dot) gsap.set(dot, { scale: 0, opacity: 0 });
+          });
+
+          const mainTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: '.stack-timeline-container',
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            }
+          });
+
+          layers.forEach((layer, idx) => {
+            const dot = layer.querySelector('.stack-connector-dot');
+            mainTl.to(dot, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' }, idx * 0.15)
+                  .to(layer, { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, idx * 0.15 + 0.15);
+          });
+        }
+      });
+
+      // Mobile/Tablet layout animations (< 1024px)
+      mm.add("(max-width: 1023px)", () => {
+        const NAVBAR_H = 80;
+
+        const imageEl =
+          containerRef.current?.querySelector(
+            ".stack-image-column"
+          ) as HTMLElement | null;
+
+        const IMAGE_H = imageEl?.offsetHeight || 280;
+
+        const STICKY_CARD_TOP = NAVBAR_H + IMAGE_H;
+
+        const lineEl = containerRef.current?.querySelector(
+          ".stack-vertical-line"
+        ) as HTMLElement | null;
+
+        if (lineEl) {
+          gsap.set(lineEl, {
+            position: "sticky",
+            top: STICKY_CARD_TOP + 26,
+            height: `calc(100vh - ${STICKY_CARD_TOP + 26}px)`,
+            bottom: "auto",
+          });
+        }
+
+        // ------------------------------------------------
+        // Sticky image
+        // ------------------------------------------------
+
+        ScrollTrigger.create({
+          trigger: ".stack-image-column",
+          start: `top ${NAVBAR_H}px`,
+          endTrigger: ".stack-timeline-container",
+          end: `bottom ${STICKY_CARD_TOP}px`,
+          pin: true,
+          pinSpacing: false,
         });
-      }
+
+        if (!layers || layers.length === 0) return;
+
+        // Set initial state: all cards have full opacity and are in their natural positions
+        layers.forEach((layer, idx) => {
+          const card = layer as HTMLElement;
+          card.style.top = `${STICKY_CARD_TOP}px`;
+          card.style.zIndex = `${100 + idx}`;
+          
+          gsap.set(card, { opacity: 1, scale: 1, y: 0 });
+        });
+
+        // Set initial active index
+        setHoveredIndex(null);
+
+        // Update active index as cards scroll past the sticky threshold
+        layers.forEach((layer, idx) => {
+          ScrollTrigger.create({
+            trigger: layer,
+            start: `top ${STICKY_CARD_TOP + 20}px`,
+            end: `bottom ${STICKY_CARD_TOP}px`,
+            onEnter: () => setHoveredIndex(idx + 1),
+            onEnterBack: () => setHoveredIndex(idx + 1),
+            onLeaveBack: () => {
+              if (idx === 0) setHoveredIndex(1);
+              else setHoveredIndex(idx);
+            }
+          });
+        });
+
+        return () => {
+          if (lineEl) {
+            lineEl.style.position = "";
+            lineEl.style.top = "";
+            lineEl.style.height = "";
+            lineEl.style.bottom = "";
+          }
+          layers.forEach((layer) => {
+            const card = layer as HTMLElement;
+            card.style.top = "";
+            card.style.zIndex = "";
+          });
+        };
+      });
+
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} id="why-we-win" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 dapp-grid-cyan-green overflow-hidden">
+    <section ref={containerRef} id="why-we-win" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 dapp-grid-cyan-green">
       {/* Background glow overlay */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
-        {/* Left Column: Title & Description */}
-        <div className="stack-left-content lg:col-span-4 flex flex-col justify-start lg:sticky lg:top-24 h-fit">
-          <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// STACK ARCHITECTURE</span>
-          <h2 className="text-4xl md:text-5xl font-display font-black text-white leading-none">
-            THE <span className="text-primary lowercase">i5</span> INTELLIGENCE STACK
-          </h2>
-          <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary uppercase">
+      <div className="max-w-7xl mx-auto flex flex-col gap-16 relative z-10">
+        {/* Top Header Block */}
+        <div className="stack-top-header flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-white/10">
+          <div className="max-w-3xl">
+            <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// STACK ARCHITECTURE</span>
+            <h2 className="text-4xl md:text-5xl font-display font-black text-white leading-none">
+              THE <span className="text-primary lowercase">i5</span> INTELLIGENCE STACK
+            </h2>
+            <p className="text-white/60 font-body text-sm sm:text-base mt-4 leading-relaxed">
+              Most platforms display data. i5 interprets it. Each layer compounds the next — perception sharpens context, context sharpens reasoning, reasoning directs action, action feeds reflection.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1 font-display font-bold text-lg text-primary uppercase lg:text-right shrink-0">
             <div>Five layers.</div>
             <div>One coordinated runtime.</div>
           </div>
-          <p className="text-white/60 font-body text-sm sm:text-base mt-6 leading-relaxed">
-            Most platforms display data. i5 interprets it. Each layer compounds the next — perception sharpens context, context sharpens reasoning, reasoning directs action, action feeds reflection.
-          </p>
-          <I5CentralCore hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />
         </div>
 
-        {/* Right Column: 5 Layers Stack */}
-        <div className="stack-timeline-container lg:col-span-8 flex flex-col gap-6 relative pl-8 sm:pl-12">
-          
-          {/* Connecting Vertical Line */}
-          <div className="stack-vertical-line absolute left-[20px] sm:left-[30px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-primary via-primary/30 to-primary/5 pointer-events-none" />
-
-          {/* Layer 1 */}
-          <div 
-            className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={() => setHoveredIndex(1)}
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
-              <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
-            </div>
-            
-            <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="font-inter font-black text-3xl text-primary">i1</span>
-                  <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
-                    Market Intelligence
-                  </h3>
-                  <span className="bg-primary/10 border border-primary/20 text-primary text-[9px] font-mono font-bold px-2 py-0.5 uppercase tracking-wider">
-                    DATA LAYER
-                  </span>
-                </div>
-                <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed max-w-xl">
-                  Hyperliquid order flow, perps, funding, OI, volatility, liquidity maps, and liquidation streams — ingested in real time.
-                </p>
-              </div>
-              
-              {/* Visual module & Sub-items list wrapper */}
-              <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto sm:min-w-[280px] pt-4 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-6">
-                <div className="hidden xs:block w-16 h-16 sm:w-20 sm:h-20 shrink-0">
-                  <Layer1Visual hovered={hoveredIndex === 1} />
-                </div>
-                <div className="flex flex-col gap-y-1.5 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
-                  <div className="hover:text-white transition-colors">&gt; Order flow</div>
-                  <div className="hover:text-white transition-colors">&gt; Funding & OI</div>
-                  <div className="hover:text-white transition-colors">&gt; Liquidity maps</div>
-                  <div className="hover:text-white transition-colors">&gt; Liquidations</div>
-                </div>
-              </div>
-            </div>
+        {/* Content Row: Two Columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Left Column: BIG Image */}
+          <div className="stack-image-column lg:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg relative overflow-hidden h-[280px] lg:h-auto z-20">
+            <div className="absolute inset-0 bg-radial-gradient from-primary/10 to-transparent pointer-events-none hidden lg:block" />
+            {/* Grid background details */}
+            <div className="absolute inset-0 opacity-15 pointer-events-none hidden lg:block" style={{ backgroundImage: 'radial-gradient(var(--color-primary, #00ffcc) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
+            <I5CentralCore hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} className="w-full h-full flex items-center justify-center z-10" />
           </div>
 
-          {/* Layer 2 */}
-          <div 
-            className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={() => setHoveredIndex(2)}
-            onMouseLeave={() => setHoveredIndex(null)}
+          {/* Right Column: 5 Layers Stack */}
+          <div
+            className="
+            stack-timeline-container
+            lg:col-span-6
+            flex
+            flex-col
+            gap-4
+            relative
+            lg:pl-8
+            lg:sm:pl-12
+            pl-0
+            z-30
+            lg:pb-12
+            pb-0
+          "
           >
-            {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
-              <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
-            </div>
             
-            <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="font-inter font-black text-3xl text-primary">i2</span>
-                  <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
-                    AI Intelligence
-                  </h3>
-                  <span className="bg-primary/10 border border-primary/20 text-primary text-[9px] font-mono font-bold px-2 py-0.5 uppercase tracking-wider">
-                    AGENT LAYER
-                  </span>
-                </div>
-                <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed max-w-xl">
-                  Specialized agents — Signal, Narrative, Risk, Execution, Learning — coordinate across the entire trading workflow.
-                </p>
+            {/* Connecting Vertical Line */}
+            <div className="stack-vertical-line hidden lg:block absolute left-[20px] sm:left-[30px] top-8 bottom-8 w-0.5 bg-gradient-to-b from-primary via-primary/30 to-primary/5 pointer-events-none" />
+
+            {/* Layer 1 */}
+            <div 
+              className="
+              stack-layer-card
+              sticky
+              top-0
+              lg:relative
+              lg:top-auto
+              bg-black/80
+              p-4
+              sm:py-4
+              sm:px-6
+              border-2
+              border-white/15
+              cursor-pointer
+              shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
+              "
+              onMouseEnter={() => setHoveredIndex(1)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(1)}
+            >
+              {/* Timeline Connector Dot */}
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+                <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
-              {/* Visual module & Sub-items list wrapper */}
-              <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto sm:min-w-[280px] pt-4 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-6">
-                <div className="hidden xs:block w-16 h-16 sm:w-20 sm:h-20 shrink-0">
-                  <Layer2Visual hovered={hoveredIndex === 2} />
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-3 mb-1.5">
+                    <span className="font-inter font-black text-2xl text-primary">i1</span>
+                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                      Market Intelligence
+                    </h3>
+                    <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
+                      DATA LAYER
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                    Hyperliquid order flow, perps, funding, OI, volatility, liquidity maps, and liquidation streams — ingested in real time.
+                  </p>
                 </div>
-                <div className="flex flex-col gap-y-1.5 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
-                  <div className="hover:text-white transition-colors">&gt; Signal agents</div>
-                  <div className="hover:text-white transition-colors">&gt; Narrative agents</div>
-                  <div className="hover:text-white transition-colors">&gt; Risk agents</div>
-                  <div className="hover:text-white transition-colors">&gt; Execution agents</div>
+                
+                {/* Visual module & Sub-items list wrapper */}
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                    <Layer1Visual hovered={hoveredIndex === 1} />
+                  </div>
+                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                    <div className="hover:text-white transition-colors">&gt; Order flow</div>
+                    <div className="hover:text-white transition-colors">&gt; Funding & OI</div>
+                    <div className="hover:text-white transition-colors">&gt; Liquidity maps</div>
+                    <div className="hover:text-white transition-colors">&gt; Liquidations</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Layer 3 */}
-          <div 
-            className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={() => setHoveredIndex(3)}
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
-              <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
-            </div>
-            
-            <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="font-inter font-black text-3xl text-primary">i3</span>
-                  <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
-                    Community Intelligence
-                  </h3>
-                  <span className="bg-primary/10 border border-primary/20 text-primary text-[9px] font-mono font-bold px-2 py-0.5 uppercase tracking-wider">
-                    NETWORK LAYER
-                  </span>
-                </div>
-                <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed max-w-xl">
-                  Traders publish signals, validate setups, and earn transparent on-chain reputation. Merit-based intelligence at scale.
-                </p>
+            {/* Layer 2 */}
+            <div 
+              className="
+              stack-layer-card
+              sticky
+              top-0
+              lg:relative
+              lg:top-auto
+              bg-black/80
+              p-4
+              sm:py-4
+              sm:px-6
+              border-2
+              border-white/15
+              cursor-pointer
+              shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
+              "
+              onMouseEnter={() => setHoveredIndex(2)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(2)}
+            >
+              {/* Timeline Connector Dot */}
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+                <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
-              {/* Visual module & Sub-items list wrapper */}
-              <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto sm:min-w-[280px] pt-4 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-6">
-                <div className="hidden xs:block w-16 h-16 sm:w-20 sm:h-20 shrink-0">
-                  <Layer3Visual hovered={hoveredIndex === 3} />
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-3 mb-1.5">
+                    <span className="font-inter font-black text-2xl text-primary">i2</span>
+                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                      AI Intelligence
+                    </h3>
+                    <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
+                      AGENT LAYER
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                    Specialized agents — Signal, Narrative, Risk, Execution, Learning — coordinate across the entire trading workflow.
+                  </p>
                 </div>
-                <div className="flex flex-col gap-y-1.5 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
-                  <div className="hover:text-white transition-colors">&gt; Reputation scores</div>
-                  <div className="hover:text-white transition-colors">&gt; Signal marketplace</div>
-                  <div className="hover:text-white transition-colors">&gt; Copy trading</div>
-                  <div className="hover:text-white transition-colors">&gt; Watchlists</div>
+                
+                {/* Visual module & Sub-items list wrapper */}
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                    <Layer2Visual hovered={hoveredIndex === 2} />
+                  </div>
+                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                    <div className="hover:text-white transition-colors">&gt; Signal agents</div>
+                    <div className="hover:text-white transition-colors">&gt; Narrative agents</div>
+                    <div className="hover:text-white transition-colors">&gt; Risk agents</div>
+                    <div className="hover:text-white transition-colors">&gt; Execution agents</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Layer 4 */}
-          <div 
-            className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={() => setHoveredIndex(4)}
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
-              <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
-            </div>
-            
-            <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="font-inter font-black text-3xl text-primary">i4</span>
-                  <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
-                    Event Intelligence
-                  </h3>
-                  <span className="bg-primary/10 border border-primary/20 text-primary text-[9px] font-mono font-bold px-2 py-0.5 uppercase tracking-wider">
-                    DETECTION LAYER
-                  </span>
-                </div>
-                <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed max-w-xl">
-                  Whale transfers, funding spikes, volume anomalies, and narrative shifts — surfaced as ranked, contextual events.
-                </p>
+            {/* Layer 3 */}
+            <div 
+              className="
+              stack-layer-card
+              sticky
+              top-0
+              lg:relative
+              lg:top-auto
+              bg-black/80
+              p-4
+              sm:py-4
+              sm:px-6
+              border-2
+              border-white/15
+              cursor-pointer
+              shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
+              "
+              onMouseEnter={() => setHoveredIndex(3)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(3)}
+            >
+              {/* Timeline Connector Dot */}
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+                <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
-              {/* Visual module & Sub-items list wrapper */}
-              <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto sm:min-w-[280px] pt-4 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-6">
-                <div className="hidden xs:block w-16 h-16 sm:w-20 sm:h-20 shrink-0">
-                  <Layer4Visual hovered={hoveredIndex === 4} />
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-3 mb-1.5">
+                    <span className="font-inter font-black text-2xl text-primary">i3</span>
+                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                      Community Intelligence
+                    </h3>
+                    <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
+                      NETWORK LAYER
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                    Traders publish signals, validate setups, and earn transparent on-chain reputation. Merit-based intelligence at scale.
+                  </p>
                 </div>
-                <div className="flex flex-col gap-y-1.5 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
-                  <div className="hover:text-white transition-colors">&gt; Whale moves</div>
-                  <div className="hover:text-white transition-colors">&gt; Volume anomalies</div>
-                  <div className="hover:text-white transition-colors">&gt; Narrative shifts</div>
-                  <div className="hover:text-white transition-colors">&gt; Volatility events</div>
+                
+                {/* Visual module & Sub-items list wrapper */}
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                    <Layer3Visual hovered={hoveredIndex === 3} />
+                  </div>
+                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                    <div className="hover:text-white transition-colors">&gt; Reputation scores</div>
+                    <div className="hover:text-white transition-colors">&gt; Signal marketplace</div>
+                    <div className="hover:text-white transition-colors">&gt; Copy trading</div>
+                    <div className="hover:text-white transition-colors">&gt; Watchlists</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Layer 5 */}
-          <div 
-            className="stack-layer-card relative bg-black/80 p-6 sm:p-8 border-2 border-white/15 cursor-pointer shadow-[3px_3px_0px_rgba(255,255,255,0.05)]"
-            onMouseEnter={() => setHoveredIndex(5)}
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            {/* Timeline Connector Dot */}
-            <div className="stack-connector-dot absolute -left-[20px] sm:-left-[26px] top-9 w-4 h-4 rounded-full bg-black border-2 border-primary flex items-center justify-center">
-              <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
-            </div>
-            
-            <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-6">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="font-inter font-black text-3xl text-primary">i5</span>
-                  <h3 className="text-xl font-display font-black text-white uppercase tracking-tight">
-                    Execution Intelligence
-                  </h3>
-                  <span className="bg-primary/10 border border-primary/20 text-primary text-[9px] font-mono font-bold px-2 py-0.5 uppercase tracking-wider">
-                    ACTION LAYER
-                  </span>
-                </div>
-                <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed max-w-xl">
-                  From signal to fill in one workflow. One-click trades, dynamic stops, scaling, and policy-bound automation.
-                </p>
+            {/* Layer 4 */}
+            <div 
+              className="
+              stack-layer-card
+              sticky
+              top-0
+              lg:relative
+              lg:top-auto
+              bg-black/80
+              p-4
+              sm:py-4
+              sm:px-6
+              border-2
+              border-white/15
+              cursor-pointer
+              shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
+              "
+              onMouseEnter={() => setHoveredIndex(4)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(4)}
+            >
+              {/* Timeline Connector Dot */}
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+                <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
-              {/* Visual module & Sub-items list wrapper */}
-              <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto sm:min-w-[280px] pt-4 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-6">
-                <div className="hidden xs:block w-16 h-16 sm:w-20 sm:h-20 shrink-0">
-                  <Layer5Visual hovered={hoveredIndex === 5} />
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-3 mb-1.5">
+                    <span className="font-inter font-black text-2xl text-primary">i4</span>
+                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                      Event Intelligence
+                    </h3>
+                    <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
+                      DETECTION LAYER
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                    Whale transfers, funding spikes, volume anomalies, and narrative shifts — surfaced as ranked, contextual events.
+                  </p>
                 </div>
-                <div className="flex flex-col gap-y-1.5 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
-                  <div className="hover:text-white transition-colors">&gt; One-click trades</div>
-                  <div className="hover:text-white transition-colors">&gt; Dynamic stops</div>
-                  <div className="hover:text-white transition-colors">&gt; Copy workflows</div>
-                  <div className="hover:text-white transition-colors">&gt; Risk policies</div>
+                
+                {/* Visual module & Sub-items list wrapper */}
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                    <Layer4Visual hovered={hoveredIndex === 4} />
+                  </div>
+                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                    <div className="hover:text-white transition-colors">&gt; Whale moves</div>
+                    <div className="hover:text-white transition-colors">&gt; Volume anomalies</div>
+                    <div className="hover:text-white transition-colors">&gt; Narrative shifts</div>
+                    <div className="hover:text-white transition-colors">&gt; Volatility events</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
+            {/* Layer 5 */}
+            <div 
+              className="
+              stack-layer-card
+              sticky
+              top-0
+              lg:relative
+              lg:top-auto
+              bg-black/80
+              p-4
+              sm:py-4
+              sm:px-6
+              border-2
+              border-white/15
+              cursor-pointer
+              shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
+              "
+              onMouseEnter={() => setHoveredIndex(5)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(5)}
+            >
+              {/* Timeline Connector Dot */}
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+                <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
+              </div>
+              
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-3 mb-1.5">
+                    <span className="font-inter font-black text-2xl text-primary">i5</span>
+                    <h3 className="text-lg font-display font-black text-white uppercase tracking-tight">
+                      Execution Intelligence
+                    </h3>
+                    <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] font-mono font-bold px-1.5 py-0.5 uppercase tracking-wider">
+                      ACTION LAYER
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/50 font-body leading-relaxed max-w-xl">
+                    From signal to fill in one workflow. One-click trades, dynamic stops, scaling, and policy-bound automation.
+                  </p>
+                </div>
+                
+                {/* Visual module & Sub-items list wrapper */}
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
+                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                    <Layer5Visual hovered={hoveredIndex === 5} />
+                  </div>
+                  <div className="flex flex-col gap-y-1 font-mono text-xs text-emerald-400 font-bold w-full">
+                    <div className="hover:text-white transition-colors">&gt; One-click trades</div>
+                    <div className="hover:text-white transition-colors">&gt; Dynamic stops</div>
+                    <div className="hover:text-white transition-colors">&gt; Copy workflows</div>
+                    <div className="hover:text-white transition-colors">&gt; Risk policies</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>

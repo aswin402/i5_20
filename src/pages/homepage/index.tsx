@@ -17,7 +17,7 @@ export function HomePage() {
   };
 
   return (
-    <div className={`w-full overflow-hidden ${isShaking ? 'animate-[shake_0.4s_ease-in-out_infinite]' : ''}`}>
+    <div className={`w-full overflow-x-clip ${isShaking ? 'animate-[shake_0.4s_ease-in-out_infinite]' : ''}`}>
       <HeroSection triggerShake={triggerShake} />
       <AlphaFeed />
       <IntelligenceStack />
