@@ -134,7 +134,7 @@ export function CoreFeatures() {
         <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           
           {/* Card 1: AI Signal Engine (FLAGSHIP) */}
-          <div className="feature-card relative border-0 md:border-2 border-primary bg-transparent md:bg-primary/5 py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_#00ffcc] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-b border-primary/20 md:border-2 border-primary bg-transparent md:bg-primary/5 py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_#00ffcc] flex flex-col justify-between overflow-hidden cursor-pointer">
             {/* Flagship Badge */}
             <div className="absolute top-0 right-0 bg-primary text-black font-mono font-black text-[9px] px-3 py-1 uppercase tracking-wider">
               FLAGSHIP
@@ -162,7 +162,7 @@ export function CoreFeatures() {
           </div>
 
           {/* Card 2: Smart-Money Tracking */}
-          <div className="feature-card relative border-0 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-b border-primary/20 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Wallet className="feature-icon w-8 h-8 text-white" />
@@ -182,7 +182,7 @@ export function CoreFeatures() {
           </div>
 
           {/* Card 3: Cohort Analytics */}
-          <div className="feature-card relative border-0 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-b border-primary/20 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Users className="feature-icon w-8 h-8 text-white" />
@@ -202,7 +202,7 @@ export function CoreFeatures() {
           </div>
 
           {/* Card 4: Liquidation Heatmaps */}
-          <div className="feature-card relative border-0 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-b border-primary/20 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Flame className="feature-icon w-8 h-8 text-white" />
@@ -222,7 +222,7 @@ export function CoreFeatures() {
           </div>
 
           {/* Card 5: Real-Time Alerts */}
-          <div className="feature-card relative border-0 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-b border-primary/20 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Bell className="feature-icon w-8 h-8 text-white" />
