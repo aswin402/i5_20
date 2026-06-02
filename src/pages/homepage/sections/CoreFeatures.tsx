@@ -152,7 +152,7 @@ export function CoreFeatures() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-primary/80 flex items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-primary/80 items-center justify-between">
               <span>[ ENGINE_STATUS: ACTIVE ]</span>
               <span className="flex items-center gap-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-ping" />
@@ -175,7 +175,7 @@ export function CoreFeatures() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 flex items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
               <span>[ WALLETS: 420+ LIVE ]</span>
               <span className="text-primary font-bold">AVG PNL: +34.2%</span>
             </div>
@@ -195,7 +195,7 @@ export function CoreFeatures() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 flex items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
               <span>[ COHORTS: WHALES & RET ]</span>
               <span className="text-white/70">DELTA: BULLISH</span>
             </div>
@@ -215,7 +215,7 @@ export function CoreFeatures() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 flex items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
               <span>[ MAPS: SOL / BTC / ETH ]</span>
               <span className="text-red-500 font-bold">HIGH LIQ CLUSTER</span>
             </div>
@@ -235,7 +235,7 @@ export function CoreFeatures() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 flex items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
               <span>[ PUSH_LATENCY: &lt;10ms ]</span>
               <span className="text-primary font-bold">ACTIVE DEPLOY</span>
             </div>
@@ -255,7 +255,7 @@ export function CoreFeatures() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 flex items-center justify-between">
+            <div className="hidden md:flex mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-white/50 items-center justify-between">
               <span>[ FEEDS: DYNAMIC AGENTS ]</span>
               <span className="text-white/70">12,482 USERS</span>
             </div>
