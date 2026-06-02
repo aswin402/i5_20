@@ -39,75 +39,73 @@ export function CoreFeatures() {
         ease: 'back.out(1.2)',
       });
 
-      // Hover animations for all cards (desktop only)
-      if (window.innerWidth >= 768) {
-        const cards = containerRef.current?.querySelectorAll('.feature-card');
-        cards?.forEach((card) => {
-          const iconWrapper = card.querySelector('.feature-icon-wrapper');
-          const icon = card.querySelector('.feature-icon');
-          const isFlagship = card.classList.contains('md:border-primary');
+      // Hover animations for all cards
+      const cards = containerRef.current?.querySelectorAll('.feature-card');
+      cards?.forEach((card) => {
+        const iconWrapper = card.querySelector('.feature-icon-wrapper');
+        const icon = card.querySelector('.feature-icon');
+        const isFlagship = card.classList.contains('border-primary');
 
-          card.addEventListener('mouseenter', () => {
-            gsap.to(card, {
-              y: -6,
-              borderColor: '#00ffcc',
-              boxShadow: '0px 10px 20px rgba(0, 255, 204, 0.25)',
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, {
+            y: -6,
+            borderColor: '#00ffcc',
+            boxShadow: '0px 10px 20px rgba(0, 255, 204, 0.25)',
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+          if (iconWrapper) {
+            gsap.to(iconWrapper, {
+              scale: 1.1,
+              borderColor: 'rgba(0, 255, 204, 0.4)',
+              backgroundColor: 'rgba(0, 255, 204, 0.15)',
               duration: 0.3,
               ease: 'power2.out',
               overwrite: 'auto'
             });
-            if (iconWrapper) {
-              gsap.to(iconWrapper, {
-                scale: 1.1,
-                borderColor: 'rgba(0, 255, 204, 0.4)',
-                backgroundColor: 'rgba(0, 255, 204, 0.15)',
-                duration: 0.3,
-                ease: 'power2.out',
-                overwrite: 'auto'
-              });
-            }
-            if (icon) {
-              gsap.to(icon, {
-                rotation: 12,
-                color: '#00ffcc',
-                duration: 0.3,
-                ease: 'power2.out',
-                overwrite: 'auto'
-              });
-            }
-          });
-
-          card.addEventListener('mouseleave', () => {
-            gsap.to(card, {
-              y: 0,
-              borderColor: isFlagship ? '#00ffcc' : 'rgba(255, 255, 255, 0.15)',
-              boxShadow: isFlagship ? '4px 4px 0px #00ffcc' : '4px 4px 0px rgba(255, 255, 255, 0.05)',
+          }
+          if (icon) {
+            gsap.to(icon, {
+              rotation: 12,
+              color: '#00ffcc',
               duration: 0.3,
               ease: 'power2.out',
               overwrite: 'auto'
             });
-            if (iconWrapper) {
-              gsap.to(iconWrapper, {
-                scale: 1,
-                borderColor: isFlagship ? 'rgba(0, 255, 204, 0.2)' : 'rgba(255, 255, 255, 0.1)',
-                backgroundColor: isFlagship ? 'rgba(0, 255, 204, 0.1)' : 'rgba(255, 255, 255, 0.05)',
-                duration: 0.3,
-                ease: 'power2.out',
-                overwrite: 'auto'
-              });
-            }
-            if (icon) {
-              gsap.to(icon, {
-                rotation: 0,
-                color: isFlagship ? '#00ffcc' : '#ffffff',
-                duration: 0.3,
-                ease: 'power2.out',
-                overwrite: 'auto'
-              });
-            }
-          });
+          }
         });
-      }
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            y: 0,
+            borderColor: isFlagship ? '#00ffcc' : 'rgba(255, 255, 255, 0.15)',
+            boxShadow: isFlagship ? '4px 4px 0px #00ffcc' : '4px 4px 0px rgba(255, 255, 255, 0.05)',
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+          if (iconWrapper) {
+            gsap.to(iconWrapper, {
+              scale: 1,
+              borderColor: isFlagship ? 'rgba(0, 255, 204, 0.2)' : 'rgba(255, 255, 255, 0.1)',
+              backgroundColor: isFlagship ? 'rgba(0, 255, 204, 0.1)' : 'rgba(255, 255, 255, 0.05)',
+              duration: 0.3,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+          }
+          if (icon) {
+            gsap.to(icon, {
+              rotation: 0,
+              color: isFlagship ? '#00ffcc' : '#ffffff',
+              duration: 0.3,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+          }
+        });
+      });
     }, containerRef);
 
     return () => ctx.revert();
@@ -134,7 +132,7 @@ export function CoreFeatures() {
         <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           
           {/* Card 1: AI Signal Engine (FLAGSHIP) */}
-          <div className="feature-card relative border-b border-primary/20 md:border-2 border-primary bg-transparent md:bg-primary/5 py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_#00ffcc] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-primary bg-primary/5 p-6 sm:p-8 shadow-[4px_4px_0px_#00ffcc] flex flex-col justify-between overflow-hidden cursor-pointer">
             {/* Flagship Badge */}
             <div className="absolute top-0 right-0 bg-primary text-black font-mono font-black text-[9px] px-3 py-1 uppercase tracking-wider">
               FLAGSHIP
@@ -161,8 +159,11 @@ export function CoreFeatures() {
             </div>
           </div>
 
+          {/* Divider 1 */}
+          <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
+
           {/* Card 2: Smart-Money Tracking */}
-          <div className="feature-card relative border-b border-primary/20 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Wallet className="feature-icon w-8 h-8 text-white" />
@@ -181,8 +182,11 @@ export function CoreFeatures() {
             </div>
           </div>
 
+          {/* Divider 2 */}
+          <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
+
           {/* Card 3: Cohort Analytics */}
-          <div className="feature-card relative border-b border-primary/20 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Users className="feature-icon w-8 h-8 text-white" />
@@ -201,8 +205,11 @@ export function CoreFeatures() {
             </div>
           </div>
 
+          {/* Divider 3 */}
+          <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
+
           {/* Card 4: Liquidation Heatmaps */}
-          <div className="feature-card relative border-b border-primary/20 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Flame className="feature-icon w-8 h-8 text-white" />
@@ -221,8 +228,11 @@ export function CoreFeatures() {
             </div>
           </div>
 
+          {/* Divider 4 */}
+          <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
+
           {/* Card 5: Real-Time Alerts */}
-          <div className="feature-card relative border-b border-primary/20 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Bell className="feature-icon w-8 h-8 text-white" />
@@ -241,8 +251,11 @@ export function CoreFeatures() {
             </div>
           </div>
 
+          {/* Divider 5 */}
+          <div className="hidden max-md:block border-t border-dashed border-primary/30 my-2" />
+
           {/* Card 6: Social Trading Streams */}
-          <div className="feature-card relative border-0 md:border-2 border-white/15 bg-transparent md:bg-black py-6 px-0 md:p-6 sm:md:p-8 shadow-none md:shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
+          <div className="feature-card relative border-r-2 border-b-2 border-white/15 bg-black p-6 sm:p-8 shadow-[4px_4px_0px_rgba(255,255,255,0.05)] flex flex-col justify-between overflow-hidden cursor-pointer">
             <div>
               <div className="feature-icon-wrapper mb-6 p-2 w-fit bg-white/5 border border-white/10">
                 <Share2 className="feature-icon w-8 h-8 text-white" />
