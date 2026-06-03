@@ -262,6 +262,7 @@ export function BuiltForTraders() {
   const [mobileIndex, setMobileIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const touchStartX = useRef(0);
+  const hasSwiped = useRef(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -376,6 +377,7 @@ export function BuiltForTraders() {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    hasSwiped.current = false;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
@@ -384,16 +386,25 @@ export function BuiltForTraders() {
     const diffX = touchEndX - touchStartX.current;
 
     if (Math.abs(diffX) > 60) {
+      hasSwiped.current = true;
       if (diffX > 0) {
-        // Swiped right -> previous card
+        // Swiped right -> move card to the right (direction: 'right'), show previous card
         const prevIdx = (mobileIndex - 1 + 5) % 5;
-        shuffleCard(prevIdx, 'left');
+        shuffleCard(prevIdx, 'right');
       } else {
-        // Swiped left -> next card
+        // Swiped left -> move card to the left (direction: 'left'), show next card
         const nextIdx = (mobileIndex + 1) % 5;
-        shuffleCard(nextIdx, 'right');
+        shuffleCard(nextIdx, 'left');
       }
     }
+  };
+
+  const handleCardClick = () => {
+    if (hasSwiped.current) {
+      hasSwiped.current = false;
+      return;
+    }
+    handleShuffleNext();
   };
 
   return (
@@ -493,7 +504,7 @@ export function BuiltForTraders() {
             className="relative w-full max-w-[340px] xs:max-w-[360px] h-[410px] sm:h-[430px] mb-8 cursor-pointer select-none touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            onClick={handleShuffleNext}
+            onClick={handleCardClick}
           >
             {cardsData.map((card, idx) => {
               const distance = (idx - mobileIndex + 5) % 5;
