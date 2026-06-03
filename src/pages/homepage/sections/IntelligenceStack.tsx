@@ -496,7 +496,7 @@ export function IntelligenceStack() {
             lg:sm:pl-12
             pl-0
             z-30
-            lg:pb-12
+            lg:pb-0
             pb-0
           "
           >
