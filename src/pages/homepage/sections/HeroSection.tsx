@@ -261,7 +261,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                   <img
                     src={currentSignal === 1 ? signal1 : signal2}
                     alt="signals"
-                    className="h-[32px] sm:h-[50px] md:h-[60px] lg:h-[75px] w-auto object-contain inline-block align-middle"
+                    className="h-[48px] sm:h-[75px] md:h-[90px] lg:h-[115px] w-auto object-contain inline-block align-middle"
                   />
                 </span>
               </span>
