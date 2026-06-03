@@ -268,8 +268,49 @@ function I5CentralCore({
 
 export function IntelligenceStack() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [userHoveredIndex, setUserHoveredIndex] = useState<number | null>(null);
+  const [autoActiveIndex, setAutoActiveIndex] = useState<number>(1);
+  const [isDesktop, setIsDesktop] = useState(false);
 
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
+  const hoveredIndex = isDesktop
+    ? (userHoveredIndex !== null ? userHoveredIndex : autoActiveIndex)
+    : userHoveredIndex;
+
+  useEffect(() => {
+    if (!isDesktop) return;
+    if (userHoveredIndex !== null) return;
+
+    const interval = setInterval(() => {
+      setAutoActiveIndex((prev) => (prev % 5) + 1);
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, [isDesktop, userHoveredIndex]);
+
+  const handleMouseEnter = (idx: number) => {
+    setUserHoveredIndex(idx);
+    setAutoActiveIndex(idx);
+  };
+
+  const handleMouseLeave = () => {
+    setUserHoveredIndex(null);
+  };
+
+  const handleCardClick = (idx: number) => {
+    if (window.innerWidth >= 1024) {
+      setUserHoveredIndex(idx);
+      setAutoActiveIndex(idx);
+    }
+  };
 
   // Sync card styles dynamically when hoveredIndex changes (both-way interaction)
   useEffect(() => {
@@ -413,7 +454,7 @@ export function IntelligenceStack() {
         });
 
         // Set initial active index
-        setHoveredIndex(null);
+        setUserHoveredIndex(null);
 
         // Update active index as cards scroll past the sticky threshold
         layers.forEach((layer, idx) => {
@@ -421,11 +462,11 @@ export function IntelligenceStack() {
             trigger: layer,
             start: `top ${STICKY_CARD_TOP + 20}px`,
             end: `bottom ${STICKY_CARD_TOP}px`,
-            onEnter: () => setHoveredIndex(idx + 1),
-            onEnterBack: () => setHoveredIndex(idx + 1),
+            onEnter: () => setUserHoveredIndex(idx + 1),
+            onEnterBack: () => setUserHoveredIndex(idx + 1),
             onLeaveBack: () => {
-              if (idx === 0) setHoveredIndex(null);
-              else setHoveredIndex(idx);
+              if (idx === 0) setUserHoveredIndex(null);
+              else setUserHoveredIndex(idx);
             }
           });
         });
@@ -480,7 +521,7 @@ export function IntelligenceStack() {
             <div className="absolute inset-0 bg-radial-gradient from-primary/10 to-transparent pointer-events-none hidden lg:block" />
             {/* Grid background details */}
             <div className="absolute inset-0 opacity-15 pointer-events-none hidden lg:block" style={{ backgroundImage: 'radial-gradient(var(--color-primary, #00ffcc) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
-            <I5CentralCore hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} className="w-full h-full flex items-center justify-center z-10" />
+            <I5CentralCore hoveredIndex={hoveredIndex} className="w-full h-full flex items-center justify-center z-10" />
           </div>
 
           {/* Right Column: 5 Layers Stack */}
@@ -522,9 +563,9 @@ export function IntelligenceStack() {
               cursor-pointer
               shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
               "
-              onMouseEnter={() => setHoveredIndex(1)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(1)}
+              onMouseEnter={() => handleMouseEnter(1)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleCardClick(1)}
             >
               {/* Timeline Connector Dot */}
               <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
@@ -580,9 +621,9 @@ export function IntelligenceStack() {
               cursor-pointer
               shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
               "
-              onMouseEnter={() => setHoveredIndex(2)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(2)}
+              onMouseEnter={() => handleMouseEnter(2)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleCardClick(2)}
             >
               {/* Timeline Connector Dot */}
               <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
@@ -638,9 +679,9 @@ export function IntelligenceStack() {
               cursor-pointer
               shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
               "
-              onMouseEnter={() => setHoveredIndex(3)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(3)}
+              onMouseEnter={() => handleMouseEnter(3)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleCardClick(3)}
             >
               {/* Timeline Connector Dot */}
               <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
@@ -696,9 +737,9 @@ export function IntelligenceStack() {
               cursor-pointer
               shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
               "
-              onMouseEnter={() => setHoveredIndex(4)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(4)}
+              onMouseEnter={() => handleMouseEnter(4)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleCardClick(4)}
             >
               {/* Timeline Connector Dot */}
               <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
@@ -754,9 +795,9 @@ export function IntelligenceStack() {
               cursor-pointer
               shadow-[3px_3px_0px_rgba(255,255,255,0.05)]
               "
-              onMouseEnter={() => setHoveredIndex(5)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => window.innerWidth >= 1024 && setHoveredIndex(5)}
+              onMouseEnter={() => handleMouseEnter(5)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleCardClick(5)}
             >
               {/* Timeline Connector Dot */}
               <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
