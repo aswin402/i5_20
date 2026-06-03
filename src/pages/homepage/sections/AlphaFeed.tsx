@@ -214,7 +214,7 @@ export function AlphaFeed() {
             return (
               <div 
                 key={idx}
-                className={`inline-flex items-center gap-2.5 border-2 px-5 py-3 rounded-none font-mono text-xs font-black transition-all duration-300 ${
+                className={`inline-flex items-center gap-3 border-2 px-7 py-4 rounded-none font-mono text-sm font-black transition-all duration-300 ${
                   isAlpha
                     ? 'bg-emerald-950/40 border-emerald-400 text-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.4)] animate-pulse'
                     : item.isAlert 
@@ -223,11 +223,11 @@ export function AlphaFeed() {
                 }`}
               >
                 {isAlpha ? (
-                  <TrendingUp className="w-4 h-4 text-emerald-400 animate-bounce" />
+                  <TrendingUp className="w-5 h-5 text-emerald-400 animate-bounce" />
                 ) : item.isAlert ? (
-                  <AlertTriangle className="w-4 h-4 text-red-500 animate-pulse" />
+                  <AlertTriangle className="w-5 h-5 text-red-500 animate-pulse" />
                 ) : (
-                  <TrendingUp className="w-4 h-4 text-primary" />
+                  <TrendingUp className="w-5 h-5 text-primary" />
                 )}
                 <span>{item.msg}</span>
               </div>
