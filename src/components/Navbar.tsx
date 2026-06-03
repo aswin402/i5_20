@@ -31,7 +31,7 @@ export function Navbar() {
     const el = document.getElementById(id);
     if (el) {
       // Offset scroll for navbar height
-      const navOffset = 80;
+      const navOffset = window.innerWidth < 768 ? 64 : 80;
       const elementPosition = el.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - navOffset;
       window.scrollTo({
@@ -43,7 +43,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 h-20 border-b border-white/10 bg-black/90 backdrop-blur-md z-50 font-mono select-none flex items-center">
+      <nav className="fixed top-0 left-0 right-0 h-16 md:h-20 border-b border-white/10 bg-black/90 backdrop-blur-md z-50 font-mono select-none flex items-center">
         <div className="w-full h-full flex items-center justify-between px-3 sm:pl-[72px] sm:pr-[72px] md:pl-[112px] md:pr-[112px] lg:pl-[160px] lg:pr-[120px] xl:pl-[208px] xl:pr-[120px]">
           
           {/* Left Column: Brand Logo, Name, Divider, Links */}
@@ -179,7 +179,7 @@ export function Navbar() {
 
       {/* Mobile Navigation Drawer */}
       <div 
-        className={`fixed inset-x-0 top-20 bg-black/95 backdrop-blur-xl border-b border-white/10 z-40 md:hidden transition-all duration-300 ease-in-out select-none font-mono ${
+        className={`fixed inset-x-0 top-16 bg-black/95 backdrop-blur-xl border-b border-white/10 z-40 md:hidden transition-all duration-300 ease-in-out select-none font-mono ${
           isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible pointer-events-none'
         }`}
       >

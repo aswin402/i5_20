@@ -181,7 +181,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      const navOffset = 80;
+      const navOffset = window.innerWidth < 768 ? 64 : 80;
       const elementPosition = el.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - navOffset;
       window.scrollTo({

@@ -517,7 +517,7 @@ export function IntelligenceStack() {
         {/* Content Row: Two Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: BIG Image */}
-          <div className="stack-image-column lg:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg sticky top-[80px] lg:relative lg:top-auto overflow-hidden h-[280px] sm:h-[220px] lg:h-auto z-20">
+          <div className="stack-image-column lg:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg sticky top-16 lg:relative lg:top-auto overflow-hidden h-[280px] sm:h-[220px] lg:h-auto z-20">
             <div className="absolute inset-0 bg-radial-gradient from-primary/10 to-transparent pointer-events-none hidden lg:block" />
             {/* Grid background details */}
             <div className="absolute inset-0 opacity-15 pointer-events-none hidden lg:block" style={{ backgroundImage: 'radial-gradient(var(--color-primary, #00ffcc) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
