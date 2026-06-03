@@ -209,7 +209,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             muted
             playsInline
             preload="auto"
-            className="absolute top-0 bottom-0 left-0 right-0 lg:right-[30px] w-full lg:w-[calc(100%-30px)] h-full object-cover lg:object-contain lg:object-right object-center filter brightness-95 opacity-30 lg:opacity-100 pointer-events-none"
+            className="absolute top-0 bottom-0 left-0 right-0 lg:right-[120px] w-full lg:w-[calc(100%-120px)] h-full object-cover lg:object-contain lg:object-right object-center filter brightness-95 opacity-30 lg:opacity-100 pointer-events-none"
           >
             <source src="libst.webm" type="video/webm" />
             <source src="libst.mp4" type="video/mp4" />
@@ -219,7 +219,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
       )}
 
       {/* Asymmetrical Grid layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-center relative z-10 w-full max-w-7xl self-center sm:mx-6 md:mx-12 lg:mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-center relative z-10 w-full max-w-7xl self-center sm:ml-6 sm:mr-auto md:ml-12 md:mr-auto lg:ml-16 lg:mr-auto xl:ml-24 xl:mr-auto">
         
         {/* Slogans and CTAs */}
         <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-4 sm:gap-6 text-center lg:text-left items-center lg:items-start w-full">
