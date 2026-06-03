@@ -580,7 +580,7 @@ export function Edge() {
             <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-hidden md:overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full lg:h-full lg:flex lg:flex-col">
               
               {/* Left arrow navigator on mobile */}
-              {hoveredRowIndex !== null && hoveredRowIndex > 0 && (
+              {hoveredRowIndex === 5 && (
                 <button
                   onClick={() => handleRowSelect(hoveredRowIndex - 1)}
                   className="absolute left-2 top-[62%] md:hidden z-40 bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full shadow-[0_0_10px_rgba(0,255,204,0.15)] animate-bounce-left transition-all duration-300 hover:bg-primary/20"
@@ -591,7 +591,7 @@ export function Edge() {
               )}
 
               {/* Right arrow navigator on mobile */}
-              {(hoveredRowIndex === null || hoveredRowIndex < 5) && (
+              {(hoveredRowIndex === 0 || hoveredRowIndex === null) && (
                 <button
                   onClick={() => handleRowSelect(hoveredRowIndex === null ? 1 : hoveredRowIndex + 1)}
                   className="absolute right-2 top-[62%] md:hidden z-40 bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full shadow-[0_0_10px_rgba(0,255,204,0.15)] animate-bounce-right transition-all duration-300 hover:bg-primary/20"
