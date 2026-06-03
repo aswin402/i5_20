@@ -56,7 +56,7 @@ export function Navbar() {
               }} 
               className="flex items-center gap-1.5 hover:opacity-85 transition-opacity cursor-pointer h-10 shrink-0"
             >
-              <img src={logo} alt="i5 Logo" className="h-6 sm:h-7 lg:h-8 w-auto object-contain" />
+              <img src={logo} alt="i5 Logo" className="h-8 sm:h-9 lg:h-10 w-auto object-contain" />
               {/* Brand text: Hidden below xl (1280px) to save space on smaller screens */}
               <span className="text-[10px] lg:text-xs xl:text-sm font-display font-extrabold tracking-widest text-white uppercase ml-1.5 hidden xl:inline-block shrink-0">
                 Intelligence Network
