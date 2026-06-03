@@ -86,7 +86,7 @@ export function IntelligenceNetwork() {
       <div className="network-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-primary/5 rounded-full blur-[120px] pointer-events-none opacity-40" />
 
       <div className="network-content max-w-5xl mx-auto relative z-10 text-center flex flex-col items-center gap-6">
-        <span className="text-[10px] font-mono tracking-widest text-primary block uppercase">// SYSTEM INITIALIZED</span>
+        <span className="text-[10px] sm:text-xs font-mono tracking-widest text-primary block uppercase">// SYSTEM INITIALIZED</span>
         
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white uppercase leading-none max-w-3xl">
           Join the Intelligence Network

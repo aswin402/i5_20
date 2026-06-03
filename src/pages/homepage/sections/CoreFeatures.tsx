@@ -119,7 +119,7 @@ export function CoreFeatures() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="features-header max-w-none mb-16 text-left">
-          <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// CORE CAPABILITIES</span>
+          <span className="text-[10px] sm:text-xs font-mono tracking-widest text-primary block mb-2">// CORE CAPABILITIES</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white uppercase leading-[1.1]">
             Everything you need to read the market and act on it.
           </h2>
