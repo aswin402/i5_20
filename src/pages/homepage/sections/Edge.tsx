@@ -355,10 +355,40 @@ function I5DeltaAnalyzer({ activeRow }: DeltaAnalyzerProps) {
 
 export function Edge() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const mobileScrollContainerRef = useRef<HTMLDivElement>(null);
   const [hoveredRowIndex, setHoveredRowIndex] = useState<number | null>(null);
   const [lineDeltaY, setLineDeltaY] = useState<number>(0);
   const telemetryRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setHoveredRowIndex(0);
+    }
+  }, []);
+
+  const handleMobileScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (window.innerWidth >= 768) return;
+    const container = e.currentTarget;
+    const scrollLeft = container.scrollLeft;
+    const width = container.clientWidth;
+    if (width === 0) return;
+    const newIndex = Math.round(scrollLeft / width);
+    if (newIndex >= 0 && newIndex < 6 && newIndex !== hoveredRowIndex) {
+      setHoveredRowIndex(newIndex);
+    }
+  };
+
+  const handleRowSelect = (idx: number) => {
+    setHoveredRowIndex(idx);
+    if (mobileScrollContainerRef.current) {
+      const container = mobileScrollContainerRef.current;
+      container.scrollTo({
+        left: idx * container.clientWidth,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   useEffect(() => {
     if (hoveredRowIndex === null || !telemetryRef.current) {
@@ -426,8 +456,9 @@ export function Edge() {
       // Alternating row entries
       const rows = containerRef.current?.querySelectorAll('.edge-row');
       rows?.forEach((row, idx) => {
+        const isMobile = window.innerWidth < 768;
         gsap.fromTo(row,
-          { opacity: 0, x: idx % 2 === 0 ? -30 : 30 },
+          { opacity: 0, x: isMobile ? 0 : (idx % 2 === 0 ? -30 : 30) },
           {
             scrollTrigger: {
               trigger: '.edge-table',
@@ -451,6 +482,13 @@ export function Edge() {
     <section ref={containerRef} id="i5-edge" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
       {/* Glitch and animation keyframe injections */}
       <style>{`
+        .scrollbar-none::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-none {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
         @keyframes dash {
           to {
             stroke-dashoffset: -20;
@@ -525,7 +563,7 @@ export function Edge() {
  
           {/* Right Column: Comparison Table */}
           <div className="lg:col-span-8 w-full lg:h-full">
-            <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full lg:h-full lg:flex lg:flex-col">
+            <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-hidden md:overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full lg:h-full lg:flex lg:flex-col">
               {/* Table Header Row */}
               <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-white/10 bg-white/5 font-mono text-xs uppercase tracking-widest shrink-0">
                 <div className="p-4 sm:p-6 text-white/50 border-b md:border-b-0 md:border-r border-white/10 flex items-center justify-between">
@@ -539,7 +577,11 @@ export function Edge() {
               </div>
  
               {/* Comparison Rows */}
-              <div className="divide-y divide-white/5 font-mono text-sm sm:text-base lg:flex-1 lg:flex lg:flex-col">
+              <div 
+                ref={mobileScrollContainerRef}
+                onScroll={handleMobileScroll}
+                className="divide-y-0 md:divide-y divide-white/5 font-mono text-sm sm:text-base lg:flex-1 lg:flex lg:flex-col flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none scrollbar-none w-full"
+              >
                 {[
                   { traditional: 'Manual analysis', i5: 'AI-assisted intelligence' },
                   { traditional: 'Fragmented tools', i5: 'Unified terminal' },
@@ -551,7 +593,7 @@ export function Edge() {
                   <div 
                     key={idx} 
                     ref={(el) => { rowRefs.current[idx] = el; }}
-                    className={`edge-row grid grid-cols-1 md:grid-cols-2 group border-white/10 transition-all duration-300 relative lg:flex-1 ${
+                    className={`edge-row grid grid-cols-1 md:grid-cols-2 group border-white/10 transition-all duration-300 relative lg:flex-1 w-full shrink-0 snap-start md:w-auto md:shrink ${
                       hoveredRowIndex === idx 
                         ? 'bg-primary/[0.02] border-y border-y-primary/20 scale-[1.005] z-20' 
                         : 'bg-transparent border-y border-y-transparent'
@@ -586,7 +628,7 @@ export function Edge() {
                     )}
  
                     {/* Left side: Traditional */}
-                    <div className={`p-4 sm:p-6 md:border-r border-white/10 flex items-center gap-3 transition-opacity duration-300 relative overflow-hidden z-10 ${
+                    <div className={`p-4 sm:p-6 border-b border-white/5 md:border-b-0 md:border-r border-white/10 flex items-center gap-3 transition-opacity duration-300 relative overflow-hidden z-10 ${
                       hoveredRowIndex !== null && hoveredRowIndex !== idx ? 'opacity-25' : 'opacity-100'
                     } ${hoveredRowIndex === idx ? 'text-red-500/40' : 'text-white/55'}`}>
                       {/* Sweep scan inside cell */}
@@ -629,6 +671,26 @@ export function Edge() {
                 ))}
               </div>
             </div>
+
+            {/* Mobile swipe navigation dots */}
+            <div className="flex md:hidden flex-col items-center gap-2 mt-4">
+              <div className="flex justify-center items-center gap-2">
+                {Array.from({ length: 6 }).map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleRowSelect(idx)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      hoveredRowIndex === idx || (hoveredRowIndex === null && idx === 0) ? 'bg-primary w-4' : 'bg-white/20 w-1.5'
+                    }`}
+                    aria-label={`Go to row ${idx + 1}`}
+                  />
+                ))}
+              </div>
+              <div className="text-[9px] font-mono text-white/30 tracking-widest uppercase flex items-center gap-1.5 animate-pulse">
+                <span>&larr;</span> swipe to compare <span>&rarr;</span>
+              </div>
+            </div>
+
           </div>
 
         </div>
