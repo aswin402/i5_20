@@ -95,7 +95,7 @@ export function Footer() {
 
           {/* Col 2: Platform Links (Col span 2) */}
           <div className="footer-column lg:col-span-2 flex flex-col gap-4 text-left">
-            <div className="font-mono text-xs sm:text-sm text-white/40 uppercase tracking-widest font-bold">
+            <div className="font-mono text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
               Platform
             </div>
             <div className="footer-col-links flex flex-col gap-2 font-mono text-xs sm:text-base text-white/60">
@@ -108,7 +108,7 @@ export function Footer() {
 
           {/* Col 3: Community Links (Col span 2) */}
           <div className="footer-column lg:col-span-2 flex flex-col gap-4 text-left">
-            <div className="font-mono text-xs sm:text-sm text-white/40 uppercase tracking-widest font-bold">
+            <div className="font-mono text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
               Community
             </div>
             <div className="footer-col-links flex flex-col gap-2 font-mono text-xs sm:text-base text-white/60">
@@ -121,7 +121,7 @@ export function Footer() {
 
           {/* Col 4: Newsletter text & signup (Col span 4) */}
           <div className="footer-column lg:col-span-4 flex flex-col gap-4 text-left">
-            <div className="font-mono text-xs sm:text-sm text-white/40 uppercase tracking-widest font-bold">
+            <div className="font-mono text-xs sm:text-sm text-primary uppercase tracking-widest font-bold">
               Stay Updated
             </div>
             <p className="text-white/50 font-body text-xs sm:text-base leading-relaxed max-w-sm">
