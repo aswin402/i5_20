@@ -115,8 +115,8 @@ export function IntelligenceNetwork() {
         </div>
 
         {/* Hyperliquid connected badge */}
-        <div className="mt-8 flex items-center gap-2 px-3 py-1.5 border border-primary/20 bg-primary/5 font-mono text-[10px] text-primary select-none rounded-none animate-pulse">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+        <div className="mt-8 flex items-center gap-2.5 px-4 py-2 border border-primary/20 bg-primary/5 font-mono text-xs sm:text-sm text-primary select-none rounded-none animate-pulse">
+          <span className="h-2 w-2 rounded-full bg-primary" />
           <span>NOW CONNECTED TO HYPERLIQUID MAINNET</span>
         </div>
       </div>
