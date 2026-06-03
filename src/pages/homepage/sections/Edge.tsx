@@ -357,30 +357,41 @@ export function Edge() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mobileScrollContainerRef = useRef<HTMLDivElement>(null);
   const [hoveredRowIndex, setHoveredRowIndex] = useState<number | null>(null);
+  const [mobileActiveIndex, setMobileActiveIndex] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
   const [lineDeltaY, setLineDeltaY] = useState<number>(0);
   const telemetryRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      setHoveredRowIndex(0);
-    }
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  const activeRow = isMobile ? mobileActiveIndex : hoveredRowIndex;
+
   const handleMobileScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    if (window.innerWidth >= 768) return;
+    if (!isMobile) return;
     const container = e.currentTarget;
     const scrollLeft = container.scrollLeft;
     const width = container.clientWidth;
     if (width === 0) return;
     const newIndex = Math.round(scrollLeft / width);
-    if (newIndex >= 0 && newIndex < 6 && newIndex !== hoveredRowIndex) {
-      setHoveredRowIndex(newIndex);
+    if (newIndex >= 0 && newIndex < 6 && newIndex !== mobileActiveIndex) {
+      setMobileActiveIndex(newIndex);
     }
   };
 
   const handleRowSelect = (idx: number) => {
-    setHoveredRowIndex(idx);
+    if (isMobile) {
+      setMobileActiveIndex(idx);
+    } else {
+      setHoveredRowIndex(idx);
+    }
     if (mobileScrollContainerRef.current) {
       const container = mobileScrollContainerRef.current;
       container.scrollTo({
@@ -391,13 +402,13 @@ export function Edge() {
   };
 
   useEffect(() => {
-    if (hoveredRowIndex === null || !telemetryRef.current) {
+    if (activeRow === null || !telemetryRef.current) {
       setLineDeltaY(0);
       return;
     }
 
     const calculateDeltaY = () => {
-      const rowEl = rowRefs.current[hoveredRowIndex];
+      const rowEl = rowRefs.current[activeRow];
       const telemetryEl = telemetryRef.current;
       if (!rowEl || !telemetryEl) return;
 
@@ -422,7 +433,7 @@ export function Edge() {
     return () => {
       window.removeEventListener('resize', calculateDeltaY);
     };
-  }, [hoveredRowIndex]);
+  }, [activeRow]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -580,9 +591,9 @@ export function Edge() {
             <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-hidden md:overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full lg:h-full lg:flex lg:flex-col">
               
               {/* Left arrow navigator on mobile */}
-              {hoveredRowIndex === 5 && (
+              {activeRow === 5 && (
                 <button
-                  onClick={() => handleRowSelect(hoveredRowIndex - 1)}
+                  onClick={() => handleRowSelect(activeRow - 1)}
                   className="absolute left-2 top-[62%] md:hidden z-40 bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full shadow-[0_0_10px_rgba(0,255,204,0.15)] animate-bounce-left transition-all duration-300 hover:bg-primary/20"
                   aria-label="Previous compare slide"
                 >
@@ -591,9 +602,9 @@ export function Edge() {
               )}
 
               {/* Right arrow navigator on mobile */}
-              {(hoveredRowIndex === 0 || hoveredRowIndex === null) && (
+              {activeRow === 0 && (
                 <button
-                  onClick={() => handleRowSelect(hoveredRowIndex === null ? 1 : hoveredRowIndex + 1)}
+                  onClick={() => handleRowSelect(activeRow + 1)}
                   className="absolute right-2 top-[62%] md:hidden z-40 bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full shadow-[0_0_10px_rgba(0,255,204,0.15)] animate-bounce-right transition-all duration-300 hover:bg-primary/20"
                   aria-label="Next compare slide"
                 >
@@ -631,20 +642,24 @@ export function Edge() {
                     key={idx} 
                     ref={(el) => { rowRefs.current[idx] = el; }}
                     className={`edge-row grid grid-cols-1 md:grid-cols-2 group border-white/10 transition-all duration-300 relative lg:flex-1 w-full shrink-0 snap-start md:w-auto md:shrink ${
-                      hoveredRowIndex === idx 
+                      activeRow === idx 
                         ? 'bg-primary/[0.02] border-y border-y-primary/20 scale-[1.005] z-20' 
                         : 'bg-transparent border-y border-y-transparent'
                     }`}
-                    onMouseEnter={() => setHoveredRowIndex(idx)}
-                    onMouseLeave={() => setHoveredRowIndex(null)}
+                    onMouseEnter={() => {
+                      if (!isMobile) setHoveredRowIndex(idx);
+                    }}
+                    onMouseLeave={() => {
+                      if (!isMobile) setHoveredRowIndex(null);
+                    }}
                   >
                     {/* Glowing outer border box (full 4-sided outline on hover) */}
-                    {hoveredRowIndex === idx && (
+                    {activeRow === idx && (
                       <div className="absolute inset-0 border border-primary shadow-[0_0_15px_rgba(0,255,204,0.25)] pointer-events-none z-30" />
                     )}
- 
+
                     {/* Connecting Data Bus line (crawls to the left towards HUD on desktop) */}
-                    {hoveredRowIndex === idx && (
+                    {!isMobile && hoveredRowIndex === idx && (
                       <div className="absolute -left-[48px] top-1/2 -translate-y-1/2 w-[48px] h-[4px] lg:flex hidden items-center justify-end overflow-visible pointer-events-none z-30">
                         <svg className="w-full h-full" overflow="visible">
                           <path 
@@ -663,11 +678,10 @@ export function Edge() {
                         </svg>
                       </div>
                     )}
- 
-                    {/* Left side: Traditional */}
+
                     <div className={`p-4 sm:p-6 border-b border-white/5 md:border-b-0 md:border-r border-white/10 flex items-center gap-3 transition-opacity duration-300 relative overflow-hidden z-10 ${
-                      hoveredRowIndex !== null && hoveredRowIndex !== idx ? 'opacity-25' : 'opacity-100'
-                    } ${hoveredRowIndex === idx ? 'text-red-500/40' : 'text-white/55'}`}>
+                      activeRow !== null && activeRow !== idx ? 'opacity-25' : 'opacity-100'
+                    } ${activeRow === idx ? 'text-red-500/40' : 'text-white/55'}`}>
                       {/* Sweep scan inside cell */}
                       {hoveredRowIndex === idx && (
                         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full animate-[sweep_0.8s_ease-out_forwards] pointer-events-none z-0" />
@@ -680,8 +694,8 @@ export function Edge() {
  
                     {/* Right side: i5 */}
                     <div className={`p-4 sm:p-6 flex items-center gap-3 transition-all duration-300 relative overflow-hidden z-10 ${
-                      hoveredRowIndex !== null && hoveredRowIndex !== idx ? 'opacity-25' : 'opacity-100'
-                    } ${hoveredRowIndex === idx ? 'bg-primary/5 text-primary' : 'bg-primary/[0.01] text-white'}`}>
+                      activeRow !== null && activeRow !== idx ? 'opacity-25' : 'opacity-100'
+                    } ${activeRow === idx ? 'bg-primary/5 text-primary' : 'bg-primary/[0.01] text-white'}`}>
                       {/* Sweep scan inside cell */}
                       {hoveredRowIndex === idx && (
                         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full animate-[sweep_0.8s_ease-out_forwards] pointer-events-none z-0" />
@@ -689,18 +703,18 @@ export function Edge() {
                       
                       {/* Checkmark wrapper containing neon concentric ripples */}
                       <div className="relative flex items-center justify-center shrink-0 w-6 h-6 z-10">
-                        {hoveredRowIndex === idx && (
+                        {activeRow === idx && (
                           <>
                             <span className="absolute inset-0 rounded-full border border-primary/50 animate-[ripple_0.8s_ease-out_infinite]" />
                             <span className="absolute inset-0 rounded-full border border-primary/20 animate-[ripple_0.8s_ease-out_infinite_0.3s]" />
                           </>
                         )}
                         <Check className={`edge-check-icon w-4 h-4 text-primary shrink-0 transition-transform duration-300 relative z-10 ${
-                          hoveredRowIndex === idx ? 'scale-125 rotate-6 filter drop-shadow-[0_0_5px_#00ffcc]' : 'scale-100'
+                          activeRow === idx ? 'scale-125 rotate-6 filter drop-shadow-[0_0_5px_#00ffcc]' : 'scale-100'
                         }`} />
                       </div>
                       
-                      <span className={`relative z-10 ${hoveredRowIndex === idx ? 'font-black tracking-wide' : 'font-bold tracking-wide'}`}>
+                      <span className={`relative z-10 ${activeRow === idx ? 'font-black tracking-wide' : 'font-bold tracking-wide'}`}>
                         {row.i5}
                       </span>
                     </div>
@@ -717,7 +731,7 @@ export function Edge() {
                     key={idx}
                     onClick={() => handleRowSelect(idx)}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
-                      hoveredRowIndex === idx || (hoveredRowIndex === null && idx === 0) ? 'bg-primary w-4' : 'bg-white/20 w-1.5'
+                      activeRow === idx ? 'bg-primary w-4' : 'bg-white/20 w-1.5'
                     }`}
                     aria-label={`Go to row ${idx + 1}`}
                   />
