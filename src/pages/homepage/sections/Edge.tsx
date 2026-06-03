@@ -461,35 +461,37 @@ export function Edge() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch items-start">
           
           {/* Left Column: Header & Dynamic Telemetry Console */}
-          <div className="lg:col-span-4 flex flex-col justify-start lg:sticky lg:top-24 h-fit">
-            {/* Header */}
-            <div className="edge-header max-w-3xl text-left">
-              <span className="text-[10px] sm:text-xs font-mono tracking-widest text-primary block mb-2">// COGNITIVE DELTA</span>
-              <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase leading-none">
-                THE <span className='lowercase'>i5</span> EDGE
-              </h2>
-              <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary">
-                <div className='font-bold text-xl'>Traditional vs<span className='text-white lowercase'> i5</span></div>
+          <div className="lg:col-span-4 w-full">
+            <div className="lg:sticky lg:top-24 h-fit flex flex-col justify-start">
+              {/* Header */}
+              <div className="edge-header max-w-3xl text-left">
+                <span className="text-[10px] sm:text-xs font-mono tracking-widest text-primary block mb-2">// COGNITIVE DELTA</span>
+                <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase leading-none">
+                  THE <span className='lowercase'>i5</span> EDGE
+                </h2>
+                <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary">
+                  <div className='font-bold text-xl'>Traditional vs<span className='text-white lowercase'> i5</span></div>
+                </div>
+                <p className="text-white/70 font-body text-sm sm:text-base md:text-lg mt-6 leading-relaxed">
+                  Every row represents a paradigm shift in execution, intelligence, and coordination. Stop guessing — <span className="text-primary font-bold">start knowing.</span>
+                </p>
               </div>
-              <p className="text-white/70 font-body text-sm sm:text-base md:text-lg mt-6 leading-relaxed">
-                Every row represents a paradigm shift in execution, intelligence, and coordination. Stop guessing — <span className="text-primary font-bold">start knowing.</span>
-              </p>
-            </div>
-            
-            {/* Live Telemetry HUD (Desktop only) */}
-            <div className="hidden lg:block">
-              <I5DeltaAnalyzer activeRow={hoveredRowIndex} />
+              
+              {/* Live Telemetry HUD (Desktop only) */}
+              <div className="hidden lg:block">
+                <I5DeltaAnalyzer activeRow={hoveredRowIndex} />
+              </div>
             </div>
           </div>
 
           {/* Right Column: Comparison Table */}
-          <div className="lg:col-span-8 w-full">
-            <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full">
+          <div className="lg:col-span-8 w-full lg:h-full">
+            <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full lg:h-full lg:flex lg:flex-col">
               {/* Table Header Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-white/10 bg-white/5 font-mono text-xs uppercase tracking-widest">
+              <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-white/10 bg-white/5 font-mono text-xs uppercase tracking-widest shrink-0">
                 <div className="p-4 sm:p-6 text-white/50 border-b md:border-b-0 md:border-r border-white/10 flex items-center justify-between">
                   <span>Traditional Trading</span>
                   <span className="text-red-500/80 font-bold">[ LIMITED ]</span>
@@ -501,7 +503,7 @@ export function Edge() {
               </div>
 
               {/* Comparison Rows */}
-              <div className="divide-y divide-white/5 font-mono text-sm sm:text-base">
+              <div className="divide-y divide-white/5 font-mono text-sm sm:text-base lg:flex-1 lg:flex lg:flex-col">
                 {[
                   { traditional: 'Manual analysis', i5: 'AI-assisted intelligence' },
                   { traditional: 'Fragmented tools', i5: 'Unified terminal' },
@@ -512,7 +514,7 @@ export function Edge() {
                 ].map((row, idx) => (
                   <div 
                     key={idx} 
-                    className={`edge-row grid grid-cols-1 md:grid-cols-2 group border-white/10 transition-all duration-300 relative ${
+                    className={`edge-row grid grid-cols-1 md:grid-cols-2 group border-white/10 transition-all duration-300 relative lg:flex-1 ${
                       hoveredRowIndex === idx 
                         ? 'bg-primary/[0.02] border-y border-y-primary/20 scale-[1.005] z-20' 
                         : 'bg-transparent border-y border-y-transparent'
