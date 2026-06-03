@@ -474,7 +474,7 @@ export function Edge() {
               <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary">
                 <div className='font-bold text-xl'>Traditional vs<span className='text-white lowercase'> i5</span></div>
               </div>
-              <p className="text-white/60 font-body text-sm sm:text-base mt-6 leading-relaxed">
+              <p className="text-white/70 font-body text-sm sm:text-base md:text-lg mt-6 leading-relaxed">
                 Every row represents a paradigm shift in execution, intelligence, and coordination. Stop guessing — <span className="text-primary font-bold">start knowing.</span>
               </p>
             </div>

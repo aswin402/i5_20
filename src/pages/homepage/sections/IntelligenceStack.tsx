@@ -504,7 +504,7 @@ export function IntelligenceStack() {
             <h2 className="text-4xl md:text-5xl font-display font-black text-white leading-none">
               THE <span className="text-primary lowercase">i5</span> INTELLIGENCE STACK
             </h2>
-            <p className="text-white/60 font-body text-sm sm:text-base mt-4 leading-relaxed">
+            <p className="text-white/70 font-body text-sm sm:text-base md:text-lg mt-4 leading-relaxed">
               Most platforms display data. i5 interprets it. Each layer compounds the next — perception sharpens context, context sharpens reasoning, reasoning directs action, action feeds reflection.
             </p>
           </div>

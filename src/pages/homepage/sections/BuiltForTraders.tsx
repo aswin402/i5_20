@@ -440,7 +440,7 @@ export function BuiltForTraders() {
           <div className="mt-4 flex flex-col gap-1 font-display font-bold text-lg text-primary uppercase">
             <div>One platform. Every workflow.</div>
           </div>
-          <p className="text-white/60 font-body text-base sm:text-lg mt-6 leading-relaxed">
+          <p className="text-white/70 font-body text-sm sm:text-base md:text-lg mt-6 leading-relaxed">
             From sub-second scalping to institutional portfolio management, i5 adapts to how you trade.
           </p>
         </div>

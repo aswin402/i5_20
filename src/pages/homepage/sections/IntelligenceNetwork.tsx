@@ -100,7 +100,7 @@ export function IntelligenceNetwork() {
           <span>Execute smarter.</span>
         </div>
 
-        <p className="text-white/60 font-body text-xs sm:text-sm max-w-2xl leading-relaxed mt-2">
+        <p className="text-white/70 font-body text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mt-2">
           The intelligence gap is closing. Secure your access to the i5 network today and start trading with an institutional edge.
         </p>
 

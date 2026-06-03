@@ -123,7 +123,7 @@ export function CoreFeatures() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white uppercase leading-[1.1]">
             Everything you need to read the market and act on it.
           </h2>
-          <p className="text-white/60 font-body text-base sm:text-lg mt-6 leading-relaxed">
+          <p className="text-white/70 font-body text-sm sm:text-base md:text-lg mt-6 leading-relaxed">
             Six core capabilities. One integrated intelligence layer. <span className="text-primary font-bold">Zero guesswork.</span>
           </p>
         </div>
