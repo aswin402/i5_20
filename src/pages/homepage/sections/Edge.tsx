@@ -516,14 +516,13 @@ export function Edge() {
                   Every row represents a paradigm shift in execution, intelligence, and coordination. Stop guessing — <span className="text-primary font-bold">start knowing.</span>
                 </p>
               </div>
-              
-              {/* Live Telemetry HUD (Desktop only) */}
-              <div ref={telemetryRef} className="hidden lg:block">
+                           {/* Live Telemetry HUD */}
+              <div ref={telemetryRef} className="block">
                 <I5DeltaAnalyzer activeRow={hoveredRowIndex} />
               </div>
             </div>
           </div>
-
+ 
           {/* Right Column: Comparison Table */}
           <div className="lg:col-span-8 w-full lg:h-full">
             <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full lg:h-full lg:flex lg:flex-col">
@@ -538,7 +537,7 @@ export function Edge() {
                   <span className="text-primary font-black animate-pulse">[ WEAPONIZED ]</span>
                 </div>
               </div>
-
+ 
               {/* Comparison Rows */}
               <div className="divide-y divide-white/5 font-mono text-sm sm:text-base lg:flex-1 lg:flex lg:flex-col">
                 {[
@@ -564,7 +563,7 @@ export function Edge() {
                     {hoveredRowIndex === idx && (
                       <div className="absolute inset-0 border border-primary shadow-[0_0_15px_rgba(0,255,204,0.25)] pointer-events-none z-30" />
                     )}
-
+ 
                     {/* Connecting Data Bus line (crawls to the left towards HUD on desktop) */}
                     {hoveredRowIndex === idx && (
                       <div className="absolute -left-[48px] top-1/2 -translate-y-1/2 w-[48px] h-[4px] lg:flex hidden items-center justify-end overflow-visible pointer-events-none z-30">
@@ -585,7 +584,7 @@ export function Edge() {
                         </svg>
                       </div>
                     )}
-
+ 
                     {/* Left side: Traditional */}
                     <div className={`p-4 sm:p-6 md:border-r border-white/10 flex items-center gap-3 transition-opacity duration-300 relative overflow-hidden z-10 ${
                       hoveredRowIndex !== null && hoveredRowIndex !== idx ? 'opacity-25' : 'opacity-100'
@@ -599,7 +598,7 @@ export function Edge() {
                         {row.traditional}
                       </span>
                     </div>
-
+ 
                     {/* Right side: i5 */}
                     <div className={`p-4 sm:p-6 flex items-center gap-3 transition-all duration-300 relative overflow-hidden z-10 ${
                       hoveredRowIndex !== null && hoveredRowIndex !== idx ? 'opacity-25' : 'opacity-100'
@@ -629,11 +628,6 @@ export function Edge() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Live Telemetry HUD (Mobile only) */}
-            <div className="block lg:hidden mt-6">
-              <I5DeltaAnalyzer activeRow={hoveredRowIndex} />
             </div>
           </div>
 
