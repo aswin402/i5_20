@@ -145,7 +145,7 @@ export function CoreFeatures() {
               <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 AI Signal Engine
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs sm:text-base text-white/60 font-body leading-relaxed">
                 Order flow + wallet behavior + funding + sentiment fused into ranked, conviction-scored trade setups with explainable reasoning.
               </p>
             </div>
@@ -171,7 +171,7 @@ export function CoreFeatures() {
               <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Smart-Money Tracking
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs sm:text-base text-white/60 font-body leading-relaxed">
                 Live positions, PnL, leverage, and historical behavior of elite Hyperliquid wallets — in real time.
               </p>
             </div>
@@ -194,7 +194,7 @@ export function CoreFeatures() {
               <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Cohort Analytics
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs sm:text-base text-white/60 font-body leading-relaxed">
                 Segment the market into whales, elites, retail, and the liquidated. See positioning shift before price does.
               </p>
             </div>
@@ -217,7 +217,7 @@ export function CoreFeatures() {
               <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Liquidation Heatmaps
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs sm:text-base text-white/60 font-body leading-relaxed">
                 Visualize where leverage is clustered. Trade liquidity events instead of getting caught in them.
               </p>
             </div>
@@ -240,7 +240,7 @@ export function CoreFeatures() {
               <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Real-Time Alerts
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs sm:text-base text-white/60 font-body leading-relaxed">
                 Whale activity, funding swings, narrative acceleration — delivered to mobile, Telegram, Discord, or webhooks.
               </p>
             </div>
@@ -263,7 +263,7 @@ export function CoreFeatures() {
               <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                 Social Trading Streams
               </h3>
-              <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+              <p className="text-xs sm:text-base text-white/60 font-body leading-relaxed">
                 Every asset becomes a live intelligence feed. Bloomberg Terminal meets Stocktwits meets Hyperliquid.
               </p>
             </div>

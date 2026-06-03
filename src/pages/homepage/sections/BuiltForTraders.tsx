@@ -470,7 +470,7 @@ export function BuiltForTraders() {
                 <h3 className="text-xl font-display font-black text-white uppercase tracking-tight mb-3">
                   {card.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-white/60 font-body leading-relaxed">
+                <p className="text-xs sm:text-base text-white/60 font-body leading-relaxed">
                   {card.desc}
                 </p>
                 
