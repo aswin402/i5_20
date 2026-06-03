@@ -356,6 +356,43 @@ function I5DeltaAnalyzer({ activeRow }: DeltaAnalyzerProps) {
 export function Edge() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredRowIndex, setHoveredRowIndex] = useState<number | null>(null);
+  const [lineDeltaY, setLineDeltaY] = useState<number>(0);
+  const telemetryRef = useRef<HTMLDivElement>(null);
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (hoveredRowIndex === null || !telemetryRef.current) {
+      setLineDeltaY(0);
+      return;
+    }
+
+    const calculateDeltaY = () => {
+      const rowEl = rowRefs.current[hoveredRowIndex];
+      const telemetryEl = telemetryRef.current;
+      if (!rowEl || !telemetryEl) return;
+
+      const rowRect = rowEl.getBoundingClientRect();
+      const telemetryRect = telemetryEl.getBoundingClientRect();
+
+      const rowCenterY = rowRect.top + rowRect.height / 2;
+      const telemetryTop = telemetryRect.top;
+      const telemetryBottom = telemetryRect.bottom;
+
+      if (rowCenterY < telemetryTop) {
+        setLineDeltaY(telemetryTop - rowCenterY);
+      } else if (rowCenterY > telemetryBottom) {
+        setLineDeltaY(telemetryBottom - rowCenterY);
+      } else {
+        setLineDeltaY(0);
+      }
+    };
+
+    calculateDeltaY();
+    window.addEventListener('resize', calculateDeltaY);
+    return () => {
+      window.removeEventListener('resize', calculateDeltaY);
+    };
+  }, [hoveredRowIndex]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -481,7 +518,7 @@ export function Edge() {
               </div>
               
               {/* Live Telemetry HUD (Desktop only) */}
-              <div className="hidden lg:block">
+              <div ref={telemetryRef} className="hidden lg:block">
                 <I5DeltaAnalyzer activeRow={hoveredRowIndex} />
               </div>
             </div>
@@ -514,6 +551,7 @@ export function Edge() {
                 ].map((row, idx) => (
                   <div 
                     key={idx} 
+                    ref={(el) => { rowRefs.current[idx] = el; }}
                     className={`edge-row grid grid-cols-1 md:grid-cols-2 group border-white/10 transition-all duration-300 relative lg:flex-1 ${
                       hoveredRowIndex === idx 
                         ? 'bg-primary/[0.02] border-y border-y-primary/20 scale-[1.005] z-20' 
@@ -532,7 +570,7 @@ export function Edge() {
                       <div className="absolute -left-[48px] top-1/2 -translate-y-1/2 w-[48px] h-[4px] lg:flex hidden items-center justify-end overflow-visible pointer-events-none z-30">
                         <svg className="w-full h-full" overflow="visible">
                           <path 
-                            d="M 48 2 L 0 2" 
+                            d={`M 48 2 L 0 ${2 + lineDeltaY}`} 
                             stroke="#00ffcc" 
                             strokeWidth="2" 
                             strokeDasharray="4, 4" 
@@ -541,7 +579,7 @@ export function Edge() {
                               filter: 'drop-shadow(0px 0px 4px #00ffcc)'
                             }}
                           />
-                          <circle cx="0" cy="2" r="3" fill="#00ffcc">
+                          <circle cx="0" cy={2 + lineDeltaY} r="3" fill="#00ffcc">
                             <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite" />
                           </circle>
                         </svg>
