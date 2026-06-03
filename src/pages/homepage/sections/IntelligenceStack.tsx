@@ -517,7 +517,7 @@ export function IntelligenceStack() {
         {/* Content Row: Two Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: BIG Image */}
-          <div className="stack-image-column lg:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg sticky top-[80px] lg:relative lg:top-auto overflow-hidden h-[280px] lg:h-auto z-20">
+          <div className="stack-image-column lg:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg sticky top-[80px] lg:relative lg:top-auto overflow-hidden h-[280px] sm:h-[220px] lg:h-auto z-20">
             <div className="absolute inset-0 bg-radial-gradient from-primary/10 to-transparent pointer-events-none hidden lg:block" />
             {/* Grid background details */}
             <div className="absolute inset-0 opacity-15 pointer-events-none hidden lg:block" style={{ backgroundImage: 'radial-gradient(var(--color-primary, #00ffcc) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
@@ -556,9 +556,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-7
+              sm:py-3.5
               sm:px-8
-              sm:min-h-[150px]
+              sm:min-h-[96px]
               border-2
               border-white/15
               cursor-pointer
@@ -569,7 +569,7 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(1)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
@@ -615,9 +615,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-7
+              sm:py-3.5
               sm:px-8
-              sm:min-h-[150px]
+              sm:min-h-[96px]
               border-2
               border-white/15
               cursor-pointer
@@ -628,7 +628,7 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(2)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
@@ -674,9 +674,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-7
+              sm:py-3.5
               sm:px-8
-              sm:min-h-[150px]
+              sm:min-h-[96px]
               border-2
               border-white/15
               cursor-pointer
@@ -687,7 +687,7 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(3)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
@@ -733,9 +733,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-7
+              sm:py-3.5
               sm:px-8
-              sm:min-h-[150px]
+              sm:min-h-[96px]
               border-2
               border-white/15
               cursor-pointer
@@ -746,7 +746,7 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(4)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
@@ -792,9 +792,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-7
+              sm:py-3.5
               sm:px-8
-              sm:min-h-[150px]
+              sm:min-h-[96px]
               border-2
               border-white/15
               cursor-pointer
@@ -805,7 +805,7 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(5)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[38px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
