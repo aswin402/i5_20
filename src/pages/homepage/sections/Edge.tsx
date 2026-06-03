@@ -581,7 +581,7 @@ export function Edge() {
               </div>
                            {/* Live Telemetry HUD */}
               <div ref={telemetryRef} className="block">
-                <I5DeltaAnalyzer activeRow={hoveredRowIndex} />
+                <I5DeltaAnalyzer activeRow={activeRow} />
               </div>
             </div>
           </div>
