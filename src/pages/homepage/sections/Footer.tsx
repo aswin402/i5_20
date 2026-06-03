@@ -82,23 +82,23 @@ export function Footer() {
           
           {/* Col 1: Logo & Tagline (Col span 4) */}
           <div className="footer-column lg:col-span-4 flex flex-col gap-4 text-left">
-            <div className="flex items-center gap-2">
-              <img src={logo} alt="i5 Logo" className="h-7 w-auto object-contain" />
-              <span className="text-white font-display font-black text-sm uppercase tracking-wider">
+            <div className="flex items-center gap-2.5">
+              <img src={logo} alt="i5 Logo" className="h-9 sm:h-10 lg:h-11 w-auto object-contain" />
+              <span className="text-white font-display font-black text-base sm:text-lg uppercase tracking-wider">
                 Intelligence Network
               </span>
             </div>
-            <p className="text-white/50 font-body text-xs leading-relaxed max-w-sm">
+            <p className="text-white/50 font-body text-xs sm:text-base leading-relaxed max-w-sm">
               The intelligence layer built for traders on Hyperliquid mainnet.
             </p>
           </div>
 
           {/* Col 2: Platform Links (Col span 2) */}
           <div className="footer-column lg:col-span-2 flex flex-col gap-4 text-left">
-            <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest font-bold">
+            <div className="font-mono text-xs sm:text-sm text-white/40 uppercase tracking-widest font-bold">
               Platform
             </div>
-            <div className="footer-col-links flex flex-col gap-2 font-mono text-xs text-white/60">
+            <div className="footer-col-links flex flex-col gap-2 font-mono text-xs sm:text-base text-white/60">
               <a href="#why-we-win" className="cursor-pointer">Intelligence Stack</a>
               <a href="#core-features" className="cursor-pointer">Signal Engine</a>
               <a href="#core-features" className="cursor-pointer">Wallet Tracking</a>
@@ -108,10 +108,10 @@ export function Footer() {
 
           {/* Col 3: Community Links (Col span 2) */}
           <div className="footer-column lg:col-span-2 flex flex-col gap-4 text-left">
-            <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest font-bold">
+            <div className="font-mono text-xs sm:text-sm text-white/40 uppercase tracking-widest font-bold">
               Community
             </div>
-            <div className="footer-col-links flex flex-col gap-2 font-mono text-xs text-white/60">
+            <div className="footer-col-links flex flex-col gap-2 font-mono text-xs sm:text-base text-white/60">
               <a href="https://x.com/ifivelabs" target="_blank" rel="noopener noreferrer" className="cursor-pointer">X (Twitter)</a>
               <a href="https://t.me/I5Labs" target="_blank" rel="noopener noreferrer" className="cursor-pointer">Telegram</a>
               <a href="#" className="cursor-pointer">Blog</a>
@@ -121,10 +121,10 @@ export function Footer() {
 
           {/* Col 4: Newsletter text & signup (Col span 4) */}
           <div className="footer-column lg:col-span-4 flex flex-col gap-4 text-left">
-            <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest font-bold">
+            <div className="font-mono text-xs sm:text-sm text-white/40 uppercase tracking-widest font-bold">
               Stay Updated
             </div>
-            <p className="text-white/50 font-body text-xs leading-relaxed max-w-sm">
+            <p className="text-white/50 font-body text-xs sm:text-base leading-relaxed max-w-sm">
               Stay updated with the latest market intelligence and network updates.
             </p>
             {/* Optional premium email signup element */}
@@ -132,9 +132,9 @@ export function Footer() {
               <input 
                 type="email" 
                 placeholder="ENTER EMAIL ADDRESS" 
-                className="bg-transparent border-0 outline-none px-3 py-2 text-[10px] font-mono flex-1 text-white placeholder-white/20 uppercase"
+                className="bg-transparent border-0 outline-none px-3 py-2 text-xs sm:text-sm font-mono flex-1 text-white placeholder-white/20 uppercase"
               />
-              <button className="footer-signup-btn bg-primary/10 border-l border-white/10 px-4 text-[10px] font-mono font-bold text-primary uppercase cursor-pointer">
+              <button className="footer-signup-btn bg-primary/10 border-l border-white/10 px-5 text-xs sm:text-sm font-mono font-bold text-primary uppercase cursor-pointer">
                 SUBMIT
               </button>
             </div>
@@ -143,7 +143,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Copyright & Legal Links */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] text-white/30">
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] sm:text-xs text-white/30">
           <div>
             © 2026 i5 Intelligence Network. Built on Hyperliquid.
           </div>
