@@ -583,7 +583,7 @@ export function IntelligenceStack() {
                       DATA LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
                     Hyperliquid order flow, perps, funding, OI, volatility, liquidity maps, and liquidation streams — ingested in real time.
                   </p>
                 </div>
@@ -641,7 +641,7 @@ export function IntelligenceStack() {
                       AGENT LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
                     Specialized agents — Signal, Narrative, Risk, Execution, Learning — coordinate across the entire trading workflow.
                   </p>
                 </div>
@@ -699,7 +699,7 @@ export function IntelligenceStack() {
                       NETWORK LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
                     Traders publish signals, validate setups, and earn transparent on-chain reputation. Merit-based intelligence at scale.
                   </p>
                 </div>
@@ -757,7 +757,7 @@ export function IntelligenceStack() {
                       DETECTION LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
                     Whale transfers, funding spikes, volume anomalies, and narrative shifts — surfaced as ranked, contextual events.
                   </p>
                 </div>
@@ -815,7 +815,7 @@ export function IntelligenceStack() {
                       ACTION LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
                     From signal to fill in one workflow. One-click trades, dynamic stops, scaling, and policy-bound automation.
                   </p>
                 </div>
