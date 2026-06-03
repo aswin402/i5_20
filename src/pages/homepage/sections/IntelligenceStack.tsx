@@ -553,7 +553,8 @@ export function IntelligenceStack() {
               top-0
               lg:relative
               lg:top-auto
-              bg-black/80
+              bg-black
+              lg:bg-black/80
               p-4
               sm:py-7
               sm:px-8
@@ -611,7 +612,8 @@ export function IntelligenceStack() {
               top-0
               lg:relative
               lg:top-auto
-              bg-black/80
+              bg-black
+              lg:bg-black/80
               p-4
               sm:py-7
               sm:px-8
@@ -669,7 +671,8 @@ export function IntelligenceStack() {
               top-0
               lg:relative
               lg:top-auto
-              bg-black/80
+              bg-black
+              lg:bg-black/80
               p-4
               sm:py-7
               sm:px-8
@@ -727,7 +730,8 @@ export function IntelligenceStack() {
               top-0
               lg:relative
               lg:top-auto
-              bg-black/80
+              bg-black
+              lg:bg-black/80
               p-4
               sm:py-7
               sm:px-8
@@ -785,7 +789,8 @@ export function IntelligenceStack() {
               top-0
               lg:relative
               lg:top-auto
-              bg-black/80
+              bg-black
+              lg:bg-black/80
               p-4
               sm:py-7
               sm:px-8
