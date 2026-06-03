@@ -44,7 +44,7 @@ export function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 h-20 border-b border-white/10 bg-black/90 backdrop-blur-md z-50 font-mono select-none flex items-center">
-        <div className="max-w-7xl mx-auto w-full h-full flex items-center justify-between px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
+        <div className="w-full h-full flex items-center justify-between px-3 sm:pl-[72px] sm:pr-[72px] md:pl-[112px] md:pr-[112px] lg:pl-[160px] lg:pr-[120px] xl:pl-[208px] xl:pr-[120px]">
           
           {/* Left Column: Brand Logo, Name, Divider, Links */}
           <div className="flex items-center gap-2.5 lg:gap-3.5 xl:gap-6 shrink-0 h-full">
@@ -57,10 +57,6 @@ export function Navbar() {
               className="flex items-center gap-1.5 hover:opacity-85 transition-opacity cursor-pointer h-10 shrink-0"
             >
               <img src={logo} alt="i5 Logo" className="h-8 sm:h-9 lg:h-10 w-auto object-contain" />
-              {/* Brand text: Hidden below xl (1280px) to save space on smaller screens */}
-              <span className="text-[10px] lg:text-xs xl:text-sm font-display font-extrabold tracking-widest text-white uppercase ml-1.5 hidden xl:inline-block shrink-0">
-                Intelligence Network
-              </span>
             </button>
             
             {/* Left Divider Line (shown on md and above) */}
