@@ -459,7 +459,7 @@ export function IntelligenceStack() {
         {/* Top Header Block */}
         <div className="stack-top-header flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-white/10">
           <div className="max-w-3xl">
-            <span className="text-[10px] font-mono tracking-widest text-primary block mb-2">// STACK ARCHITECTURE</span>
+            <span className="text-[10px] sm:text-xs font-mono tracking-widest text-primary block mb-2">// STACK ARCHITECTURE</span>
             <h2 className="text-4xl md:text-5xl font-display font-black text-white leading-none">
               THE <span className="text-primary lowercase">i5</span> INTELLIGENCE STACK
             </h2>
