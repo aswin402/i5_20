@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { X, Check } from 'lucide-react';
+import { X, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -530,6 +530,20 @@ export function Edge() {
           60% { transform: translate(0px, 0px) skew(0deg); }
           100% { transform: translate(0, 0) skew(0deg); }
         }
+        @keyframes bounce-left {
+          0%, 100% { transform: translateY(-50%) translateX(0); }
+          50% { transform: translateY(-50%) translateX(-4px); }
+        }
+        @keyframes bounce-right {
+          0%, 100% { transform: translateY(-50%) translateX(0); }
+          50% { transform: translateY(-50%) translateX(4px); }
+        }
+        .animate-bounce-left {
+          animation: bounce-left 1.2s infinite ease-in-out;
+        }
+        .animate-bounce-right {
+          animation: bounce-right 1.2s infinite ease-in-out;
+        }
       `}</style>
 
       {/* Glow background */}
@@ -564,6 +578,29 @@ export function Edge() {
           {/* Right Column: Comparison Table */}
           <div className="lg:col-span-8 w-full lg:h-full">
             <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-hidden md:overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full lg:h-full lg:flex lg:flex-col">
+              
+              {/* Left arrow navigator on mobile */}
+              {hoveredRowIndex !== null && hoveredRowIndex > 0 && (
+                <button
+                  onClick={() => handleRowSelect(hoveredRowIndex - 1)}
+                  className="absolute left-2 top-[62%] md:hidden z-40 bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full shadow-[0_0_10px_rgba(0,255,204,0.15)] animate-bounce-left transition-all duration-300 hover:bg-primary/20"
+                  aria-label="Previous compare slide"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+              )}
+
+              {/* Right arrow navigator on mobile */}
+              {(hoveredRowIndex === null || hoveredRowIndex < 5) && (
+                <button
+                  onClick={() => handleRowSelect(hoveredRowIndex === null ? 1 : hoveredRowIndex + 1)}
+                  className="absolute right-2 top-[62%] md:hidden z-40 bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full shadow-[0_0_10px_rgba(0,255,204,0.15)] animate-bounce-right transition-all duration-300 hover:bg-primary/20"
+                  aria-label="Next compare slide"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
+
               {/* Table Header Row */}
               <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-white/10 bg-white/5 font-mono text-xs uppercase tracking-widest shrink-0">
                 <div className="p-4 sm:p-6 text-white/50 border-b md:border-b-0 md:border-r border-white/10 flex items-center justify-between">
