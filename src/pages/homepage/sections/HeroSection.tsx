@@ -219,7 +219,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
       )}
 
       {/* Asymmetrical Grid layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-center relative z-10 w-full max-w-7xl self-center sm:ml-6 sm:mr-auto md:ml-12 md:mr-auto lg:ml-16 lg:mr-auto xl:ml-24 xl:mr-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-center relative z-10 w-full max-w-7xl self-start sm:ml-6 md:ml-12 lg:ml-20 xl:ml-32">
         
         {/* Slogans and CTAs */}
         <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-4 sm:gap-6 text-center lg:text-left items-center lg:items-start w-full">
