@@ -226,10 +226,10 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           
           {/* Top Badge: Now in Private Beta | Built on Hyperliquid */}
           <div className="self-center lg:self-start hero-fade-in max-w-full">
-            <div className="inline-flex flex-wrap items-center justify-center gap-2 bg-primary/10 border border-primary/20 px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider text-primary uppercase backdrop-blur-sm">
-              <span className="relative flex h-2 w-2 shrink-0">
+            <div className="inline-flex flex-wrap items-center justify-center gap-2 bg-primary/10 border border-primary/20 px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-mono font-bold tracking-wider text-primary uppercase backdrop-blur-sm">
+              <span className="relative flex h-2.5 w-2.5 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
               </span>
               <span>NOW IN PRIVATE BETA</span>
               <span className="text-white/20">|</span>
@@ -253,8 +253,8 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             
             {/* Intelligence OS for Markets Badge */}
             <div className="self-center lg:self-start mt-2 hero-fade-in">
-              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/35 px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/35 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase">
+                <span className="h-2 w-2 rounded-full bg-primary" />
                 INTELLIGENCE OS FOR MARKETS
               </div>
             </div>
