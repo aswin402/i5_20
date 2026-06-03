@@ -531,8 +531,8 @@ export function IntelligenceStack() {
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
-              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <div>
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
+                <div className="flex flex-col justify-center flex-1">
                   <div className="flex items-center gap-3 mb-1.5">
                     <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i1</span>
                     <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
@@ -589,8 +589,8 @@ export function IntelligenceStack() {
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
-              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <div>
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
+                <div className="flex flex-col justify-center flex-1">
                   <div className="flex items-center gap-3 mb-1.5">
                     <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i2</span>
                     <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
@@ -647,8 +647,8 @@ export function IntelligenceStack() {
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
-              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <div>
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
+                <div className="flex flex-col justify-center flex-1">
                   <div className="flex items-center gap-3 mb-1.5">
                     <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i3</span>
                     <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
@@ -705,8 +705,8 @@ export function IntelligenceStack() {
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
-              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <div>
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
+                <div className="flex flex-col justify-center flex-1">
                   <div className="flex items-center gap-3 mb-1.5">
                     <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i4</span>
                     <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
@@ -763,8 +763,8 @@ export function IntelligenceStack() {
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
-              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <div>
+              <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
+                <div className="flex flex-col justify-center flex-1">
                   <div className="flex items-center gap-3 mb-1.5">
                     <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i5</span>
                     <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
