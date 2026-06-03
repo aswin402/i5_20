@@ -2,6 +2,8 @@ import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import heroVideoMob from '../../../assets/herovideomob.mp4';
+import signal1 from '../../../assets/signal1.png';
+import signal2 from '../../../assets/signal2.png';
 
 interface HeroSectionProps {
   triggerShake: () => void;
@@ -10,6 +12,7 @@ interface HeroSectionProps {
 export function HeroSection({ triggerShake }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentSignal, setCurrentSignal] = useState(1);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -18,6 +21,13 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSignal((prev) => (prev === 1 ? 2 : 1));
+    }, 500);
+    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -247,7 +257,13 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                 <span className="block">noise to</span>
               </span>
               <span className="hero-title-line block overflow-hidden mt-1 sm:mt-2">
-                <span className="text-primary drop-shadow-[0_0_15px_rgba(0,255,204,0.25)] block">signals</span>
+                <span className="text-primary drop-shadow-[0_0_15px_rgba(0,255,204,0.25)] block">
+                  <img
+                    src={currentSignal === 1 ? signal1 : signal2}
+                    alt="signals"
+                    className="h-[32px] sm:h-[50px] md:h-[60px] lg:h-[75px] w-auto object-contain inline-block align-middle"
+                  />
+                </span>
               </span>
             </h1>
             
