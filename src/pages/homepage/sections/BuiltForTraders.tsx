@@ -263,6 +263,7 @@ export function BuiltForTraders() {
   const [isAnimating, setIsAnimating] = useState(false);
   const touchStartX = useRef(0);
   const hasSwiped = useRef(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -365,12 +366,14 @@ export function BuiltForTraders() {
 
   const handleShuffleNext = () => {
     if (isAnimating) return;
+    setHasInteracted(true);
     const nextIdx = (mobileIndex + 1) % 5;
     shuffleCard(nextIdx, 'right');
   };
 
   const handleDotClick = (targetIdx: number) => {
     if (isAnimating || targetIdx === mobileIndex) return;
+    setHasInteracted(true);
     const direction = targetIdx > mobileIndex ? 'right' : 'left';
     shuffleCard(targetIdx, direction);
   };
@@ -387,6 +390,7 @@ export function BuiltForTraders() {
 
     if (Math.abs(diffX) > 60) {
       hasSwiped.current = true;
+      setHasInteracted(true);
       if (diffX > 0) {
         // Swiped right -> move card to the right (direction: 'right'), show previous card
         const prevIdx = (mobileIndex - 1 + 5) % 5;
@@ -435,6 +439,27 @@ export function BuiltForTraders() {
           50% { transform: translate(1px, 1px) skew(-1deg); }
           60% { transform: translate(0px, 0px) skew(0deg); }
           100% { transform: translate(0, 0) skew(0deg); }
+        }
+        @keyframes tap-gesture {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+          }
+          50% {
+            transform: translate(-3px, 3px) scale(0.9);
+          }
+        }
+        @keyframes tap-ripple {
+          0% {
+            transform: scale(0.4);
+            opacity: 0.8;
+          }
+          50% {
+            opacity: 0.5;
+          }
+          100% {
+            transform: scale(1.8);
+            opacity: 0;
+          }
         }
       `}</style>
 
@@ -506,6 +531,23 @@ export function BuiltForTraders() {
             onTouchEnd={handleTouchEnd}
             onClick={handleCardClick}
           >
+            {/* Hand Tap Indicator Overlay */}
+            {!hasInteracted && (
+              <div className="absolute right-6 bottom-16 z-[100] pointer-events-none flex flex-col items-center gap-1 opacity-90">
+                {/* Ripple ring */}
+                <div className="relative w-8 h-8 flex items-center justify-center">
+                  <div className="absolute w-6 h-6 rounded-full border border-primary/80 animate-[tap-ripple_1.5s_ease-out_infinite]" />
+                  <div className="absolute w-4 h-4 rounded-full bg-primary/20 border border-primary/40 animate-[tap-ripple_1.5s_ease-out_0.5s_infinite]" />
+                  
+                  {/* Pointing hand finger */}
+                  <svg className="w-8 h-8 text-primary absolute -top-1 -right-1 animate-[tap-gesture_1.5s_ease-in-out_infinite]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 11V5a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7H9a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2a8 8 0 0 0 8 8h2a8 8 0 0 0 8-8v-3a2 2 0 0 0-2-2 2 2 0 0 0-2 2v-1a2 2 0 0 0-2-2 2 2 0 0 0-2-2z" />
+                  </svg>
+                </div>
+                <span className="text-[8px] font-mono text-primary tracking-widest uppercase mt-2">TAP / SWIPE</span>
+              </div>
+            )}
+
             {cardsData.map((card, idx) => {
               const distance = (idx - mobileIndex + 5) % 5;
               const isTop = distance === 0;
