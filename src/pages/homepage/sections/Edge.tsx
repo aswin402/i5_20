@@ -433,42 +433,66 @@ export function Edge() {
     return () => {
       window.removeEventListener('resize', calculateDeltaY);
     };
-  }, [activeRow]);
-
-  useEffect(() => {
+  }, [activeRow]);  useEffect(() => {
     const ctx = gsap.context(() => {
-      const edgeTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#i5-edge',
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        }
-      });
+      const mm = gsap.matchMedia();
 
-      // Header animations
-      edgeTl.from('.edge-header > *', {
-        opacity: 0,
-        y: 20,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: 'power2.out',
-      })
-      .from('.edge-table', {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
-      }, '-=0.6');
+      // Desktop layout animations (>= 768px)
+      mm.add("(min-width: 768px)", () => {
+        const edgeTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#i5-edge',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        });
 
-      if (!isMobile) {
-        edgeTl.from('.edge-row', {
+        edgeTl.from('.edge-header > *', {
+          opacity: 0,
+          y: 20,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: 'power2.out',
+        })
+        .from('.edge-table', {
+          opacity: 0,
+          y: 30,
+          duration: 1,
+          ease: 'power3.out',
+        }, '-=0.6')
+        .from('.edge-row', {
           opacity: 0,
           x: (idx) => idx % 2 === 0 ? -30 : 30,
           stagger: 0.06,
           duration: 0.7,
           ease: 'power2.out',
         }, '-=0.8');
-      }
+      });
+
+      // Mobile/Tablet layout animations (< 768px)
+      mm.add("(max-width: 767px)", () => {
+        const edgeTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#i5-edge',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        });
+
+        edgeTl.from('.edge-header > *', {
+          opacity: 0,
+          y: 20,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: 'power2.out',
+        })
+        .from('.edge-table', {
+          opacity: 0,
+          y: 30,
+          duration: 1,
+          ease: 'power3.out',
+        }, '-=0.6');
+      });
 
     }, containerRef);
 
@@ -480,8 +504,7 @@ export function Edge() {
       ctx.revert();
       clearTimeout(timer);
     };
-  }, [isMobile]);
-
+  }, []);
   return (
     <section ref={containerRef} id="i5-edge" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
       {/* Glitch and animation keyframe injections */}

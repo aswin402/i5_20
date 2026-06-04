@@ -264,52 +264,62 @@ export function BuiltForTraders() {
   const touchStartX = useRef(0);
   const hasSwiped = useRef(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const traderTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#built-for-traders',
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        }
-      });
+      const mm = gsap.matchMedia();
 
-      // Header animations
-      traderTl.from('.trader-header > *', {
-        opacity: 0,
-        y: 20,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: 'power2.out',
-      });
+      // Desktop layout animations (>= 768px)
+      mm.add("(min-width: 768px)", () => {
+        const traderTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#built-for-traders',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        });
 
-      if (isMobile) {
-        traderTl.from('.mobile-trader-stack-container', {
+        traderTl.from('.trader-header > *', {
           opacity: 0,
-          scale: 0.95,
+          y: 20,
+          stagger: 0.12,
           duration: 0.8,
           ease: 'power2.out',
-        }, '-=0.4');
-      } else {
-        traderTl.from('.desktop-trader-card', {
+        })
+        .from('.desktop-trader-card', {
           opacity: 0,
           y: 25,
           stagger: 0.08,
           duration: 0.6,
           ease: 'power3.out',
         }, '-=0.4');
-      }
+      });
+
+      // Mobile/Tablet layout animations (< 768px)
+      mm.add("(max-width: 767px)", () => {
+        const traderTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#built-for-traders',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        });
+
+        traderTl.from('.trader-header > *', {
+          opacity: 0,
+          y: 20,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: 'power2.out',
+        })
+        .from('.mobile-trader-stack-container', {
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.8,
+          ease: 'power2.out',
+        }, '-=0.4');
+      });
+
     }, containerRef);
 
     const timer = setTimeout(() => {
@@ -320,8 +330,7 @@ export function BuiltForTraders() {
       ctx.revert();
       clearTimeout(timer);
     };
-  }, [isMobile]);
-
+  }, []);
   const shuffleCard = (nextIndex: number, direction: 'left' | 'right' = 'right') => {
     if (isAnimating) return;
     setIsAnimating(true);
