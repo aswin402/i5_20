@@ -276,23 +276,9 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             </div>
           </div>
 
-          {/* Mobile Waitlist CTA Button */}
-          <div className="flex lg:hidden justify-center mt-1 hero-fade-in w-full">
-            <button 
-              onClick={() => {
-                scrollToSection('intelligence-network');
-                triggerShake();
-              }}
-              className="hero-btn group relative bg-primary text-black text-xs sm:text-sm font-body font-bold tracking-wider px-6 sm:px-8 py-3 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
-            >
-              <span>Join Waitlist</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
-          </div>
-
-          {/* Mobile Video (rendered directly after the badge) */}
+          {/* Mobile Video + Waitlist Button (video as background) */}
           {isMobile && (
-            <div className="-mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-3 hero-fade-in">
+            <div className="relative -mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-3 hero-fade-in">
               <video
                 key="mobile-video-block"
                 autoPlay
@@ -304,6 +290,18 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
               >
                 <source src={heroVideoMob} type="video/mp4" />
               </video>
+              <div className="absolute inset-0 flex items-start justify-center pt-4">
+                <button 
+                  onClick={() => {
+                    scrollToSection('intelligence-network');
+                    triggerShake();
+                  }}
+                  className="hero-btn group relative bg-primary text-black text-xs sm:text-sm font-body font-bold tracking-wider px-6 sm:px-8 py-3 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
+                >
+                  <span>Join Waitlist</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
             </div>
           )}
 
