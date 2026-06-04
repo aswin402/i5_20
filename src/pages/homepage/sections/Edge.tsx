@@ -458,14 +458,17 @@ export function Edge() {
         y: 30,
         duration: 1,
         ease: 'power3.out',
-      }, '-=0.6')
-      .from('.edge-row', {
-        opacity: 0,
-        x: isMobile ? 0 : (idx) => idx % 2 === 0 ? -30 : 30,
-        stagger: 0.06,
-        duration: 0.7,
-        ease: 'power2.out',
-      }, '-=0.8');
+      }, '-=0.6');
+
+      if (!isMobile) {
+        edgeTl.from('.edge-row', {
+          opacity: 0,
+          x: (idx) => idx % 2 === 0 ? -30 : 30,
+          stagger: 0.06,
+          duration: 0.7,
+          ease: 'power2.out',
+        }, '-=0.8');
+      }
 
     }, containerRef);
 
