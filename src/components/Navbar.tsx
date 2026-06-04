@@ -54,7 +54,7 @@ export function Navbar() {
                 setIsOpen(false);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }} 
-              className="flex items-center gap-1.5 hover:opacity-85 transition-opacity cursor-pointer h-10 shrink-0"
+              className="flex items-center gap-1.5 hover:opacity-85 transition-opacity cursor-pointer h-10 shrink-0 ml-3 sm:ml-0"
             >
               <img src={logo} alt="i5 Logo" className="h-8 sm:h-9 lg:h-10 w-auto object-contain" />
             </button>
