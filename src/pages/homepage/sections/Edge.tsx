@@ -632,7 +632,7 @@ export function Edge() {
                     key={idx} 
                     ref={(el) => { rowRefs.current[idx] = el; }}
                     className={`edge-row grid grid-cols-1 md:grid-cols-2 group border-white/10 transition-all duration-300 relative lg:flex-1 w-full shrink-0 snap-start md:w-auto md:shrink ${
-                      activeRow === idx 
+                      !isMobile && activeRow === idx 
                         ? 'bg-primary/[0.02] border-y border-y-primary/20 scale-[1.005] z-20' 
                         : 'bg-transparent border-y border-y-transparent'
                     }`}
@@ -644,7 +644,7 @@ export function Edge() {
                     }}
                   >
                     {/* Glowing outer border box (full 4-sided outline on hover) */}
-                    {activeRow === idx && (
+                    {!isMobile && activeRow === idx && (
                       <div className="absolute inset-0 border border-primary shadow-[0_0_15px_rgba(0,255,204,0.25)] pointer-events-none z-30" />
                     )}
 
@@ -670,8 +670,8 @@ export function Edge() {
                     )}
 
                     <div className={`p-4 sm:p-6 border-b border-white/5 md:border-b-0 md:border-r border-white/10 flex items-center gap-3 transition-opacity duration-300 relative overflow-hidden z-10 ${
-                      activeRow !== null && activeRow !== idx ? 'opacity-25' : 'opacity-100'
-                    } ${activeRow === idx ? 'text-red-500/40' : 'text-white/55'}`}>
+                      !isMobile && activeRow !== null && activeRow !== idx ? 'opacity-25' : 'opacity-100'
+                    } ${!isMobile && activeRow === idx ? 'text-red-500/40' : 'text-white/55'}`}>
                       {/* Sweep scan inside cell */}
                       {hoveredRowIndex === idx && (
                         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full animate-[sweep_0.8s_ease-out_forwards] pointer-events-none z-0" />
@@ -684,8 +684,8 @@ export function Edge() {
  
                     {/* Right side: i5 */}
                     <div className={`p-4 sm:p-6 flex items-center gap-3 transition-all duration-300 relative overflow-hidden z-10 ${
-                      activeRow !== null && activeRow !== idx ? 'opacity-25' : 'opacity-100'
-                    } ${activeRow === idx ? 'bg-primary/5 text-primary' : 'bg-primary/[0.01] text-white'}`}>
+                      !isMobile && activeRow !== null && activeRow !== idx ? 'opacity-25' : 'opacity-100'
+                    } ${isMobile || activeRow === idx ? 'bg-primary/5 text-primary' : 'bg-primary/[0.01] text-white'}`}>
                       {/* Sweep scan inside cell */}
                       {hoveredRowIndex === idx && (
                         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full animate-[sweep_0.8s_ease-out_forwards] pointer-events-none z-0" />
