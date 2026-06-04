@@ -192,7 +192,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-8 sm:pt-8 lg:pt-10 select-none pb-0 sm:pb-8 lg:pb-16 overflow-x-hidden">
+    <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-4 sm:pt-8 lg:pt-10 select-none pb-0 sm:pb-8 lg:pb-16 overflow-x-hidden">
       
       {/* Background Video (Desktop only) */}
       {!isMobile && (
@@ -232,10 +232,10 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-center relative z-10 w-full max-w-7xl self-start sm:ml-6 md:ml-12 lg:ml-20 xl:ml-32">
         
         {/* Slogans and CTAs */}
-        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-4 sm:gap-6 text-center lg:text-left items-center lg:items-start w-full">
+        <div className="lg:col-span-8 xl:col-span-7 flex flex-col gap-3 sm:gap-6 text-center lg:text-left items-center lg:items-start w-full">
           
           {/* Top Badge: Now in Private Beta | Built on Hyperliquid */}
-          <div className="self-center lg:self-start hero-fade-in max-w-full">
+          <div className="self-center lg:self-start hero-fade-in max-w-full -mt-1 sm:mt-0">
             <div className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 bg-primary/10 border border-primary/20 px-3 sm:px-5 py-1 sm:py-2 rounded-full text-[10px] sm:text-sm font-mono font-bold tracking-wider text-primary uppercase backdrop-blur-sm">
               <span className="relative flex h-1.5 w-1.5 sm:h-2.5 sm:w-2.5 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -277,7 +277,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           </div>
 
           {/* Mobile Waitlist CTA Button */}
-          <div className="flex lg:hidden justify-center mt-3 hero-fade-in w-full">
+          <div className="flex lg:hidden justify-center mt-1 hero-fade-in w-full">
             <button 
               onClick={() => {
                 scrollToSection('intelligence-network');
@@ -292,7 +292,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
           {/* Mobile Video (rendered directly after the badge) */}
           {isMobile && (
-            <div className="-mx-6 w-[calc(100%+3rem)] overflow-hidden my-3 hero-fade-in">
+            <div className="-mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-3 hero-fade-in">
               <video
                 key="mobile-video-block"
                 autoPlay
