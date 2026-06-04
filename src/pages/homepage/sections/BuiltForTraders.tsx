@@ -271,53 +271,61 @@ export function BuiltForTraders() {
 
       // Desktop layout animations (>= 768px)
       mm.add("(min-width: 768px)", () => {
-        const traderTl = gsap.timeline({
+        gsap.from('.trader-header > *', {
           scrollTrigger: {
-            trigger: '#built-for-traders',
+            trigger: containerRef.current,
             start: 'top 85%',
             toggleActions: 'play none none none',
-          }
-        });
-
-        traderTl.from('.trader-header > *', {
+          },
           opacity: 0,
           y: 20,
           stagger: 0.12,
           duration: 0.8,
           ease: 'power2.out',
-        })
-        .from('.desktop-trader-card', {
+        });
+
+        gsap.from('.desktop-trader-card', {
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
           opacity: 0,
           y: 25,
           stagger: 0.08,
           duration: 0.6,
           ease: 'power3.out',
-        }, '-=0.4');
+          delay: 0.4,
+        });
       });
 
       // Mobile/Tablet layout animations (< 768px)
       mm.add("(max-width: 767px)", () => {
-        const traderTl = gsap.timeline({
+        gsap.from('.trader-header > *', {
           scrollTrigger: {
-            trigger: '#built-for-traders',
+            trigger: containerRef.current,
             start: 'top 85%',
             toggleActions: 'play none none none',
-          }
-        });
-
-        traderTl.from('.trader-header > *', {
+          },
           opacity: 0,
           y: 20,
           stagger: 0.12,
           duration: 0.8,
           ease: 'power2.out',
-        })
-        .from('.mobile-trader-stack-container', {
+        });
+
+        gsap.from('.mobile-trader-stack-container', {
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
           opacity: 0,
           scale: 0.95,
           duration: 0.8,
           ease: 'power2.out',
-        }, '-=0.4');
+          delay: 0.4,
+        });
       });
 
     }, containerRef);

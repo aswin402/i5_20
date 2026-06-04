@@ -13,7 +13,7 @@ export function CoreFeatures() {
       // Header animations
       gsap.from('.features-header > *', {
         scrollTrigger: {
-          trigger: '#core-features',
+          trigger: containerRef.current,
           start: 'top 85%',
           toggleActions: 'play none none none',
         },

@@ -348,7 +348,7 @@ export function IntelligenceStack() {
       // Top header fade-in
       gsap.from('.stack-top-header > *', {
         scrollTrigger: {
-          trigger: '#why-we-win',
+          trigger: containerRef.current,
           start: 'top 85%',
           toggleActions: 'play none none none',
         },
@@ -382,7 +382,7 @@ export function IntelligenceStack() {
         // Left image column scale/fade-in
         gsap.from('.stack-image-column', {
           scrollTrigger: {
-            trigger: '#why-we-win',
+            trigger: containerRef.current,
             start: 'top 85%',
             toggleActions: 'play none none none',
           },

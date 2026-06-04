@@ -77,7 +77,7 @@ export function AlphaFeed() {
       // Fade-in entry of the header content
       gsap.from('.feed-header > *', {
         scrollTrigger: {
-          trigger: '#alpha-feed',
+          trigger: containerRef.current,
           start: 'top 85%',
           toggleActions: 'play none none none',
         },
@@ -91,7 +91,7 @@ export function AlphaFeed() {
       // Fade-in entry of the ticker rows
       gsap.from('.feed-ticker-row', {
         scrollTrigger: {
-          trigger: '#alpha-feed',
+          trigger: containerRef.current,
           start: 'top 80%',
           toggleActions: 'play none none none',
         },
@@ -134,7 +134,7 @@ export function AlphaFeed() {
 
         // Adjust timeScale based on scroll velocity
         ScrollTrigger.create({
-          trigger: '#alpha-feed',
+          trigger: containerRef.current,
           start: 'top bottom',
           end: 'bottom top',
           onUpdate: (self) => {

@@ -433,65 +433,82 @@ export function Edge() {
     return () => {
       window.removeEventListener('resize', calculateDeltaY);
     };
-  }, [activeRow]);  useEffect(() => {
+  }, [activeRow]);
+
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
       // Desktop layout animations (>= 768px)
       mm.add("(min-width: 768px)", () => {
-        const edgeTl = gsap.timeline({
+        gsap.from('.edge-header > *', {
           scrollTrigger: {
-            trigger: '#i5-edge',
+            trigger: containerRef.current,
             start: 'top 85%',
             toggleActions: 'play none none none',
-          }
-        });
-
-        edgeTl.from('.edge-header > *', {
+          },
           opacity: 0,
           y: 20,
           stagger: 0.12,
           duration: 0.8,
           ease: 'power2.out',
-        })
-        .from('.edge-table', {
+        });
+
+        gsap.from('.edge-table', {
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
           opacity: 0,
           y: 30,
           duration: 1,
           ease: 'power3.out',
-        }, '-=0.6')
-        .from('.edge-row', {
+          delay: 0.3,
+        });
+
+        gsap.from('.edge-row', {
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
           opacity: 0,
           x: (idx) => idx % 2 === 0 ? -30 : 30,
           stagger: 0.06,
           duration: 0.7,
           ease: 'power2.out',
-        }, '-=0.8');
+          delay: 0.5,
+        });
       });
 
       // Mobile/Tablet layout animations (< 768px)
       mm.add("(max-width: 767px)", () => {
-        const edgeTl = gsap.timeline({
+        gsap.from('.edge-header > *', {
           scrollTrigger: {
-            trigger: '#i5-edge',
+            trigger: containerRef.current,
             start: 'top 85%',
             toggleActions: 'play none none none',
-          }
-        });
-
-        edgeTl.from('.edge-header > *', {
+          },
           opacity: 0,
           y: 20,
           stagger: 0.12,
           duration: 0.8,
           ease: 'power2.out',
-        })
-        .from('.edge-table', {
+        });
+
+        gsap.from('.edge-table', {
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
           opacity: 0,
           y: 30,
           duration: 1,
           ease: 'power3.out',
-        }, '-=0.6');
+          delay: 0.3,
+        });
       });
 
     }, containerRef);

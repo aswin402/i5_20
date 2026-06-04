@@ -13,7 +13,7 @@ export function IntelligenceNetwork() {
       // Staggered entry for content
       gsap.from('.network-content > *', {
         scrollTrigger: {
-          trigger: '#intelligence-network',
+          trigger: containerRef.current,
           start: 'top 85%',
           toggleActions: 'play none none none',
         },
