@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
+import swapGif from '../../../assets/swap.gif';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -454,27 +455,6 @@ export function BuiltForTraders() {
           60% { transform: translate(0px, 0px) skew(0deg); }
           100% { transform: translate(0, 0) skew(0deg); }
         }
-        @keyframes tap-gesture {
-          0%, 100% {
-            transform: translate(0, 0) scale(1);
-          }
-          50% {
-            transform: translate(-3px, 3px) scale(0.9);
-          }
-        }
-        @keyframes tap-ripple {
-          0% {
-            transform: scale(0.4);
-            opacity: 0.8;
-          }
-          50% {
-            opacity: 0.5;
-          }
-          100% {
-            transform: scale(1.8);
-            opacity: 0;
-          }
-        }
       `}</style>
 
       {/* Glow background */}
@@ -545,20 +525,11 @@ export function BuiltForTraders() {
             onTouchEnd={handleTouchEnd}
             onClick={handleCardClick}
           >
-            {/* Hand Tap Indicator Overlay */}
+            {/* Swipe indicator overlay */}
             {!hasInteracted && (
               <div className="absolute right-6 bottom-16 z-[100] pointer-events-none flex flex-col items-center gap-1 opacity-90">
-                {/* Ripple ring */}
-                <div className="relative w-8 h-8 flex items-center justify-center">
-                  <div className="absolute w-6 h-6 rounded-full border border-primary/80 animate-[tap-ripple_1.5s_ease-out_infinite]" />
-                  <div className="absolute w-4 h-4 rounded-full bg-primary/20 border border-primary/40 animate-[tap-ripple_1.5s_ease-out_0.5s_infinite]" />
-                  
-                  {/* Pointing hand finger */}
-                  <svg className="w-8 h-8 text-primary absolute -top-1 -right-1 animate-[tap-gesture_1.5s_ease-in-out_infinite]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M14 11V5a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7H9a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2a8 8 0 0 0 8 8h2a8 8 0 0 0 8-8v-3a2 2 0 0 0-2-2 2 2 0 0 0-2 2v-1a2 2 0 0 0-2-2 2 2 0 0 0-2-2z" />
-                  </svg>
-                </div>
-                <span className="text-[8px] font-mono text-primary tracking-widest uppercase mt-2">TAP / SWIPE</span>
+                <img src={swapGif} alt="Swipe to shuffle" className="w-24 h-24 object-contain drop-shadow-[0_0_12px_rgba(0,255,204,0.6)]" />
+                <span className="text-[8px] font-mono text-primary tracking-widest uppercase mt-1">TAP / SWIPE</span>
               </div>
             )}
 

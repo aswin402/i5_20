@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { X, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Check } from 'lucide-react';
+import arrowSvg from '../../../assets/arrow.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -569,11 +570,18 @@ export function Edge() {
           0%, 100% { transform: translateY(-50%) translateX(0); }
           50% { transform: translateY(-50%) translateX(4px); }
         }
+        @keyframes glow-pulse {
+          0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 204, 0.15); }
+          50% { box-shadow: 0 0 20px rgba(0, 255, 204, 0.4); }
+        }
         .animate-bounce-left {
           animation: bounce-left 1.2s infinite ease-in-out;
         }
         .animate-bounce-right {
           animation: bounce-right 1.2s infinite ease-in-out;
+        }
+        .animate-glow-pulse {
+          animation: glow-pulse 1.5s ease-in-out infinite;
         }
       `}</style>
 
@@ -610,28 +618,6 @@ export function Edge() {
           <div className="lg:col-span-8 w-full lg:h-full">
             <div className="edge-table border-2 border-white/10 bg-black/40 backdrop-blur-md overflow-hidden md:overflow-visible relative shadow-[4px_4px_0px_rgba(255,255,255,0.02)] w-full lg:h-full lg:flex lg:flex-col">
               
-              {/* Left arrow navigator on mobile */}
-              {activeRow === 5 && (
-                <button
-                  onClick={() => handleRowSelect(activeRow - 1)}
-                  className="absolute left-2 top-[62%] md:hidden z-40 bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full shadow-[0_0_10px_rgba(0,255,204,0.15)] animate-bounce-left transition-all duration-300 hover:bg-primary/20"
-                  aria-label="Previous compare slide"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-              )}
-
-              {/* Right arrow navigator on mobile */}
-              {activeRow === 0 && (
-                <button
-                  onClick={() => handleRowSelect(activeRow + 1)}
-                  className="absolute right-2 top-[62%] md:hidden z-40 bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full shadow-[0_0_10px_rgba(0,255,204,0.15)] animate-bounce-right transition-all duration-300 hover:bg-primary/20"
-                  aria-label="Next compare slide"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              )}
-
               {/* Table Header Row */}
               <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-white/10 bg-white/5 font-mono text-xs uppercase tracking-widest shrink-0">
                 <div className="p-4 sm:p-6 text-white/50 border-b md:border-b-0 md:border-r border-white/10 flex items-center justify-between">
@@ -745,17 +731,37 @@ export function Edge() {
 
             {/* Mobile swipe navigation dots */}
             <div className="flex md:hidden flex-col items-center gap-2 mt-4">
-              <div className="flex justify-center items-center gap-2">
-                {Array.from({ length: 6 }).map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleRowSelect(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      activeRow === idx ? 'bg-primary w-4' : 'bg-white/20 w-1.5'
-                    }`}
-                    aria-label={`Go to row ${idx + 1}`}
-                  />
-                ))}
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  onClick={() => activeRow !== null && handleRowSelect(activeRow - 1)}
+                  className={`bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full transition-all duration-300 hover:bg-primary/20 animate-glow-pulse ${
+                    activeRow !== null && activeRow === 0 ? 'opacity-30 pointer-events-none' : 'animate-bounce-left'
+                  }`}
+                  aria-label="Previous compare slide"
+                >
+                  <img src={arrowSvg} alt="Previous" className="w-6 h-6 scale-x-[-1]" />
+                </button>
+                <div className="flex justify-center items-center gap-2">
+                  {Array.from({ length: 6 }).map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleRowSelect(idx)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        activeRow === idx ? 'bg-primary w-4' : 'bg-white/20 w-1.5'
+                      }`}
+                      aria-label={`Go to row ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+                <button
+                  onClick={() => activeRow !== null && handleRowSelect(activeRow + 1)}
+                  className={`bg-black/80 backdrop-blur-md border border-primary/30 text-primary p-2 rounded-full transition-all duration-300 hover:bg-primary/20 animate-glow-pulse ${
+                    activeRow !== null && activeRow === 5 ? 'opacity-30 pointer-events-none' : 'animate-bounce-right'
+                  }`}
+                  aria-label="Next compare slide"
+                >
+                  <img src={arrowSvg} alt="Next" className="w-6 h-6" />
+                </button>
               </div>
               <div className="text-[9px] font-mono text-white/30 tracking-widest uppercase flex items-center gap-1.5 animate-pulse">
                 <span>&larr;</span> swipe to compare <span>&rarr;</span>
