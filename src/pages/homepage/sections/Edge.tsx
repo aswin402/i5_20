@@ -18,12 +18,14 @@ function ScrambleText({ text, speed = 25 }: { text: string; speed?: number }) {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_$%@#';
     
     // Set immediate randomized character template matching the length
-    setDisplayText(
-      text
-        .split("")
-        .map((char) => (char === " " ? " " : chars[Math.floor(Math.random() * chars.length)]))
-        .join("")
-    );
+    const scrambled = text
+      .split("")
+      .map((char) => (char === " " ? " " : chars[Math.floor(Math.random() * chars.length)]))
+      .join("");
+
+    const timeout = setTimeout(() => {
+      setDisplayText(scrambled);
+    }, 0);
 
     const interval = setInterval(() => {
       setDisplayText(() => 
@@ -43,7 +45,10 @@ function ScrambleText({ text, speed = 25 }: { text: string; speed?: number }) {
       iteration += 1;
     }, speed);
     
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
   }, [text, speed]);
   
   return <>{displayText}</>;
@@ -441,45 +446,27 @@ export function Edge() {
 
       // Desktop layout animations (>= 768px)
       mm.add("(min-width: 768px)", () => {
-        gsap.from('.edge-header > *', {
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
+        const st = ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            gsap.fromTo('.edge-header > *',
+              { opacity: 0, y: 20 },
+              { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: 'power2.out', overwrite: 'auto' }
+            );
+            gsap.fromTo('.edge-table',
+              { opacity: 0, y: 30 },
+              { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.3, overwrite: 'auto' }
+            );
+            gsap.fromTo('.edge-row',
+              { opacity: 0, x: (idx) => idx % 2 === 0 ? -30 : 30 },
+              { opacity: 1, x: 0, stagger: 0.06, duration: 0.7, ease: 'power2.out', delay: 0.5, overwrite: 'auto' }
+            );
           },
-          opacity: 0,
-          y: 20,
-          stagger: 0.12,
-          duration: 0.8,
-          ease: 'power2.out',
         });
 
-        gsap.from('.edge-table', {
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          opacity: 0,
-          y: 30,
-          duration: 1,
-          ease: 'power3.out',
-          delay: 0.3,
-        });
-
-        gsap.from('.edge-row', {
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          opacity: 0,
-          x: (idx) => idx % 2 === 0 ? -30 : 30,
-          stagger: 0.06,
-          duration: 0.7,
-          ease: 'power2.out',
-          delay: 0.5,
-        });
+        return () => st.kill();
       });
 
       // Mobile/Tablet layout animations (< 768px)

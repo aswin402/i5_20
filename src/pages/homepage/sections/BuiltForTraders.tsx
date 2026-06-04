@@ -87,8 +87,10 @@ function QuantWidget({ active }: { active: boolean }) {
   
   useEffect(() => {
     if (!active) {
-      setStream('GET /v2/market/signal');
-      return;
+      const timeout = setTimeout(() => {
+        setStream('GET /v2/market/signal');
+      }, 0);
+      return () => clearTimeout(timeout);
     }
     const samples = [
       '{"ask": 93240.2, "vol": 12.8, "lat": 0.4}',
@@ -271,32 +273,23 @@ export function BuiltForTraders() {
 
       // Desktop layout animations (>= 768px)
       mm.add("(min-width: 768px)", () => {
-        gsap.from('.trader-header > *', {
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
+        const st = ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            gsap.fromTo('.trader-header > *',
+              { opacity: 0, y: 20 },
+              { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: 'power2.out', overwrite: 'auto' }
+            );
+            gsap.fromTo('.desktop-trader-card',
+              { opacity: 0, y: 25 },
+              { opacity: 1, y: 0, stagger: 0.08, duration: 0.6, ease: 'power3.out', delay: 0.4, overwrite: 'auto' }
+            );
           },
-          opacity: 0,
-          y: 20,
-          stagger: 0.12,
-          duration: 0.8,
-          ease: 'power2.out',
         });
 
-        gsap.from('.desktop-trader-card', {
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          opacity: 0,
-          y: 25,
-          stagger: 0.08,
-          duration: 0.6,
-          ease: 'power3.out',
-          delay: 0.4,
-        });
+        return () => st.kill();
       });
 
       // Mobile/Tablet layout animations (< 768px)
