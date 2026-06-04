@@ -517,7 +517,7 @@ export function IntelligenceStack() {
         {/* Content Row: Two Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: BIG Image */}
-          <div className="stack-image-column lg:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg sticky top-16 lg:relative lg:top-auto overflow-hidden h-[280px] sm:h-[220px] lg:h-auto z-20">
+          <div className="stack-image-column lg:col-span-6 flex flex-col items-center justify-center bg-transparent border-0 lg:bg-black/40 lg:border lg:border-white/10 p-4 rounded-lg sticky top-16 lg:relative lg:top-auto overflow-hidden h-[280px] sm:h-[150px] lg:h-auto z-20">
             <div className="absolute inset-0 bg-radial-gradient from-primary/10 to-transparent pointer-events-none hidden lg:block" />
             {/* Grid background details */}
             <div className="absolute inset-0 opacity-15 pointer-events-none hidden lg:block" style={{ backgroundImage: 'radial-gradient(var(--color-primary, #00ffcc) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
@@ -556,9 +556,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-3.5
+              sm:py-2
               sm:px-8
-              sm:min-h-[96px]
+              sm:min-h-[72px]
               border-2
               border-white/15
               cursor-pointer
@@ -569,32 +569,32 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(1)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[18px] lg:top-[20px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
                 <div className="flex flex-col justify-center flex-1">
-                  <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i1</span>
-                    <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="font-inter font-black text-2xl sm:text-2xl text-primary">i1</span>
+                    <h3 className="text-lg sm:text-lg font-display font-black text-white uppercase tracking-tight">
                       Market Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] sm:text-[10px] font-mono font-bold px-1.5 sm:px-2 py-0.5 uppercase tracking-wider">
                       DATA LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
                     Hyperliquid order flow, perps, funding, OI, volatility, liquidity maps, and liquidation streams — ingested in real time.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
                 <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
-                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                  <div className="hidden xs:block w-12 h-12 sm:w-12 sm:h-12 shrink-0">
                     <Layer1Visual hovered={hoveredIndex === 1} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Order flow</div>
                     <div className="hover:text-white transition-colors">&gt; Funding & OI</div>
                     <div className="hover:text-white transition-colors">&gt; Liquidity maps</div>
@@ -615,9 +615,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-3.5
+              sm:py-2
               sm:px-8
-              sm:min-h-[96px]
+              sm:min-h-[72px]
               border-2
               border-white/15
               cursor-pointer
@@ -628,32 +628,32 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(2)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[18px] lg:top-[20px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
                 <div className="flex flex-col justify-center flex-1">
-                  <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i2</span>
-                    <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="font-inter font-black text-2xl sm:text-2xl text-primary">i2</span>
+                    <h3 className="text-lg sm:text-lg font-display font-black text-white uppercase tracking-tight">
                       AI Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] sm:text-[10px] font-mono font-bold px-1.5 sm:px-2 py-0.5 uppercase tracking-wider">
                       AGENT LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
                     Specialized agents — Signal, Narrative, Risk, Execution, Learning — coordinate across the entire trading workflow.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
                 <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
-                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                  <div className="hidden xs:block w-12 h-12 sm:w-12 sm:h-12 shrink-0">
                     <Layer2Visual hovered={hoveredIndex === 2} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Signal agents</div>
                     <div className="hover:text-white transition-colors">&gt; Narrative agents</div>
                     <div className="hover:text-white transition-colors">&gt; Risk agents</div>
@@ -674,9 +674,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-3.5
+              sm:py-2
               sm:px-8
-              sm:min-h-[96px]
+              sm:min-h-[72px]
               border-2
               border-white/15
               cursor-pointer
@@ -687,32 +687,32 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(3)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[18px] lg:top-[20px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
                 <div className="flex flex-col justify-center flex-1">
-                  <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i3</span>
-                    <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="font-inter font-black text-2xl sm:text-2xl text-primary">i3</span>
+                    <h3 className="text-lg sm:text-lg font-display font-black text-white uppercase tracking-tight">
                       Community Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] sm:text-[10px] font-mono font-bold px-1.5 sm:px-2 py-0.5 uppercase tracking-wider">
                       NETWORK LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
                     Traders publish signals, validate setups, and earn transparent on-chain reputation. Merit-based intelligence at scale.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
                 <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
-                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                  <div className="hidden xs:block w-12 h-12 sm:w-12 sm:h-12 shrink-0">
                     <Layer3Visual hovered={hoveredIndex === 3} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Reputation scores</div>
                     <div className="hover:text-white transition-colors">&gt; Signal marketplace</div>
                     <div className="hover:text-white transition-colors">&gt; Copy trading</div>
@@ -733,9 +733,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-3.5
+              sm:py-2
               sm:px-8
-              sm:min-h-[96px]
+              sm:min-h-[72px]
               border-2
               border-white/15
               cursor-pointer
@@ -746,32 +746,32 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(4)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[18px] lg:top-[20px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
                 <div className="flex flex-col justify-center flex-1">
-                  <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i4</span>
-                    <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="font-inter font-black text-2xl sm:text-2xl text-primary">i4</span>
+                    <h3 className="text-lg sm:text-lg font-display font-black text-white uppercase tracking-tight">
                       Event Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] sm:text-[10px] font-mono font-bold px-1.5 sm:px-2 py-0.5 uppercase tracking-wider">
                       DETECTION LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
                     Whale transfers, funding spikes, volume anomalies, and narrative shifts — surfaced as ranked, contextual events.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
                 <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
-                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                  <div className="hidden xs:block w-12 h-12 sm:w-12 sm:h-12 shrink-0">
                     <Layer4Visual hovered={hoveredIndex === 4} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; Whale moves</div>
                     <div className="hover:text-white transition-colors">&gt; Volume anomalies</div>
                     <div className="hover:text-white transition-colors">&gt; Narrative shifts</div>
@@ -792,9 +792,9 @@ export function IntelligenceStack() {
               bg-black
               lg:bg-black/80
               p-4
-              sm:py-3.5
+              sm:py-2
               sm:px-8
-              sm:min-h-[96px]
+              sm:min-h-[72px]
               border-2
               border-white/15
               cursor-pointer
@@ -805,32 +805,32 @@ export function IntelligenceStack() {
               onClick={() => handleCardClick(5)}
             >
               {/* Timeline Connector Dot */}
-              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[26px] lg:top-[28px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
+              <div className="stack-connector-dot hidden lg:flex absolute -left-[20px] sm:-left-[26px] top-[18px] lg:top-[20px] w-4 h-4 rounded-full bg-black border-2 border-primary items-center justify-center">
                 <div className="stack-dot-inner w-1.5 h-1.5 rounded-full bg-primary border border-transparent" />
               </div>
               
               <div className="stack-layer-content flex flex-col sm:flex-row sm:items-stretch justify-between gap-4">
                 <div className="flex flex-col justify-center flex-1">
-                  <div className="flex items-center gap-3 mb-1.5">
-                    <span className="font-inter font-black text-2xl sm:text-3xl text-primary">i5</span>
-                    <h3 className="text-lg sm:text-xl font-display font-black text-white uppercase tracking-tight">
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="font-inter font-black text-2xl sm:text-2xl text-primary">i5</span>
+                    <h3 className="text-lg sm:text-lg font-display font-black text-white uppercase tracking-tight">
                       Execution Intelligence
                     </h3>
                     <span className="bg-primary/10 border border-primary/20 text-primary text-[8px] sm:text-[10px] font-mono font-bold px-1.5 sm:px-2 py-0.5 uppercase tracking-wider">
                       ACTION LAYER
                     </span>
                   </div>
-                  <p className="text-xs sm:text-base text-white/50 font-body leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm text-white/50 font-body leading-relaxed max-w-xl">
                     From signal to fill in one workflow. One-click trades, dynamic stops, scaling, and policy-bound automation.
                   </p>
                 </div>
                 
                 {/* Visual module & Sub-items list wrapper */}
                 <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:min-w-[240px] pt-3 sm:pt-0 border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-4">
-                  <div className="hidden xs:block w-12 h-12 sm:w-14 sm:h-14 shrink-0">
+                  <div className="hidden xs:block w-12 h-12 sm:w-12 sm:h-12 shrink-0">
                     <Layer5Visual hovered={hoveredIndex === 5} />
                   </div>
-                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-sm text-emerald-400 font-bold w-full">
+                  <div className="flex flex-col gap-y-1 font-mono text-xs sm:text-xs text-emerald-400 font-bold w-full">
                     <div className="hover:text-white transition-colors">&gt; One-click trades</div>
                     <div className="hover:text-white transition-colors">&gt; Dynamic stops</div>
                     <div className="hover:text-white transition-colors">&gt; Copy workflows</div>
