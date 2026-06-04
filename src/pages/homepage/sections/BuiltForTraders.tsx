@@ -264,16 +264,29 @@ export function BuiltForTraders() {
   const touchStartX = useRef(0);
   const hasSwiped = useRef(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header animations
-      gsap.from('.trader-header > *', {
+      const traderTl = gsap.timeline({
         scrollTrigger: {
           trigger: '#built-for-traders',
           start: 'top 85%',
           toggleActions: 'play none none none',
-        },
+        }
+      });
+
+      // Header animations
+      traderTl.from('.trader-header > *', {
         opacity: 0,
         y: 20,
         stagger: 0.12,
@@ -281,42 +294,33 @@ export function BuiltForTraders() {
         ease: 'power2.out',
       });
 
-      // Desktop Cards staggered entry
-      gsap.fromTo('.desktop-trader-card', 
-        { opacity: 0, y: 25 },
-        {
-          scrollTrigger: {
-            trigger: '.trader-grid-desktop',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          opacity: 1,
-          y: 0,
+      if (isMobile) {
+        traderTl.from('.mobile-trader-stack-container', {
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.8,
+          ease: 'power2.out',
+        }, '-=0.4');
+      } else {
+        traderTl.from('.desktop-trader-card', {
+          opacity: 0,
+          y: 25,
           stagger: 0.08,
           duration: 0.6,
           ease: 'power3.out',
-        }
-      );
-
-      // Mobile Stack Container entry
-      gsap.fromTo('.mobile-trader-stack-container',
-        { opacity: 0, scale: 0.95 },
-        {
-          scrollTrigger: {
-            trigger: '.mobile-trader-stack-container',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          ease: 'power2.out',
-        }
-      );
+        }, '-=0.4');
+      }
     }, containerRef);
 
-    return () => ctx.revert();
-  }, []);
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
+  }, [isMobile]);
 
   const shuffleCard = (nextIndex: number, direction: 'left' | 'right' = 'right') => {
     if (isAnimating) return;

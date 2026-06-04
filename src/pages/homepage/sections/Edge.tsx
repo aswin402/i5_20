@@ -437,57 +437,47 @@ export function Edge() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header animations
-      gsap.from('.edge-header > *', {
+      const edgeTl = gsap.timeline({
         scrollTrigger: {
           trigger: '#i5-edge',
           start: 'top 85%',
           toggleActions: 'play none none none',
-        },
+        }
+      });
+
+      // Header animations
+      edgeTl.from('.edge-header > *', {
         opacity: 0,
         y: 20,
         stagger: 0.12,
         duration: 0.8,
         ease: 'power2.out',
-      });
-
-      // Comparison table fade-in
-      gsap.from('.edge-table', {
-        scrollTrigger: {
-          trigger: '.edge-table',
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        },
+      })
+      .from('.edge-table', {
         opacity: 0,
         y: 30,
         duration: 1,
         ease: 'power3.out',
-      });
+      }, '-=0.6')
+      .from('.edge-row', {
+        opacity: 0,
+        x: isMobile ? 0 : (idx) => idx % 2 === 0 ? -30 : 30,
+        stagger: 0.06,
+        duration: 0.7,
+        ease: 'power2.out',
+      }, '-=0.8');
 
-      // Alternating row entries
-      const rows = containerRef.current?.querySelectorAll('.edge-row');
-      rows?.forEach((row, idx) => {
-        const isMobile = window.innerWidth < 768;
-        gsap.fromTo(row,
-          { opacity: 0, x: isMobile ? 0 : (idx % 2 === 0 ? -30 : 30) },
-          {
-            scrollTrigger: {
-              trigger: '.edge-table',
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-            opacity: 1,
-            x: 0,
-            delay: idx * 0.06,
-            duration: 0.7,
-            ease: 'power2.out',
-          }
-        );
-      });
     }, containerRef);
 
-    return () => ctx.revert();
-  }, []);
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
+  }, [isMobile]);
 
   return (
     <section ref={containerRef} id="i5-edge" className="relative py-24 px-4 sm:px-8 md:px-12 lg:px-20 border-b border-white/10 select-none bg-black overflow-hidden">
