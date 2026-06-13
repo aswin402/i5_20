@@ -194,9 +194,15 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
   return (
     <section ref={containerRef} className="relative min-h-[92vh] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pt-4 sm:pt-8 lg:pt-10 select-none pb-0 sm:pb-8 lg:pb-16 overflow-x-hidden">
       
+      {/* Block global static grids on non-mobile screens */}
+      <div className="absolute inset-0 bg-black z-0 hidden md:block" />
+
+      {/* Moving background grid (Desktop and Tablet only) */}
+      <div className="absolute inset-0 pointer-events-none z-[2] hero-moving-grid" />
+
       {/* Background Video (Desktop only) */}
       {!isMobile && (
-        <div className="absolute inset-0 w-full h-full overflow-hidden z-0 select-none hero-bg-video pointer-events-none">
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-[1] select-none hero-bg-video pointer-events-none">
           {/* Ambient Blurred Video Background (Covers entire screen to eliminate letterboxing) */}
           <video
             key="ambient-video"
