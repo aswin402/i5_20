@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ triggerShake }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
   const [currentSignal, setCurrentSignal] = useState(1);
 
   useEffect(() => {
@@ -287,6 +287,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             <div className="relative -mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-3 hero-fade-in">
               <video
                 key="mobile-video-block"
+                src={heroVideoMob}
                 autoPlay
                 loop
                 muted
@@ -294,7 +295,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                 preload="auto"
                 className="w-full h-auto block"
               >
-                <source src={heroVideoMob} type="video/mp4" />
+                Your browser does not support the video tag.
               </video>
               <div className="absolute inset-0 flex items-start justify-center pt-4">
                 <button 
