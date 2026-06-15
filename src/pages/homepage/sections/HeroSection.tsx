@@ -314,7 +314,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
               {/* Mobile Stats Block (only for mobile, placed after the video) */}
               <div className="-mx-6 w-[calc(100%+3rem)] border-t border-white/10 pt-2.5 pb-1 px-6 hero-fade-in mt-[-12px] mb-0">
-                <div className="grid grid-cols-3 gap-2 text-center">
+                <div className="grid grid-cols-2 gap-2 text-center">
                   <div className="hero-stat-item cursor-pointer">
                     <div className="stat-val text-2xl sm:text-3xl font-display font-black text-white tracking-tight origin-center transition-transform duration-300">
                       98.7%
@@ -329,14 +329,6 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                     </div>
                     <div className="stat-lbl text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                       LATENCY
-                    </div>
-                  </div>
-                  <div className="hero-stat-item cursor-pointer">
-                    <div className="stat-val text-2xl sm:text-3xl font-display font-black text-white tracking-tight origin-center transition-transform duration-300">
-                      21M
-                    </div>
-                    <div className="stat-lbl text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
-                      SUPPLIES
                     </div>
                   </div>
                 </div>
@@ -363,7 +355,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
             </button>
           </div>
 
-          {/* Stats: Signal Accuracy, Latency & Supplies */}
+          {/* Stats: Signal Accuracy, Latency */}
           <div className="hidden lg:flex flex-wrap justify-start gap-6 sm:gap-12 mt-4 sm:mt-6 border-t border-white/10 pt-4 sm:pt-6 hero-fade-in w-full">
             <div className="hero-stat-item cursor-pointer">
               <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
@@ -379,14 +371,6 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
               </div>
               <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
                 LATENCY
-              </div>
-            </div>
-            <div className="hero-stat-item cursor-pointer">
-              <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
-                21M
-              </div>
-              <div className="stat-lbl text-[10px] sm:text-xs font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
-                SUPPLIES
               </div>
             </div>
           </div>
