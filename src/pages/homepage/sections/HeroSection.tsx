@@ -294,7 +294,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                   muted
                   playsInline
                   preload="auto"
-                  className="w-full h-auto block"
+                  className="w-full h-auto block mix-blend-screen"
                 >
                   <source src={heroVideoMobWebm} type="video/webm" />
                   <source src={heroVideoMobMp4} type="video/mp4" />
