@@ -286,7 +286,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           {/* Mobile Video + Waitlist Button (video as background) */}
           {isMobile && (
             <>
-              <div className="relative -mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-0 hero-fade-in">
+              <div className="relative -mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-0 hero-fade-in mobile-video-blend-container">
                 <video
                   key="mobile-video-block"
                   autoPlay
@@ -294,10 +294,10 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                   muted
                   playsInline
                   preload="auto"
-                  className="w-full h-auto block mix-blend-screen"
+                  className="w-full h-auto block mobile-video-blend"
                 >
+                  <source src={heroVideoMobMp4} type="video/mp4; codecs='hvc1'" />
                   <source src={heroVideoMobWebm} type="video/webm" />
-                  <source src={heroVideoMobMp4} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 flex items-start justify-center pt-0">

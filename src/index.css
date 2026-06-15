@@ -285,3 +285,20 @@
     background-position: -120px 0;
   }
 }
+
+/* Mobile video blend mode fix — Safari iOS requires isolation + GPU compositing trick */
+.mobile-video-blend-container {
+  isolation: isolate;
+  -webkit-isolation: isolate;
+  background: transparent;
+}
+
+.mobile-video-blend {
+  mix-blend-mode: screen;
+  -webkit-mix-blend-mode: screen;
+  /* Force GPU layer compositing — critical for Safari to honour mix-blend-mode on video */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
