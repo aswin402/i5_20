@@ -298,7 +298,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                 >
                   Your browser does not support the video tag.
                 </video>
-                <div className="absolute inset-0 flex items-start justify-center pt-2">
+                <div className="absolute inset-0 flex items-start justify-center pt-0">
                   <button 
                     onClick={() => {
                       scrollToSection('intelligence-network');
@@ -313,7 +313,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
               </div>
 
               {/* Mobile Stats Block (only for mobile, placed after the video) */}
-              <div className="-mx-6 w-[calc(100%+3rem)] border-t border-white/10 pt-0.5 pb-0.5 px-6 hero-fade-in mt-[-12px] mb-0">
+              <div className="-mx-6 w-[calc(100%+3rem)] border-t border-white/10 pt-2.5 pb-1 px-6 hero-fade-in mt-[-12px] mb-0">
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="hero-stat-item cursor-pointer">
                     <div className="stat-val text-2xl sm:text-3xl font-display font-black text-white tracking-tight origin-center transition-transform duration-300">
