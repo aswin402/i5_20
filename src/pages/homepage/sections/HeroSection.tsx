@@ -1,7 +1,8 @@
 import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import heroVideoMob from '../../../assets/herovideomob.webm';
+import heroVideoMobWebm from '../../../assets/herovideomob.webm';
+import heroVideoMobMp4 from '../../../assets/herovideomob.mp4';
 import signal1 from '../../../assets/signal1.png';
 import signal2 from '../../../assets/signal2.png';
 
@@ -288,7 +289,6 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
               <div className="relative -mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-0 hero-fade-in">
                 <video
                   key="mobile-video-block"
-                  src={heroVideoMob}
                   autoPlay
                   loop
                   muted
@@ -296,6 +296,8 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
                   preload="auto"
                   className="w-full h-auto block"
                 >
+                  <source src={heroVideoMobWebm} type="video/webm" />
+                  <source src={heroVideoMobMp4} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 flex items-start justify-center pt-0">
