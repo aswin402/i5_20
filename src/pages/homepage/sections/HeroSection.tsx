@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import heroVideoMob from '../../../assets/herovideomob.mp4';
+import heroVideoMob from '../../../assets/herovideomob.webm';
 import signal1 from '../../../assets/signal1.png';
 import signal2 from '../../../assets/signal2.png';
 
@@ -284,36 +284,68 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
 
           {/* Mobile Video + Waitlist Button (video as background) */}
           {isMobile && (
-            <div className="relative -mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-3 hero-fade-in">
-              <video
-                key="mobile-video-block"
-                src={heroVideoMob}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="w-full h-auto block"
-              >
-                Your browser does not support the video tag.
-              </video>
-              <div className="absolute inset-0 flex items-start justify-center pt-4">
-                <button 
-                  onClick={() => {
-                    scrollToSection('intelligence-network');
-                    triggerShake();
-                  }}
-                  className="hero-btn group relative bg-primary text-black text-xs sm:text-sm font-body font-bold tracking-wider px-6 sm:px-8 py-3 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
+            <>
+              <div className="relative -mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-0 hero-fade-in">
+                <video
+                  key="mobile-video-block"
+                  src={heroVideoMob}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="w-full h-auto block"
                 >
-                  <span>Join Waitlist</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
+                  Your browser does not support the video tag.
+                </video>
+                <div className="absolute inset-0 flex items-start justify-center pt-2">
+                  <button 
+                    onClick={() => {
+                      scrollToSection('intelligence-network');
+                      triggerShake();
+                    }}
+                    className="hero-btn group relative bg-primary text-black text-xs sm:text-sm font-body font-bold tracking-wider px-6 sm:px-8 py-3 rounded-full inline-flex items-center gap-2 transition-transform duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95"
+                  >
+                    <span>Join Waitlist</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
               </div>
-            </div>
+
+              {/* Mobile Stats Block (only for mobile, placed after the video) */}
+              <div className="-mx-6 w-[calc(100%+3rem)] border-t border-white/10 pt-0.5 pb-0.5 px-6 hero-fade-in mt-[-12px] mb-0">
+                <div className="grid grid-cols-3 gap-2 text-center">
+                  <div className="hero-stat-item cursor-pointer">
+                    <div className="stat-val text-2xl sm:text-3xl font-display font-black text-white tracking-tight origin-center transition-transform duration-300">
+                      98.7%
+                    </div>
+                    <div className="stat-lbl text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+                      SIGNAL ACCURACY
+                    </div>
+                  </div>
+                  <div className="hero-stat-item cursor-pointer">
+                    <div className="stat-val text-2xl sm:text-3xl font-display font-black text-white tracking-tight origin-center transition-transform duration-300">
+                      &lt;50ms
+                    </div>
+                    <div className="stat-lbl text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+                      LATENCY
+                    </div>
+                  </div>
+                  <div className="hero-stat-item cursor-pointer">
+                    <div className="stat-val text-2xl sm:text-3xl font-display font-black text-white tracking-tight origin-center transition-transform duration-300">
+                      21M
+                    </div>
+                    <div className="stat-lbl text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-primary uppercase mt-1 transition-all duration-300">
+                      SUPPLIES
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
           )}
 
           {/* Paragraph description */}
-          <p className="text-white/70 font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-2 hero-fade-in mx-auto lg:mx-0">
+          <p className="text-white/70 font-body text-sm sm:text-base md:text-lg max-w-xl leading-relaxed mt-0 lg:mt-2 hero-fade-in mx-auto lg:mx-0">
             i5 is an intelligence-native trading network that aggregates smart-money flows, cohort behavior, and institutional-grade signals into a unified execution layer.
           </p>
 
@@ -332,7 +364,7 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           </div>
 
           {/* Stats: Signal Accuracy, Latency & Supplies */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-12 mt-4 sm:mt-6 border-t border-white/10 pt-4 sm:pt-6 hero-fade-in w-full">
+          <div className="hidden lg:flex flex-wrap justify-start gap-6 sm:gap-12 mt-4 sm:mt-6 border-t border-white/10 pt-4 sm:pt-6 hero-fade-in w-full">
             <div className="hero-stat-item cursor-pointer">
               <div className="stat-val text-3xl sm:text-4xl font-display font-black text-white tracking-tight origin-center lg:origin-left transition-transform duration-300">
                 98.7%
