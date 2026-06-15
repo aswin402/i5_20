@@ -95,7 +95,7 @@
   * {
     border-color: rgba(255, 255, 255, 0.15);
   }
-  body {
+  html, body {
     background-color: #000000;
     color: #ffffff;
     font-family: 'Space Grotesk', sans-serif;
@@ -239,6 +239,7 @@
 @media (min-width: 1024px) and (max-width: 1600px) {
   .zoom-content {
     zoom: 0.82;
+    overflow: visible !important;
   }
 }
 
