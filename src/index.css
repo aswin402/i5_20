@@ -99,7 +99,7 @@
     background-color: #000000;
     color: #ffffff;
     font-family: 'Space Grotesk', sans-serif;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Syne', sans-serif;
