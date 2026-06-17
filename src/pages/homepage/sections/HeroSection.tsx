@@ -5,6 +5,7 @@ import heroVideoMobWebm from '../../../assets/herovideomob.webm';
 import heroVideoMobMp4 from '../../../assets/herovideomob.mp4';
 import signal1 from '../../../assets/signal1.png';
 import signal2 from '../../../assets/signal2.png';
+import { TransparentVideo } from '../../../components/TransparentVideo';
 
 interface HeroSectionProps {
   triggerShake: () => void;
@@ -287,19 +288,11 @@ export function HeroSection({ triggerShake }: HeroSectionProps) {
           {isMobile && (
             <>
               <div className="relative -mx-6 w-[calc(100%+3rem)] overflow-hidden mt-1 mb-0 hero-fade-in mobile-video-blend-container">
-                <video
-                  key="mobile-video-block"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
+                <TransparentVideo
+                  mp4Src={heroVideoMobMp4}
+                  webmSrc={heroVideoMobWebm}
                   className="w-full h-auto block mobile-video-blend"
-                >
-                  <source src={heroVideoMobMp4} type="video/mp4; codecs='hvc1'" />
-                  <source src={heroVideoMobWebm} type="video/webm" />
-                  Your browser does not support the video tag.
-                </video>
+                />
                 <div className="absolute inset-0 flex items-start justify-center pt-0">
                   <button 
                     onClick={() => {
